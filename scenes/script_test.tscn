@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c17go37n2numv"]
+[gd_scene load_steps=6 format=3 uid="uid://djpqurr4nitlw"]
 
-[ext_resource type="PackedScene" uid="uid://bcwwhrhoa0t6i" path="res://player.tscn" id="1_scyfb"]
-[ext_resource type="PackedScene" uid="uid://cwu5ol8t14fid" path="res://t_stage.tscn" id="1_wdbqn"]
+[ext_resource type="PackedScene" uid="uid://iddn68oqxoub" path="res://scenes/player/player.tscn" id="1_rayub"]
+[ext_resource type="PackedScene" uid="uid://bu1qvdsjesfjm" path="res://scenes/maps/t_stage/t_stage.tscn" id="2_ogtb6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8t2b0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -22,11 +22,11 @@ glow_enabled = true
 environment = SubResource("Environment_wdvov")
 
 [node name="t_sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.709267, 0.187113, -0.679654, -0.271975, 0.816851, 0.508709, 0.650362, 0.545659, -0.528475, 0, 0, 0)
+transform = Transform3D(-0.857684, 0.496248, 0.134595, 0.0193348, -0.230456, 0.972891, 0.513813, 0.837035, 0.188064, 0, 0, 0)
 shadow_enabled = true
 
-[node name="player" parent="." instance=ExtResource("1_scyfb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4698, 14.7967, -25.159)
+[node name="player" parent="." instance=ExtResource("1_rayub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3902, 14.7967, -25.159)
 
-[node name="t_stage" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_wdbqn")]
+[node name="t_stage" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_ogtb6")]
 player = NodePath("../player")

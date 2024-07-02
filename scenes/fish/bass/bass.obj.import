@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://iboklj1suao5"
+path="res://.godot/imported/bass.obj-0fc502667155cb3a7725bd66bd02ce5a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/bass.obj-0fc502667155cb3a7725bd66bd02ce5a.mesh"]
+
+source_file="res://scenes/fish/bass/bass.obj"
+dest_files=["res://.godot/imported/bass.obj-0fc502667155cb3a7725bd66bd02ce5a.mesh", "res://.godot/imported/bass.obj-0fc502667155cb3a7725bd66bd02ce5a.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
