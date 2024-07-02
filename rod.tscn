@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctwkp6lpcnigt"]
+
+[ext_resource type="ArrayMesh" uid="uid://bfdxji8028m8n" path="res://rod_1.obj" id="1_qdwe0"]
+[ext_resource type="Script" path="res://rod.gd" id="2_qegge"]
+[ext_resource type="PackedScene" uid="uid://bnoorc7c51oxo" path="res://bobber.tscn" id="3_qmkfo"]
+
+[node name="rod" type="MeshInstance3D" node_paths=PackedStringArray("camera", "anim")]
+transform = Transform3D(-0.1, -1.15059e-07, -2.21414e-07, 7.35451e-09, 0.0873365, -0.0487067, 2.49417e-07, -0.0487067, -0.0873365, 1.42531, 0.128924, -2.26395)
+mesh = ExtResource("1_qdwe0")
+script = ExtResource("2_qegge")
+camera = NodePath("")
+bobber_scene = ExtResource("3_qmkfo")
+anim = NodePath("")
+
+[node name="cast_point" type="Node3D" parent="."]
+transform = Transform3D(1, 1.03029e-13, 1.42109e-14, -8.17124e-14, 1, -2.98023e-08, 4.9738e-14, 2.98023e-08, 1, 0.462241, 39.6794, 0.0380278)
