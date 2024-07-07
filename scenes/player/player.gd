@@ -23,11 +23,11 @@ func _ready():
 	#capture mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-func _process(delta):
+func _process(_delta):
 	view_cam.global_transform = camera.global_transform
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 
 	
@@ -42,7 +42,8 @@ func _physics_process(delta):
 	camera.rotation.z = move_toward(camera.rotation.z,sign(-move_dir.x)*strafe_factor,.02)
 	
 	#all player velocity checks
-	velocity.y -= auto.gravity
+	if !is_on_floor():
+		velocity.y -= auto.gravity
 
 	ys = velocity.y
 	velocity.y = 0

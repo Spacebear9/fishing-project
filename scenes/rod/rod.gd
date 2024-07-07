@@ -29,7 +29,7 @@ func _ready():
 	#
 	cast_point = get_node("cast_point")
 
-func _process(delta):
+func _process(_delta):
 		#begin cast if able
 	if Input.is_action_just_pressed("primary_action") && !anim.is_playing() && bState == 0:
 		anim.play("swing")

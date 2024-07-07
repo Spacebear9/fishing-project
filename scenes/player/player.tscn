@@ -8,9 +8,8 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mvgaa"]
 
-[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("anim")]
+[node name="player" type="CharacterBody3D"]
 script = ExtResource("1_qgp6a")
-anim = NodePath("")
 
 [node name="player" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -38,7 +37,9 @@ grow_vertical = 2
 
 [node name="SubViewport" type="SubViewport" parent="Camera3D/SubViewportContainer"]
 transparent_bg = true
-size = Vector2i(1152, 648)
+handle_input_locally = false
+size = Vector2i(576, 324)
+render_target_update_mode = 4
 
 [node name="view_cam" type="Camera3D" parent="Camera3D/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

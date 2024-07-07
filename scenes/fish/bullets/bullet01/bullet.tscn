@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4gpud2io7eta"]
+
+[ext_resource type="Script" path="res://scenes/fish/bullets/bullet01/bullet_1.gd" id="1_eapuc"]
+[ext_resource type="ArrayMesh" uid="uid://bnmkmq0gwoupo" path="res://scenes/bobber/bobber_1.obj" id="2_yncpg"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o4qlc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y45yi"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kg0xp"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="bullet" type="StaticBody3D"]
+script = ExtResource("1_eapuc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_o4qlc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+layers = 2
+mesh = ExtResource("2_yncpg")
+surface_material_override/0 = SubResource("StandardMaterial3D_y45yi")
+surface_material_override/1 = SubResource("StandardMaterial3D_kg0xp")

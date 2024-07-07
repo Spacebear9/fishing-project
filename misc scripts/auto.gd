@@ -1,10 +1,11 @@
 extends Node3D
 const gravity = 1
 var player
+var root
 
 func _ready():
 	player = get_node("/root").get_child(1).get_node("player")
-
+	root = get_tree().root
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):

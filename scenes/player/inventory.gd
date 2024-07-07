@@ -5,12 +5,13 @@ var selected = 0
 
 func _ready():
 	inventory.append(load("res://scenes/rod.tscn"))
-	inventory.append(load("res://scenes/fish/bass.tscn"))
+	inventory.append(load("res://scenes/fish/bass/bass.tscn"))
+	inventory.append(load("res://scenes/fish/bass/bass2/bass2.tscn"))
 	
 	add_child(inventory[selected].instantiate())
 
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("inventory_next"):
 		selected = (selected+1)%inventory.size()
 		get_child(0).queue_free()
