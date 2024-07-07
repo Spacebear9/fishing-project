@@ -11,3 +11,6 @@ func _ready():
 
 func _process(_delta):
 	global_position = global_position.move_toward(target,1)
+	var col = move_and_collide(Vector3.ZERO,true)
+	if col && col.get_collider() != auto.player:
+		queue_free()

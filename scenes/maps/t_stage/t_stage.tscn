@@ -90,11 +90,11 @@ script = ExtResource("1_goh6c")
 mesh = ExtResource("2_34k0s")
 surface_material_override/0 = SubResource("StandardMaterial3D_kgjjr")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="floor/MeshInstance3D"]
+[node name="floor body" type="StaticBody3D" parent="floor/MeshInstance3D"]
 collision_layer = 3
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/MeshInstance3D/floor body"]
 shape = SubResource("ConcavePolygonShape3D_vt1d2")
 
 [node name="platforms" type="Node" parent="."]

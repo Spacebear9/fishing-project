@@ -44,13 +44,15 @@ func curve_length(pos1: Vector3, pos2: Vector3,pos3: Vector3, detail: float):
 func pCurve(pos1: Vector3, pos2: Vector3, pos3: Vector3, weight: float):
 	return lerp(lerp(pos1,pos3,weight),lerp(pos3,pos2,weight),weight)
 
-func ScreenPointToRay(camera: Camera3D):
+func ScreenPointToRay(camera: Camera3D, mask = 0b00000000_00000000_00000000_00000010, exclude = null):
 	var spaceState = get_world_3d().direct_space_state
 	var mousePos = get_viewport().get_mouse_position()
 	var rayOrigin = camera.project_ray_origin(mousePos)
 	var rayEnd = camera.project_ray_normal(mousePos)*4000
 	var rayQuery = PhysicsRayQueryParameters3D.create(rayOrigin,rayEnd)
-	rayQuery.collision_mask = 0b00000000_00000000_00000000_00000010
+	rayQuery.collision_mask = mask
+	if exclude:
+		rayQuery.exclude = exclude
 	var rayArray = spaceState.intersect_ray(rayQuery)
 	if rayArray.has("position"):
 		return rayArray["position"]
