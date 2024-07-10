@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://iddn68oqxoub"]
+[gd_scene load_steps=7 format=3 uid="uid://iddn68oqxoub"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_qgp6a"]
 [ext_resource type="Script" path="res://scenes/player/inventory.gd" id="3_elx3b"]
 [ext_resource type="Texture2D" uid="uid://b03smyw2q6qtw" path="res://misc textures/crosshair.png" id="3_fd3r2"]
+[ext_resource type="Script" path="res://scenes/player/hotbar.gd" id="4_jyruq"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jt5y5"]
 
@@ -46,16 +47,43 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 cull_mask = 1047554
 fov = 90.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.85
+anchor_right = 0.35
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CenterContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/CenterContainer"]
+layout_mode = 2
+script = ExtResource("4_jyruq")
+
+[node name="Label" type="Label" parent="Panel/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
 texture_filter = 2
 layout_mode = 2
 texture = ExtResource("3_fd3r2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[connection signal="inv_changed" from="Camera3D/inventory" to="Panel/CenterContainer/HBoxContainer" method="_on_inventory_inv_changed"]

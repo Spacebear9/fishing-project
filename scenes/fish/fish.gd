@@ -1,4 +1,4 @@
-extends MeshInstance3D
+extends InventoryItem
 class_name Fish
 
 var camera: Camera3D

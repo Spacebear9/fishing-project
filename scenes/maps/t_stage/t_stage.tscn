@@ -20,14 +20,14 @@ data = PackedVector3Array(75, -0.0002, -67.8588, 67.8565, -0.0002, -67.8588, 75,
 backface_collision = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_2yiha"]
-size = Vector3(3, 3, 3)
+size = Vector3(6, 6, 6)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xl4e5"]
 diffuse_mode = 1
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m7a52"]
-size = Vector3(3, 3, 3)
+size = Vector3(6, 6, 6)
 
 [sub_resource type="PrismMesh" id="PrismMesh_43sio"]
 
@@ -101,7 +101,7 @@ shape = SubResource("ConcavePolygonShape3D_vt1d2")
 [node name="platforms" type="Node" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.4268, 1.03951, -14.9499)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.4268, 7.342, -14.9499)
 mesh = SubResource("BoxMesh_2yiha")
 surface_material_override/0 = SubResource("StandardMaterial3D_xl4e5")
 

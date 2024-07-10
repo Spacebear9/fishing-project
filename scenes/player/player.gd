@@ -11,13 +11,15 @@ var sense = 6
 #movement direction (y should always be zero)
 var move_dir: Vector3
 #base movement speed
-var move_speed = 20
+var move_speed = 50
 #rate of acceleration
-var move_accel = 1
+var move_accel = 2
 #camera strafe roll strength
 var strafe_factor = .07
-#y velocity (GET RID OF)
-var ys
+#jump strength
+const jump_strength = 30
+
+var xz_vel: Vector3
 
 func _ready():	
 	#capture mouse
@@ -36,7 +38,7 @@ func _physics_process(_delta):
 	
 	#get jump input
 	if Input.is_action_just_pressed("movement_jump") && is_on_floor():
-		velocity.y += 30
+		velocity.y += jump_strength+(xz_vel.length()/10)
 	
 	#camera roll when strafing
 	camera.rotation.z = move_toward(camera.rotation.z,sign(-move_dir.x)*strafe_factor,.02)
@@ -45,12 +47,11 @@ func _physics_process(_delta):
 	if !is_on_floor():
 		velocity.y -= auto.gravity
 
-	ys = velocity.y
-	velocity.y = 0
-	velocity = velocity.move_toward(global_transform.basis*move_dir*move_speed,3)
-	velocity.y = ys
 
-
+	xz_vel = xz_vel.move_toward(global_transform.basis*move_dir*move_speed,move_accel)
+	#print(xz_vel.length())
+	velocity = Vector3(xz_vel.x,velocity.y,xz_vel.z)
+	
 	
 	move_and_slide()
 

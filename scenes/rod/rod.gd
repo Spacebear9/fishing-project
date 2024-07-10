@@ -1,4 +1,4 @@
-extends MeshInstance3D
+extends InventoryItem
 
 var camera: Camera3D
 var anim: AnimationPlayer
