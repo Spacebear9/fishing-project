@@ -1,15 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://c25rdr86dab2o"]
+[gd_scene load_steps=6 format=3 uid="uid://c25rdr86dab2o"]
 
 [ext_resource type="ArrayMesh" uid="uid://bnmkmq0gwoupo" path="res://scenes/bobber/bobber_1.obj" id="1_866nl"]
+[ext_resource type="Script" path="res://scenes/bobber/bobber.gd" id="1_hf8ae"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgrup"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_lscau"]
+radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tu1wf"]
 albedo_color = Color(1, 0, 0, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k0xli"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7v0rt"]
 
-[node name="bobber" type="MeshInstance3D"]
+[node name="bobber" type="StaticBody3D"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_hf8ae")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_lscau")
+
+[node name="mesh" type="MeshInstance3D" parent="."]
 layers = 2
 mesh = ExtResource("1_866nl")
-surface_material_override/0 = SubResource("StandardMaterial3D_pgrup")
-surface_material_override/1 = SubResource("StandardMaterial3D_k0xli")
+surface_material_override/0 = SubResource("StandardMaterial3D_tu1wf")
+surface_material_override/1 = SubResource("StandardMaterial3D_7v0rt")

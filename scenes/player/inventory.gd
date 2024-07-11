@@ -8,8 +8,6 @@ signal inv_changed
 
 func _ready():
 	inventory.append(load("res://scenes/rod/rod.tscn"))
-	inventory.append(load("res://scenes/fish/bass/bass.tscn"))
-	inventory.append(load("res://scenes/fish/bass/bass2/bass2.tscn"))
 	
 	add_child(inventory[selected].instantiate())
 

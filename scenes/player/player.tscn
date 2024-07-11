@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://iddn68oqxoub"]
+[gd_scene load_steps=8 format=3 uid="uid://iddn68oqxoub"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_qgp6a"]
 [ext_resource type="Script" path="res://scenes/player/inventory.gd" id="3_elx3b"]
 [ext_resource type="Texture2D" uid="uid://b03smyw2q6qtw" path="res://misc textures/crosshair.png" id="3_fd3r2"]
+[ext_resource type="Script" path="res://scenes/player/SubViewport.gd" id="3_x4mqh"]
 [ext_resource type="Script" path="res://scenes/player/hotbar.gd" id="4_jyruq"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jt5y5"]
@@ -39,8 +40,9 @@ grow_vertical = 2
 [node name="SubViewport" type="SubViewport" parent="Camera3D/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(576, 324)
+size = Vector2i(960, 540)
 render_target_update_mode = 4
+script = ExtResource("3_x4mqh")
 
 [node name="view_cam" type="Camera3D" parent="Camera3D/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -72,7 +74,6 @@ script = ExtResource("4_jyruq")
 layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -83,7 +84,5 @@ grow_vertical = 2
 texture_filter = 2
 layout_mode = 2
 texture = ExtResource("3_fd3r2")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [connection signal="inv_changed" from="Camera3D/inventory" to="Panel/CenterContainer/HBoxContainer" method="_on_inventory_inv_changed"]

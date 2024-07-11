@@ -2,7 +2,7 @@ extends InventoryItem
 
 var camera: Camera3D
 var anim: AnimationPlayer
-var bobber: MeshInstance3D
+var bobber: StaticBody3D
 var cast_point
 
 var s = 0
