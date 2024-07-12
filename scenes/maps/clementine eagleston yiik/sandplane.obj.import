@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dl2p72nqtrqqd"
+path="res://.godot/imported/sandplane.obj-8361f25529dff113cb870a6747fa264c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/sandplane.obj-8361f25529dff113cb870a6747fa264c.mesh"]
+
+source_file="res://scenes/maps/clementine eagleston yiik/sandplane.obj"
+dest_files=["res://.godot/imported/sandplane.obj-8361f25529dff113cb870a6747fa264c.mesh", "res://.godot/imported/sandplane.obj-8361f25529dff113cb870a6747fa264c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

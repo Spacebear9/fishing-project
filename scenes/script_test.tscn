@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://djpqurr4nitlw"]
 
 [ext_resource type="PackedScene" uid="uid://iddn68oqxoub" path="res://scenes/player/player.tscn" id="1_rayub"]
-[ext_resource type="PackedScene" uid="uid://bu1qvdsjesfjm" path="res://scenes/maps/t_stage/t_stage.tscn" id="2_ogtb6"]
 [ext_resource type="Script" path="res://scenes/stageLoad.gd" id="3_7p75g"]
+[ext_resource type="PackedScene" uid="uid://d2rva882mewlb" path="res://scenes/maps/clementine eagleston yiik/node.tscn" id="3_pymvk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8t2b0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -31,4 +31,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3902, 14.7967, -25.159)
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("3_7p75g")
-map = ExtResource("2_ogtb6")
+map = ExtResource("3_pymvk")
