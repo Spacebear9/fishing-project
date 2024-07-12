@@ -10,6 +10,7 @@ var mouse_dir: Vector2
 #look sensitivity (scaler for mouse_dir)
 var sense = 6
 
+var jump_buffer = 0
 
 #camera strafe roll strength
 var strafe_factor = .07
@@ -46,8 +47,14 @@ func _physics_process(delta):
 	print(lateral_vel.length())
 	
 	#get jump input
-	if Input.is_action_just_pressed("movement_jump") && is_on_floor():
-		velocity.y += jump_strength+(lateral_vel.length()/10)
+	if Input.is_action_just_pressed("movement_jump"):
+		jump_buffer = 5
+	if jump_buffer > 0:
+		jump_buffer -= 1
+		if is_on_floor():
+			velocity.y += jump_strength+(lateral_vel.length()/10)
+	
+	
 	
 	#camera roll when strafing
 	camera.rotation.z = move_toward(camera.rotation.z,sign(-input_vec.x)*strafe_factor,.02)
