@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bu1qvdsjesfjm"]
+[gd_scene load_steps=26 format=3 uid="uid://bu1qvdsjesfjm"]
 
 [ext_resource type="Script" path="res://scenes/maps/t_stage/t_stage.gd" id="1_goh6c"]
 [ext_resource type="ArrayMesh" uid="uid://mfjvm6y2e6i8" path="res://scenes/maps/t_stage/test_stage.obj" id="2_34k0s"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scenes/maps/map_objects/water/water.gd" id="9_j6scx"]
 [ext_resource type="Texture2D" uid="uid://dp5vaj20eyrg" path="res://scenes/maps/map_objects/water/water.png" id="10_dxg6w"]
 [ext_resource type="PackedScene" uid="uid://bsfv1u74prki0" path="res://scenes/WaterEffectArea.tscn" id="11_rctyb"]
+[ext_resource type="PackedScene" uid="uid://cetq5vqqfalmj" path="res://scenes/fish/bass/bass.tscn" id="12_y0qir"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kgjjr"]
 specular_mode = 2
@@ -152,6 +153,7 @@ offset_bottom = 744.0
 texture = ExtResource("10_dxg6w")
 
 [node name="WaterEffectArea" parent="water" instance=ExtResource("11_rctyb")]
+FishToSpawn = Array[PackedScene]([ExtResource("12_y0qir")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="water/WaterEffectArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.19376, -4.7395, 1.0929)
