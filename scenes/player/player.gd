@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 @export var anim: AnimationPlayer
 @onready var camera = $Camera3D
@@ -20,8 +21,8 @@ const jump_strength = 30
 var lateral_vel
 var input_vec = Vector2.ZERO
 var input_rot = 0
-var speed_max = 30
-var speed_accel_ground = 140
+var speed_max = 38
+var speed_accel_ground = 200
 var speed_accel_air = 25
 var speed_friction = 75
 
@@ -101,15 +102,3 @@ func friction(delta):
 	if is_on_floor():
 		lateral_vel = lateral_vel.move_toward(Vector2.ZERO,speed_friction*delta)
 
-
-func ScreenPointToRay():
-	var spaceState = get_world_3d().direct_space_state
-	var mousePos = get_viewport().get_mouse_position()
-	var rayOrigin = camera.project_ray_origin(mousePos)
-	var rayEnd = camera.project_ray_normal(mousePos)*4000
-	var rayQuery = PhysicsRayQueryParameters3D.create(rayOrigin,rayEnd)
-	rayQuery.collision_mask = 2
-	var rayArray = spaceState.intersect_ray(rayQuery)
-	if rayArray.has("position"):
-		return rayArray["position"]
-	return rayEnd

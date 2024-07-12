@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://iddn68oqxoub"]
+[gd_scene load_steps=9 format=3 uid="uid://iddn68oqxoub"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_qgp6a"]
 [ext_resource type="Script" path="res://scenes/player/inventory.gd" id="3_elx3b"]
 [ext_resource type="Texture2D" uid="uid://b03smyw2q6qtw" path="res://misc textures/crosshair.png" id="3_fd3r2"]
 [ext_resource type="Script" path="res://scenes/player/SubViewport.gd" id="3_x4mqh"]
+[ext_resource type="Script" path="res://scenes/player/speedometer.gd" id="4_7mblk"]
 [ext_resource type="Script" path="res://scenes/player/hotbar.gd" id="4_jyruq"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jt5y5"]
@@ -58,7 +59,7 @@ anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,11 +67,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/CenterContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/CenterContainer2"]
+layout_mode = 2
+text = "a"
+script = ExtResource("4_7mblk")
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer"]
 layout_mode = 2
 script = ExtResource("4_jyruq")
 
-[node name="Label" type="Label" parent="Panel/CenterContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -85,4 +97,4 @@ texture_filter = 2
 layout_mode = 2
 texture = ExtResource("3_fd3r2")
 
-[connection signal="inv_changed" from="Camera3D/inventory" to="Panel/CenterContainer/HBoxContainer" method="_on_inventory_inv_changed"]
+[connection signal="inv_changed" from="Camera3D/inventory" to="Panel/VBoxContainer/CenterContainer/HBoxContainer" method="_on_inventory_inv_changed"]
