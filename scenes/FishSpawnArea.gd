@@ -1,29 +1,29 @@
 @tool
 extends Node3D
+@export var DebugFishSpawning: bool
 @export var FishToSpawn: Array[PackedScene]
 var colisionSpawners: Dictionary
 var invalidshapes: bool
 # Called when the node enters the scene tree for the first time.
 func SpawnFish():
-	var totalarea
+	var totalarea : float = 0
 	var currentarea: float = 0
 	var randomselection: float
 	var spawnedfish: Node3D
-	var curentshape: BoxShape3D
+	var curentshape
 	for ColisionNode in colisionSpawners:
-		
-		currentarea = colisionSpawners[ColisionNode].get_shape()
+		curentshape = colisionSpawners[ColisionNode].get_shape().get_size().x
 		totalarea += (colisionSpawners[ColisionNode].get_shape().get_size().x)*(colisionSpawners[ColisionNode].get_shape().get_size().y)*(colisionSpawners[ColisionNode].get_shape().get_size().z)
 	randomselection = randf()
 	for ColisionNode in colisionSpawners:
-		if randomselection < currentarea + (colisionSpawners[ColisionNode].shape.get_size()/totalarea):
+		if randomselection < currentarea + ((colisionSpawners[ColisionNode].get_shape().get_size().x)*(colisionSpawners[ColisionNode].get_shape().get_size().y)*(colisionSpawners[ColisionNode].get_shape().get_size().z)/totalarea):
 			spawnedfish = FishToSpawn.pick_random().instantiate()
-			spawnedfish.reparent(self)
+			add_child(spawnedfish)
 			spawnedfish.position = Vector3(randf_range(ColisionNode.position.x-ColisionNode.shape.get_size().x,ColisionNode.position.x+ColisionNode.shape.get_size().x),randf_range(ColisionNode.position.y-ColisionNode.shape.get_size().y,ColisionNode.position.y+ColisionNode.shape.get_size().y),randf_range(ColisionNode.position.z-ColisionNode.shape.get_size().z,ColisionNode.position.z+ColisionNode.shape.get_size().z))
 			return
 		else:
 			currentarea += totalarea
-		printerr("No fish was spawned")
+		printerr("No fish were spawned")
 		return
 	#Calculate Areas of Each Colision Shape
 func _ready():
@@ -52,5 +52,5 @@ func _process(delta):
 		if invalidshapes == true:
 			update_configuration_warnings()
 	else:
-		if Time.get_ticks_msec()%10==1:
+		if Time.get_ticks_msec()%10==1 && DebugFishSpawning == true:
 			SpawnFish()
