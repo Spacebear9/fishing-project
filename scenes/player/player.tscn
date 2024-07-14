@@ -96,5 +96,3 @@ grow_vertical = 2
 texture_filter = 2
 layout_mode = 2
 texture = ExtResource("3_fd3r2")
-
-[connection signal="inv_changed" from="Camera3D/inventory" to="Panel/VBoxContainer/CenterContainer/HBoxContainer" method="_on_inventory_inv_changed"]

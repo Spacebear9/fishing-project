@@ -1,10 +1,11 @@
 extends Node3D
+class_name PlayerInventory
 
 var inventory = []
 var selected = 0
 
 func _ready():
-	inventory.append(load("res://scenes/rod.tscn"))
+	inventory.append(load("res://scenes/rod/rod.tscn"))
 	inventory.append(load("res://scenes/fish/bass/bass.tscn"))
 	
 	add_child(inventory[selected].instantiate())

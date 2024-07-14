@@ -4,4 +4,3 @@
 
 [node name="WaterEffectArea" type="Node3D"]
 script = ExtResource("1_a1u3w")
-DebugFishSpawning = null
