@@ -29,7 +29,7 @@ void vertex() {
 }
 
 void fragment() {
-	ALBEDO = texture(text,vec2(UV.x+(alspd*TIME*normalize(aldir).x),UV.y+(alspd*TIME*normalize(aldir).y))*textScale).rgb;
+	ALBEDO = texture(text,vec2((UV.x)+(alspd*TIME*normalize(aldir).x),UV.y+(alspd*TIME*normalize(aldir).y))*textScale).rgb;
 	ALPHA = alpha;
 	//ALBEDO = texture(text,vec2(UV.x+(alspd*TIME*normalize(aldir)).x,UV.y)).xyz;
 }

@@ -1,4 +1,4 @@
-extends StaticBody3D
+extends MeshInstance3D
 
 #change off @export later
 var camera: Node3D

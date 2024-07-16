@@ -32,6 +32,5 @@ shape = SubResource("BoxShape3D_g37fi")
 
 [node name="water" parent="." instance=ExtResource("4_8f6y7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69.782, -13.3971, -426.522)
-width = 220.721
+width = 242.471
 height = 170.459
-resolution = 5.0

@@ -10,6 +10,7 @@ render_priority = 0
 shader = ExtResource("1_0ftb8")
 shader_parameter/scale1 = 440.0
 shader_parameter/scale2 = 340.0
+shader_parameter/textScale = null
 shader_parameter/n1dir = Vector2(-1, -1)
 shader_parameter/n2dir = Vector2(1, 1)
 shader_parameter/aldir = Vector2(1, 1)
