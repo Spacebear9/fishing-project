@@ -5,17 +5,18 @@ render_mode cull_disabled;
 //multiply scale by plane x/y
 uniform float scale1;
 uniform float scale2;
+uniform float textScale: hint_range(0.0, 1.0, 0.1);
 uniform sampler2D noise;
 uniform sampler2D noise2;
 uniform sampler2D text : filter_nearest;
 uniform vec2 n1dir;
 uniform vec2 n2dir;
 uniform vec2 aldir;
-uniform float n1spd: hint_range(0.0, 1.0, 0.001);
-uniform float n2spd: hint_range(0.0, 1.0, 0.001);
+uniform float n1spd: hint_range(0.0, 5.0, 0.001);
+uniform float n2spd: hint_range(0.0, 5.0, 0.001);
 uniform float alspd: hint_range(0.0, .1, 0.0001);
 uniform float height_offset: hint_range(0.0, 1.0, 0.001);
-uniform float height_scale: hint_range(0.0, 5, 0.1);
+uniform float height_scale: hint_range(0.0, 20, 0.1);
 uniform float alpha: hint_range(0.0, 1.0, 0.001);
 
 
@@ -28,7 +29,7 @@ void vertex() {
 }
 
 void fragment() {
-	ALBEDO = texture(text,vec2(UV.x+(alspd*TIME*normalize(aldir).x),UV.y+(alspd*TIME*normalize(aldir).y))*.5).rgb;
+	ALBEDO = texture(text,vec2(UV.x+(alspd*TIME*normalize(aldir).x),UV.y+(alspd*TIME*normalize(aldir).y))*textScale).rgb;
 	ALPHA = alpha;
 	//ALBEDO = texture(text,vec2(UV.x+(alspd*TIME*normalize(aldir)).x,UV.y)).xyz;
 }

@@ -8,17 +8,18 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_2v0up")
-shader_parameter/scale1 = 160.0
-shader_parameter/scale2 = 160.0
+shader_parameter/scale1 = 220.0
+shader_parameter/scale2 = 220.0
+shader_parameter/textScale = 0.2
 shader_parameter/n1dir = Vector2(-1, -1)
 shader_parameter/n2dir = Vector2(1, 1)
 shader_parameter/aldir = Vector2(1, 2)
-shader_parameter/n1spd = 1.0
-shader_parameter/n2spd = 0.915
-shader_parameter/alspd = 0.0063
+shader_parameter/n1spd = 2.0
+shader_parameter/n2spd = 2.0
+shader_parameter/alspd = 0.0085
 shader_parameter/height_offset = 0.0
-shader_parameter/height_scale = 2.5
-shader_parameter/alpha = 0.551
+shader_parameter/height_scale = 4.4
+shader_parameter/alpha = 0.4
 shader_parameter/noise = ExtResource("2_f2vod")
 shader_parameter/noise2 = ExtResource("3_u1uwl")
 shader_parameter/text = ExtResource("4_0cbrn")

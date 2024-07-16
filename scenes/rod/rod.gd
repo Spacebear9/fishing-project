@@ -74,7 +74,7 @@ func _process(_delta):
 		auto.curve(bobber.global_position,cast_point.global_position,Vector3(cast_point.global_position.x,bobber.global_position.y,cast_point.global_position.z),10)
 	elif bState == 3:
 		auto.curve(bobber.global_position,cast_point.global_position,Vector3(cast_point.global_position.x,bobber.global_position.y,cast_point.global_position.z),10)
-	auto.line(bStart,bControl,Color.DARK_GREEN)
-	auto.line(bEnd,bControl,Color.DARK_RED)
-	auto.line(bStart,bEnd,Color.YELLOW)
-	auto.curve(bStart,bEnd,bControl,10.0)
+	#auto.line(bStart,bControl,Color.DARK_GREEN)
+	#auto.line(bEnd,bControl,Color.DARK_RED)
+	#auto.line(bStart,bEnd,Color.YELLOW)
+	#auto.curve(bStart,bEnd,bControl,10.0)

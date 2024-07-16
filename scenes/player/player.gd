@@ -16,15 +16,15 @@ var jump_buffer = 0
 #camera strafe roll strength
 var strafe_factor = .07
 #jump strength
-const jump_strength = 30
+const jump_strength = 50
 
 var lateral_vel
 var input_vec = Vector2.ZERO
 var input_rot = 0
-var speed_max = 38
-var speed_accel_ground = 200
-var speed_accel_air = 25
-var speed_friction = 75
+var speed_max = 45
+var speed_accel_ground = 270
+var speed_accel_air = 35
+var speed_friction = 120
 
 
 
@@ -39,13 +39,12 @@ func _process(_delta):
 func _physics_process(delta):
 	lateral_vel = Vector2(velocity.x,velocity.z)
 	
-
-	input_vec = Input.get_vector("movement_strafe_left","movement_strafe_right","movement_forward","movement_backward")
-	lateral_vel = accelerate(input_vec,Vector2(velocity.x,velocity.z),delta)
-	#TOFIX: change friction to be before accelerate
 	friction(delta)
+	input_vec = Input.get_vector("movement_strafe_left","movement_strafe_right","movement_forward","movement_backward")
+	lateral_vel = accelerate(input_vec,lateral_vel,delta)
+	#TOFIX: change friction to be before accelerate
 	
-	print(lateral_vel.length())
+
 	
 	#get jump input
 	if Input.is_action_just_pressed("movement_jump"):

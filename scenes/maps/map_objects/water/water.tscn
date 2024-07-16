@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnb8lroucpqrd"]
+
+[ext_resource type="Script" path="res://scenes/maps/map_objects/water/water.gd" id="1_0fs6v"]
+
+[node name="Water" type="StaticBody3D"]
+script = ExtResource("1_0fs6v")

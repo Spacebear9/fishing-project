@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxx81m7bjiohp"]
+
+[ext_resource type="Material" uid="uid://bmew4pgtrrmlb" path="res://scenes/maps/map_objects/water/water_mat.tres" id="1_1b2pr"]
+[ext_resource type="Script" path="res://scenes/maps/map_objects/water_final/water.gd" id="1_rg7a4"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wxqtg"]
+size = Vector2(100, 100)
+subdivide_width = 20
+subdivide_depth = 20
+
+[node name="water" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_wxqtg")
+surface_material_override/0 = ExtResource("1_1b2pr")
+script = ExtResource("1_rg7a4")
+width = 100.0
+height = 100.0

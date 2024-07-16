@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://bfxdld3l62dgf"]
+
+[ext_resource type="Shader" path="res://scenes/maps/map_objects/water/water.gdshader" id="1_0ftb8"]
+[ext_resource type="Texture2D" uid="uid://w2r0kgwwjmd2" path="res://misc textures/noise_seamless_1.png" id="2_l5ui0"]
+[ext_resource type="Texture2D" uid="uid://cf6tmgqh45gr2" path="res://misc textures/noise_seamless_2.png" id="3_qoh8s"]
+[ext_resource type="Texture2D" uid="uid://b73pidtjys7me" path="res://scenes/maps/map_objects/water/electric_blue.png" id="4_bbpyo"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_0ftb8")
+shader_parameter/scale1 = 440.0
+shader_parameter/scale2 = 340.0
+shader_parameter/n1dir = Vector2(-1, -1)
+shader_parameter/n2dir = Vector2(1, 1)
+shader_parameter/aldir = Vector2(1, 1)
+shader_parameter/n1spd = 0.0
+shader_parameter/n2spd = 1.0
+shader_parameter/alspd = 0.0063
+shader_parameter/height_offset = 1.0
+shader_parameter/height_scale = 5.0
+shader_parameter/alpha = 1.0
+shader_parameter/noise = ExtResource("2_l5ui0")
+shader_parameter/noise2 = ExtResource("3_qoh8s")
+shader_parameter/text = ExtResource("4_bbpyo")

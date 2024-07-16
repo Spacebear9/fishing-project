@@ -1,5 +1,5 @@
 extends Node3D
-const gravity = 1
+const gravity = 2
 var player
 var root
 
