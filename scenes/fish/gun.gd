@@ -1,5 +1,5 @@
 extends InventoryItem
-class_name Fish
+class_name Gun
 
 var camera: Camera3D
 var anim: AnimationPlayer

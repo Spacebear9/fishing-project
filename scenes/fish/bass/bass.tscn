@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cetq5vqqfalmj"]
+[gd_scene load_steps=6 format=3 uid="uid://cetq5vqqfalmj"]
 
 [ext_resource type="ArrayMesh" uid="uid://iboklj1suao5" path="res://scenes/fish/bass/bass.obj" id="1_yi38g"]
 [ext_resource type="Texture2D" uid="uid://dhn06q0f0gpas" path="res://scenes/fish/bass/bass.png" id="2_quo2e"]
 [ext_resource type="Script" path="res://scenes/fish/bass/bass.gd" id="3_8gu0h"]
+[ext_resource type="Texture2D" uid="uid://cg66csa8swm8o" path="res://scenes/fish/bass/bassicon.png" id="4_p26we"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bchrx"]
 specular_mode = 2
@@ -15,6 +16,7 @@ layers = 2
 mesh = ExtResource("1_yi38g")
 surface_material_override/0 = SubResource("StandardMaterial3D_bchrx")
 script = ExtResource("3_8gu0h")
+icon = ExtResource("4_p26we")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

@@ -52,12 +52,17 @@ fov = 90.0
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.85
-anchor_right = 0.35
-anchor_bottom = 0.95
+anchor_left = 0.01
+anchor_top = 0.82563
+anchor_right = 0.311
+anchor_bottom = 0.981
+offset_left = 0.48
+offset_top = -0.00799561
+offset_right = -0.272034
+offset_bottom = 0.311951
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -82,9 +87,6 @@ layout_mode = 2
 layout_mode = 2
 script = ExtResource("4_jyruq")
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer"]
-layout_mode = 2
-
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,3 +98,5 @@ grow_vertical = 2
 texture_filter = 2
 layout_mode = 2
 texture = ExtResource("3_fd3r2")
+
+[connection signal="inv_changed" from="Camera3D/inventory" to="Panel/VBoxContainer/CenterContainer/HBoxContainer" method="_on_inventory_inv_changed"]

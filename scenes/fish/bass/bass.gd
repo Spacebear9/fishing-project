@@ -1,1 +1,1 @@
-extends Fish
+extends Gun

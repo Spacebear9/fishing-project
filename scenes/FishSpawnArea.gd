@@ -2,24 +2,26 @@
 extends Node3D
 @export var DebugFishSpawning: bool
 @export var FishToSpawn: Array[PackedScene]
+@export var spawntime: int = 1000
 var colisionSpawners: Dictionary
 var invalidshapes: bool
-# Called when the node enters the scene tree for the first time.
+var timestamp = 0
 func SpawnFish():
+	timestamp = Time.get_ticks_msec()
 	var totalarea : float = 0
 	var currentarea: float = 0
 	var randomselection: float
 	var spawnedfish: Node3D
 	var curentshape
 	for ColisionNode in colisionSpawners:
-		curentshape = colisionSpawners[ColisionNode].get_shape().get_size().x
+		currentarea = (colisionSpawners[ColisionNode].get_shape().get_size().x)*(colisionSpawners[ColisionNode].get_shape().get_size().y)*(colisionSpawners[ColisionNode].get_shape().get_size().z)
 		totalarea += (colisionSpawners[ColisionNode].get_shape().get_size().x)*(colisionSpawners[ColisionNode].get_shape().get_size().y)*(colisionSpawners[ColisionNode].get_shape().get_size().z)
 	randomselection = randf()
 	for ColisionNode in colisionSpawners:
 		if randomselection < currentarea + ((colisionSpawners[ColisionNode].get_shape().get_size().x)*(colisionSpawners[ColisionNode].get_shape().get_size().y)*(colisionSpawners[ColisionNode].get_shape().get_size().z)/totalarea):
 			spawnedfish = FishToSpawn.pick_random().instantiate()
 			add_child(spawnedfish)
-			spawnedfish.position = Vector3(randf_range(ColisionNode.position.x-ColisionNode.shape.get_size().x,ColisionNode.position.x+ColisionNode.shape.get_size().x),randf_range(ColisionNode.position.y-ColisionNode.shape.get_size().y,ColisionNode.position.y+ColisionNode.shape.get_size().y),randf_range(ColisionNode.position.z-ColisionNode.shape.get_size().z,ColisionNode.position.z+ColisionNode.shape.get_size().z))
+			spawnedfish.position = Vector3(randf_range(ColisionNode.position.x-(ColisionNode.shape.get_size().x/2),ColisionNode.position.x+(ColisionNode.shape.get_size().x/2)),randf_range(ColisionNode.position.y-(ColisionNode.shape.get_size().y/2),ColisionNode.position.y+(ColisionNode.shape.get_size().y/2)),randf_range(ColisionNode.position.z-(ColisionNode.shape.get_size().z/2),ColisionNode.position.z+(ColisionNode.shape.get_size().z/2)))
 			return
 		else:
 			currentarea += totalarea
@@ -52,5 +54,5 @@ func _process(delta):
 		if invalidshapes == true:
 			update_configuration_warnings()
 	else:
-		if Time.get_ticks_msec()%10==1 && DebugFishSpawning == true:
+		if Time.get_ticks_msec() > timestamp + spawntime && DebugFishSpawning == true:
 			SpawnFish()
