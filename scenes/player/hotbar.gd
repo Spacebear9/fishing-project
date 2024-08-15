@@ -1,8 +1,11 @@
 extends HBoxContainer
 
 var inv_get: PlayerInventory
+@export var player: Player
 func _ready():
-	inv_get = auto.player.get_node("Camera3D").get_node("inventory")
+	while !inv_get:
+		inv_get = player.get_node("Camera3D").get_node("inventory")
+	print(inv_get)
 	_set_hotbar()
 
 
@@ -13,7 +16,7 @@ func _process(delta):
 func _set_hotbar():
 	for child in get_children():
 		child.queue_free()
-		
+	inv_get = player.get_node("Camera3D").get_node("inventory")
 	for slot:int in inv_get.inventory.size():
 		var label = Label.new()
 		label.text = str(slot+1)

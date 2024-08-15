@@ -20,6 +20,7 @@ const jump_strength = 50
 
 var lateral_vel
 var input_vec = Vector2.ZERO
+var wish_vec = 0
 var input_rot = 0
 var speed_max = 45
 var speed_accel_ground = 270
@@ -48,7 +49,7 @@ func _physics_process(delta):
 	
 	#get jump input
 	if Input.is_action_just_pressed("movement_jump"):
-		jump_buffer = 5
+		jump_buffer = 7
 	if jump_buffer > 0:
 		jump_buffer -= 1
 		if is_on_floor():
@@ -81,7 +82,6 @@ func _unhandled_input(event: InputEvent):
 		camera.rotation.x -= mouse_dir.y * sense
 
 func accelerate(direction_vec,current_vel,delta):
-	var wish_vec
 	if direction_vec != Vector2(0,0):
 		input_rot = atan2(direction_vec.y,direction_vec.x)
 		wish_vec = Vector2(cos(-global_rotation.y+input_rot),sin(-global_rotation.y+input_rot))

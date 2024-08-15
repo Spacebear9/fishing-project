@@ -18,7 +18,8 @@ var bControl = Vector3.ZERO
 
 
 func _ready():
-	camera = auto.player.get_node("Camera3D")
+	get_player()
+	camera = player.get_node("Camera3D")
 	anim = get_node("AnimationPlayer")
 	
 	bobber = load("res://scenes/bobber/bobber.tscn").instantiate()

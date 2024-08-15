@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://iddn68oqxoub"]
+[gd_scene load_steps=10 format=3 uid="uid://iddn68oqxoub"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_qgp6a"]
 [ext_resource type="Script" path="res://scenes/player/inventory.gd" id="3_elx3b"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://scenes/player/SubViewport.gd" id="3_x4mqh"]
 [ext_resource type="Script" path="res://scenes/player/speedometer.gd" id="4_7mblk"]
 [ext_resource type="Script" path="res://scenes/player/hotbar.gd" id="4_jyruq"]
-[ext_resource type="Script" path="res://scenes/player/compass.gd" id="6_f36jn"]
 [ext_resource type="Script" path="res://scenes/player/ColorRect.gd" id="6_l68p6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jt5y5"]
@@ -91,21 +90,19 @@ layout_mode = 2
 script = ExtResource("4_jyruq")
 player = NodePath("../../../..")
 
-[node name="compass" type="Panel" parent="." node_paths=PackedStringArray("player")]
+[node name="compass" type="Panel" parent="."]
 anchors_preset = -1
 anchor_left = 0.3
-anchor_top = 0.01
+anchor_top = 0.025
 anchor_right = 0.7
-anchor_bottom = 0.05
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_f36jn")
-player = NodePath("..")
+anchor_bottom = 0.075
 
-[node name="ColorRect" type="ColorRect" parent="compass" node_paths=PackedStringArray("player")]
-layout_mode = 0
+[node name="ColorRect" type="ColorRect" parent="compass"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.25
+anchor_bottom = 1.0
 script = ExtResource("6_l68p6")
-player = NodePath("../..")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15

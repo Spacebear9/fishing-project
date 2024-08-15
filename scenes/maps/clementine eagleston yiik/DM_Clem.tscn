@@ -11,7 +11,7 @@ data = PackedVector3Array(-1, 1, -1, 1, 1, -1, -1, 1, 1, -1, 1, 1, 1, 1, -1, 1, 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g37fi"]
 size = Vector3(57.2505, 4.78299, 109.626)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ikjq1"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_qcwfd"]
 size = Vector2(365, 151)
 subdivide_width = 60
 subdivide_depth = 25
@@ -31,7 +31,6 @@ shape = SubResource("ConcavePolygonShape3D_4e3kd")
 
 [node name="WaterEffectArea" parent="." instance=ExtResource("2_5ygn1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.3889, -28.88, -423.476)
-DebugFishSpawning = true
 FishToSpawn = Array[PackedScene]([ExtResource("3_dv1xi")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WaterEffectArea"]
@@ -44,4 +43,4 @@ shape = SubResource("BoxShape3D_g37fi")
 
 [node name="water" parent="." instance=ExtResource("4_8f6y7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4887, -13.3971, -426.522)
-mesh = SubResource("PlaneMesh_ikjq1")
+mesh = SubResource("PlaneMesh_qcwfd")

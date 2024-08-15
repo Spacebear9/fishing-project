@@ -1,10 +1,8 @@
 extends Node3D
 const gravity = 2
-var player
 var root
 
 func _ready():
-	player = get_node("/root").get_child(1).get_node("player")
 	root = get_tree().root
 
 func _process(_delta):

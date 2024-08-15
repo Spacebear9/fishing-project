@@ -1,5 +1,6 @@
 extends Node3D
 class_name PlayerInventory
+@export var player = Player
 signal inv_changed
 
 var inventory = []
@@ -20,7 +21,7 @@ func _process(_delta):
 	if Input.is_action_just_pressed("inventory_previous"):
 		selected = (selected-1+inventory.size())%inventory.size()
 		_switch_inventory()
-	for i:int in 5:
+	for i in range(1,5):
 		if Input.is_action_just_pressed("inventory_"+str(i)):
 			if inventory.size() >= i:
 				selected = i -1
@@ -28,6 +29,7 @@ func _process(_delta):
 
 
 func _switch_inventory():
-	get_child(0).queue_free()
+	if get_child(0):
+		get_child(0).queue_free()
 	add_child(inventory[selected].instantiate())
 	inv_changed.emit()
