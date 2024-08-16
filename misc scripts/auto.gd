@@ -1,5 +1,5 @@
 extends Node3D
-const gravity = 2
+const gravity = 3
 var root
 
 func _ready():

@@ -16,7 +16,7 @@ var jump_buffer = 0
 #camera strafe roll strength
 var strafe_factor = .07
 #jump strength
-const jump_strength = 50
+const jump_strength = 60
 
 var lateral_vel
 var input_vec = Vector2.ZERO
