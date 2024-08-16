@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://iddn68oqxoub"]
+[gd_scene load_steps=10 format=3 uid="uid://iddn68oqxoub"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_qgp6a"]
 [ext_resource type="Script" path="res://scenes/player/inventory.gd" id="3_elx3b"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://scenes/player/speedometer.gd" id="4_7mblk"]
 [ext_resource type="Script" path="res://scenes/player/hotbar.gd" id="4_jyruq"]
 [ext_resource type="Script" path="res://scenes/player/compass.gd" id="6_f36jn"]
-[ext_resource type="Script" path="res://scenes/player/ColorRect.gd" id="6_l68p6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jt5y5"]
 
@@ -101,11 +100,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_f36jn")
 player = NodePath("..")
-
-[node name="ColorRect" type="ColorRect" parent="compass" node_paths=PackedStringArray("player")]
-layout_mode = 0
-script = ExtResource("6_l68p6")
-player = NodePath("../..")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15

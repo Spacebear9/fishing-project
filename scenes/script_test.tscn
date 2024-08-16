@@ -26,9 +26,7 @@ environment = SubResource("Environment_wdvov")
 transform = Transform3D(-0.857684, 0.496248, 0.134595, 0.0193348, -0.230456, 0.972891, 0.513813, 0.837035, 0.188064, 0, 0, 0)
 shadow_enabled = true
 
-[node name="player" parent="." instance=ExtResource("1_rayub")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3902, 14.7967, -25.159)
-
 [node name="MAP_LOAD" type="Node" parent="."]
 script = ExtResource("3_7p75g")
 map = ExtResource("3_pymvk")
+player_TEMP = ExtResource("1_rayub")

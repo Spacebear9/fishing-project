@@ -11,10 +11,7 @@ data = PackedVector3Array(-1, 1, -1, 1, 1, -1, -1, 1, 1, -1, 1, 1, 1, 1, -1, 1, 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g37fi"]
 size = Vector3(57.2505, 4.78299, 109.626)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_qcwfd"]
-size = Vector2(365, 151)
-subdivide_width = 60
-subdivide_depth = 25
+[sub_resource type="PlaneMesh" id="PlaneMesh_inok4"]
 
 [node name="DM_Clem" type="Node"]
 
@@ -43,4 +40,4 @@ shape = SubResource("BoxShape3D_g37fi")
 
 [node name="water" parent="." instance=ExtResource("4_8f6y7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4887, -13.3971, -426.522)
-mesh = SubResource("PlaneMesh_qcwfd")
+mesh = SubResource("PlaneMesh_inok4")

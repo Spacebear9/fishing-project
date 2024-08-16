@@ -48,7 +48,7 @@ func _physics_process(delta):
 
 	
 	#get jump input
-	if Input.is_action_just_pressed("movement_jump"):
+	if Input.is_action_pressed("movement_jump"):
 		jump_buffer = 7
 	if jump_buffer > 0:
 		jump_buffer -= 1
@@ -100,4 +100,3 @@ func accelerate(direction_vec,current_vel,delta):
 func friction(delta):
 	if is_on_floor():
 		lateral_vel = lateral_vel.move_toward(Vector2.ZERO,speed_friction*delta)
-
