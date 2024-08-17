@@ -158,6 +158,7 @@ texture = ExtResource("10_dxg6w")
 
 [node name="WaterEffectArea" parent="water" instance=ExtResource("11_rctyb")]
 FishToSpawn = Array[PackedScene]([ExtResource("12_y0qir")])
+spawntime = 1000
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="water/WaterEffectArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.19376, -4.7395, 1.0929)

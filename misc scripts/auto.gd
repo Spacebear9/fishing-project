@@ -2,8 +2,16 @@ extends Node3D
 const gravity = 3
 var root
 
+var map = load("res://scenes/maps/clementine eagleston yiik/DM_Clem.tscn")
+var player_TEMP = load("res://scenes/player/player.tscn")
+
 func _ready():
 	root = get_tree().root
+	var node = map.instantiate()
+	add_child(node)
+	var player = player_TEMP.instantiate()
+	add_child(player)
+	player.global_position = Vector3(0,10,0)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -55,3 +63,14 @@ func ScreenPointToRay(camera: Camera3D, mask = 0b00000000_00000000_00000000_0000
 	if rayArray.has("position"):
 		return rayArray["position"]
 	return rayEnd
+
+func get_angle(vector: Vector2):
+	if vector == Vector2.ZERO:
+		return 0
+	if vector.y >= 0:
+		return atan2(vector.y,vector.x)
+	if vector.x >= 0:
+		return atan2(vector.y,vector.x) + (PI)
+	if vector.x < 0:
+		return atan2(vector.y,vector.x) - (PI)
+	return 0

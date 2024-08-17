@@ -1,8 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://djpqurr4nitlw"]
-
-[ext_resource type="PackedScene" uid="uid://iddn68oqxoub" path="res://scenes/player/player.tscn" id="1_rayub"]
-[ext_resource type="Script" path="res://scenes/stageLoad.gd" id="3_7p75g"]
-[ext_resource type="PackedScene" uid="uid://d2rva882mewlb" path="res://scenes/maps/clementine eagleston yiik/DM_Clem.tscn" id="3_pymvk"]
+[gd_scene load_steps=4 format=3 uid="uid://djpqurr4nitlw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8t2b0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -25,8 +21,3 @@ environment = SubResource("Environment_wdvov")
 [node name="t_sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.857684, 0.496248, 0.134595, 0.0193348, -0.230456, 0.972891, 0.513813, 0.837035, 0.188064, 0, 0, 0)
 shadow_enabled = true
-
-[node name="MAP_LOAD" type="Node" parent="."]
-script = ExtResource("3_7p75g")
-map = ExtResource("3_pymvk")
-player_TEMP = ExtResource("1_rayub")

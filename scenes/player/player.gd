@@ -23,7 +23,7 @@ var input_vec = Vector2.ZERO
 var wish_vec = 0
 var input_rot = 0
 var speed_max = 45
-var speed_accel_ground = 270
+var speed_accel_ground = 300
 var speed_accel_air = 35
 var speed_friction = 120
 

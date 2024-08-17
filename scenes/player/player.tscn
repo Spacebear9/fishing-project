@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://iddn68oqxoub"]
+[gd_scene load_steps=11 format=3 uid="uid://iddn68oqxoub"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_qgp6a"]
 [ext_resource type="Script" path="res://scenes/player/inventory.gd" id="3_elx3b"]
@@ -12,6 +12,9 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mvgaa"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ityev"]
+bg_color = Color(0, 0, 0, 0.431373)
+
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_qgp6a")
 
@@ -24,7 +27,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_mvgaa")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93982, 0)
 cull_mask = 1048573
 fov = 90.0
 
@@ -98,6 +101,7 @@ anchor_right = 0.7
 anchor_bottom = 0.05
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ityev")
 script = ExtResource("6_f36jn")
 player = NodePath("..")
 

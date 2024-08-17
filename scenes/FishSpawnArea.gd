@@ -2,7 +2,7 @@
 extends Node3D
 @export var DebugFishSpawning: bool
 @export var FishToSpawn: Array[PackedScene]
-@export var spawntime: int = 1000
+@export var spawntime: int = 5000
 var colisionSpawners: Dictionary
 var invalidshapes: bool
 var timestamp = 0
