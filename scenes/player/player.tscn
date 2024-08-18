@@ -16,10 +16,13 @@
 bg_color = Color(0, 0, 0, 0.431373)
 
 [node name="player" type="CharacterBody3D"]
+collision_layer = 5
+safe_margin = 0.005
 script = ExtResource("1_qgp6a")
 
 [node name="player" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+layers = 0
 mesh = SubResource("CapsuleMesh_jt5y5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -27,7 +30,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_mvgaa")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93982, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
 cull_mask = 1048573
 fov = 90.0
 
@@ -50,7 +53,7 @@ render_target_update_mode = 4
 script = ExtResource("3_x4mqh")
 
 [node name="view_cam" type="Camera3D" parent="Camera3D/SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
 cull_mask = 1047554
 fov = 90.0
 
