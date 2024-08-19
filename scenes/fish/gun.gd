@@ -13,9 +13,8 @@ func _ready():
 	_ready1()
 
 func _process(_delta):
-	#begin cast if able
-	if Input.is_action_just_pressed("primary_action") && !anim.is_playing():
-		_fire(fire_point.global_position,auto.ScreenPointToRay(camera,1,[player.get_rid()]))
+	if Input.is_action_just_pressed("primary_action") && !anim.is_playing() && player.moveable:
+		_fire(camera.global_position,auto.ScreenPointToRay(camera,1,[player.get_rid()]))
 		
 #empty code to be used by subclass
 func _ready1():

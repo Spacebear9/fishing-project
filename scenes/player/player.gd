@@ -5,6 +5,7 @@ class_name Player
 @onready var camera = $Camera3D
 @onready var view_cam = $Camera3D/SubViewportContainer/SubViewport/view_cam
 
+var moveable = true
 
 #mouse direction
 var mouse_dir: Vector2
@@ -16,7 +17,7 @@ var jump_buffer = 0
 #camera strafe roll strength
 var strafe_factor = .07
 #jump strength
-const jump_strength = 60
+const jump_strength = 30
 
 var lateral_vel
 var input_vec = Vector2.ZERO
@@ -39,33 +40,27 @@ func _process(_delta):
 
 func _physics_process(delta):
 	lateral_vel = Vector2(velocity.x,velocity.z)
-	
 	friction(delta)
-	input_vec = Input.get_vector("movement_strafe_left","movement_strafe_right","movement_forward","movement_backward")
+	
+	if moveable:
+		#get jump input
+		if Input.is_action_pressed("movement_jump"):
+			jump_buffer = 7
+		if jump_buffer > 0:
+			jump_buffer -= 1
+			if is_on_floor():
+				velocity.y += jump_strength+(lateral_vel.length()/10)
+		
+		input_vec = Input.get_vector("movement_strafe_left","movement_strafe_right","movement_forward","movement_backward")
+		#camera roll when strafing
+		camera.rotation.z = move_toward(camera.rotation.z,sign(-input_vec.x)*strafe_factor,.02)
+	
 	lateral_vel = accelerate(input_vec,lateral_vel,delta)
-	#TOFIX: change friction to be before accelerate
-	
-
-	
-	#get jump input
-	if Input.is_action_pressed("movement_jump"):
-		jump_buffer = 7
-	if jump_buffer > 0:
-		jump_buffer -= 1
-		if is_on_floor():
-			velocity.y += jump_strength+(lateral_vel.length()/10)
-	
-	
-	
-	#camera roll when strafing
-	camera.rotation.z = move_toward(camera.rotation.z,sign(-input_vec.x)*strafe_factor,.02)
 	
 	#all player velocity checks
 	if !is_on_floor():
 		velocity.y -= auto.gravity
-	
 	velocity = Vector3(lateral_vel.x,velocity.y,lateral_vel.y)
-	
 	move_and_slide()
 
 
@@ -73,7 +68,7 @@ func _physics_process(delta):
 
 
 func _unhandled_input(event: InputEvent):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion && moveable:
 		#get mouse direction
 		mouse_dir = event.relative * 0.001
 		#rotate yaw
@@ -100,3 +95,11 @@ func accelerate(direction_vec,current_vel,delta):
 func friction(delta):
 	if is_on_floor():
 		lateral_vel = lateral_vel.move_toward(Vector2.ZERO,speed_friction*delta)
+
+
+func _on_pause_pause() -> void:
+	moveable = false
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+func _on_pause_unpause() -> void:
+	moveable = true
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

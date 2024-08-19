@@ -10,33 +10,6 @@ specular_mode = 2
 albedo_texture = ExtResource("2_quo2e")
 albedo_texture_force_srgb = true
 
-[sub_resource type="Animation" id="Animation_i3aaf"]
-resource_name = "shoot"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 1),
-"transitions": PackedFloat32Array(0.378929, -2, -2),
-"update": 0,
-"values": [Vector3(0, -1.5708, 0), Vector3(0, -1.5708, -0.521853), Vector3(0, -1.5708, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 1),
-"transitions": PackedFloat32Array(0.378, -2, -2),
-"update": 0,
-"values": [Vector3(2, 1, -2), Vector3(2, 1.91114, -1.81777), Vector3(2, 1, -2)]
-}
-
 [sub_resource type="Animation" id="Animation_i0o88"]
 length = 0.001
 tracks/0/type = "value"
@@ -64,6 +37,33 @@ tracks/1/keys = {
 "values": [Vector3(2, 1, -2)]
 }
 
+[sub_resource type="Animation" id="Animation_i3aaf"]
+resource_name = "shoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 1),
+"transitions": PackedFloat32Array(0.378929, -2, -2),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(0, -1.5708, -0.521853), Vector3(0, -1.5708, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 1),
+"transitions": PackedFloat32Array(0.378, -2, -2),
+"update": 0,
+"values": [Vector3(2, 1, -2), Vector3(2, 1.91114, -1.81777), Vector3(2, 1, -2)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bfpnt"]
 _data = {
 "RESET": SubResource("Animation_i0o88"),
@@ -71,7 +71,8 @@ _data = {
 }
 
 [node name="Node3D" type="MeshInstance3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 1, -2)
+transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, 2, 1, -2)
+layers = 2
 mesh = ExtResource("1_yi38g")
 surface_material_override/0 = SubResource("StandardMaterial3D_bchrx")
 script = ExtResource("3_8gu0h")

@@ -1,5 +1,5 @@
 extends Node3D
-const gravity = 3
+const gravity = 2
 var root
 
 var map = load("res://scenes/maps/clementine eagleston yiik/DM_Clem.tscn")
@@ -11,11 +11,10 @@ func _ready():
 	add_child(node)
 	var player = player_TEMP.instantiate()
 	add_child(player)
-	player.global_position = Vector3(0,10,0)
+	player.global_position = Vector3(15,10,0)
 
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().quit()
+	pass
 		
 func line(pos1: Vector3, pos2: Vector3, color = Color.BLACK):
 	var mesh_instance := MeshInstance3D.new()

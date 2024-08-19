@@ -1,9 +1,9 @@
 extends Bullet
 
-@export var shape: Shape3D
-@export var shapeExp: Shape3D
+@export var smallR: float
+@export var bigR: float
 @export var mesh: MeshInstance3D
-@export var cShape: CollisionShape3D
+@export var shape: CollisionShape3D
 const meshExp = 10
 var collide = false
 var lifespan_exp = 1000
@@ -11,7 +11,9 @@ var timestamp = 0
 
 func _ready():
 	speed = 100
-	cShape.shape = shape
+	if shape.shape.is_class("SphereShape3D"):
+		shape.shape.radius = smallR
+	mesh.scale = Vector3(smallR,smallR,smallR)
 	_ready1()
 func _process(delta):
 	if !collide:
@@ -25,8 +27,8 @@ func _collide():
 	collide = true
 	timestamp = Time.get_ticks_msec()
 	
-	cShape.shape = shapeExp
-	mesh.scale = Vector3(10,10,10)
+	shape.shape.radius = bigR
+	mesh.scale = Vector3(bigR,bigR,bigR)
 	
 	var sfom = StandardMaterial3D.new()
 	sfom.albedo_color = Color(255,0,0,1)

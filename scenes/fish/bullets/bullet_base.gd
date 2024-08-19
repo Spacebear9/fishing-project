@@ -27,7 +27,8 @@ func _ready1():
 	vel = vel.normalized() * speed
 
 func _process1(delta1):
-	var col = move_and_collide(vel*delta1,false)
+	position += vel*delta1
+	var col = move_and_collide(Vector3.ZERO,true)
 	if  col && !col.get_collider() == player:
 		_collide()
 	if Time.get_ticks_msec()> timestampInstaniated+lifespan:

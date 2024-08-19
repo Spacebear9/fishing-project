@@ -32,7 +32,8 @@ func _ready():
 
 func _process(_delta):
 		#begin cast if able
-	if Input.is_action_just_pressed("primary_action") && !anim.is_playing() && bState == 0:
+		###!!!!!!! change if inputjustpressed to a method of all inventory items to simplify
+	if Input.is_action_just_pressed("primary_action") && !anim.is_playing() && bState == 0 && player.moveable:
 		anim.play("swing")
 		s = Time.get_ticks_msec()
 		bTravel = 0
