@@ -11,10 +11,7 @@ data = PackedVector3Array(-49.5212, 1, -9.3149, -47.5212, 1, -9.3149, -49.5212, 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g37fi"]
 size = Vector3(164.607, 4.78299, 97.0459)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_8sumg"]
-size = Vector2(365, 151)
-subdivide_width = 60
-subdivide_depth = 25
+[sub_resource type="PlaneMesh" id="PlaneMesh_whaqs"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xmpj1"]
 radius = 2.0
@@ -30,9 +27,9 @@ height = 8.0
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 mesh = ExtResource("1_men3q")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="environment" type="StaticBody3D" parent="MeshInstance3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/environment"]
 shape = SubResource("ConcavePolygonShape3D_5o40k")
 
 [node name="WaterEffectArea" parent="." instance=ExtResource("2_5ygn1")]
@@ -46,14 +43,14 @@ shape = SubResource("BoxShape3D_g37fi")
 
 [node name="water" parent="." instance=ExtResource("4_8f6y7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4887, -13.3971, -426.522)
-mesh = SubResource("PlaneMesh_8sumg")
+mesh = SubResource("PlaneMesh_whaqs")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.5524, -4.94473, -33.8889)
 mesh = SubResource("CapsuleMesh_xmpj1")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+[node name="gamer body" type="StaticBody3D" parent="MeshInstance3D2"]
 collision_layer = 5
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/gamer body"]
 shape = SubResource("CapsuleShape3D_g5wve")

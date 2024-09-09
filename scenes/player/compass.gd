@@ -12,6 +12,8 @@ var gra = Gradient.new()
 var gra2 = Gradient.new()
 var tex = GradientTexture1D.new()
 var tex2 = GradientTexture1D.new()
+var cscale = 0.005
+var notblue = 0
 func _ready():
 	gra.set_color(0,Color.WHITE)
 	gra2.set_color(0,Color.RED)
@@ -30,6 +32,16 @@ func _ready():
 
 func _process(delta):
 	t1c = player.lateral_vel.angle()-player.wish_vec.angle()
+	if !player.is_on_floor():
+		gra.set_color(0,Color(notblue,notblue,255))
+		gra.set_color(1,Color(notblue,notblue,255))
+		notblue+=0.1
+		cscale = 0.01
+	else:
+		gra.set_color(0,Color.WHITE)
+		gra.set_color(1,Color.WHITE)
+		cscale = 0.005
+		notblue = 0
 	if t1c > PI:
 		t1c = t1c-(2*PI)
 	if t1c < -PI:
@@ -42,18 +54,17 @@ func _process(delta):
 	center = move_toward(center,t1c,abs(center - t1c)/6 + 0.001)
 	
 	if center < 0 || center > 1:
-		t1.texture = tex2
-	else:
-		t1.texture = tex
+		gra.set_color(0,Color(255,notblue/5,notblue/5))
+		gra.set_color(1,Color(255,notblue/5,notblue/5))
 	
 
-	t1.anchor_left = center - 0.005
-	t1.anchor_right = center + 0.005
-	if center - 0.005 < 0:
+	t1.anchor_left = center - cscale
+	t1.anchor_right = center + cscale
+	if center - cscale < 0:
 		t1.anchor_right = 0
 		#t1.anchor_top = center
 		#t1.anchor_bottom = 1-center
-	if center + 0.005 > 1:
+	if center + cscale > 1:
 		t1.anchor_left = 1
 		#t1.anchor_top = 1-center
 		#t1.anchor_bottom = center

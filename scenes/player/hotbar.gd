@@ -5,7 +5,6 @@ var inv_get: PlayerInventory
 func _ready():
 	while !inv_get:
 		inv_get = player.get_node("Camera3D").get_node("inventory")
-	print(inv_get)
 	_set_hotbar()
 
 

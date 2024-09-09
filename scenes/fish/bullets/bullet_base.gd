@@ -1,4 +1,4 @@
-extends RigidBody3D
+extends ShapeCast3D
 class_name Bullet
 var pos
 var target: Vector3
@@ -8,15 +8,19 @@ var speed = 200
 var lifespan = 2500
 var vel
 var cont
+var col: Array
 func _spawn(_pos: Vector3, tar: Vector3, _player:Player):
 	pos = _pos
 	target = tar
 	player = _player
 	cont = true
-func _process(_delta):
-	_process1(_delta)
+func _physics_process(delta: float) -> void:
+	_process1(delta)
 		
 func _collide():
+	print("--Call 1--")
+	for i in col.size():
+		print(col[i].name)
 	queue_free()
 func _ready1():
 	while !cont == true:
@@ -27,10 +31,14 @@ func _ready1():
 	vel = vel.normalized() * speed
 
 func _process1(delta1):
-	position += vel*delta1
-	var col = move_and_collide(Vector3.ZERO,true)
-	if  col && !col.get_collider() == player:
-		_collide()
+	target_position = vel*delta1
+	col = auto.shapecast_to_array(self)	
+	if  col:
+		for i in col:
+			if i != player:
+				_collide()
+				return
 	if Time.get_ticks_msec()> timestampInstaniated+lifespan:
 		_collide()
+	position += vel*delta1
 	

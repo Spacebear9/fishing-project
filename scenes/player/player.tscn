@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://scenes/player/crosshair.gd" id="8_7rqjo"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jt5y5"]
+radius = 2.0
+height = 8.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mvgaa"]
 
@@ -25,7 +27,7 @@ safe_margin = 0.005
 script = ExtResource("1_qgp6a")
 
 [node name="player" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 layers = 4
 mesh = SubResource("CapsuleMesh_jt5y5")
 
@@ -34,7 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_mvgaa")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.25, 0)
 cull_mask = 1048569
 fov = 90.0
 
@@ -78,7 +80,6 @@ script = ExtResource("3_x4mqh")
 
 [node name="view_cam" type="Camera3D" parent="Camera3D/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
-visible = false
 cull_mask = 1047554
 fov = 90.0
 
