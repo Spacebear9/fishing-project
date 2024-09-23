@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://mpmquabpvm2l"]
+
+[ext_resource type="ArrayMesh" uid="uid://iboklj1suao5" path="res://scenes/fish/bass/bass.obj" id="1_6r4lw"]
+[ext_resource type="Texture2D" uid="uid://dhn06q0f0gpas" path="res://scenes/fish/bass/bass.png" id="2_me4q7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jbagf"]
+size = Vector3(4.18079, 1.34912, 1.61035)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1f18n"]
+albedo_texture = ExtResource("2_me4q7")
+albedo_texture_force_srgb = true
+
+[node name="Bass_Fish" type="Area3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0547361, -0.00260937, -0.105288)
+shape = SubResource("BoxShape3D_jbagf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.986808, 0.161897, 0, -0.161897, 0.986808, 0, 0, 0, 1, 0, 0, 0)
+mesh = ExtResource("1_6r4lw")
+surface_material_override/0 = SubResource("StandardMaterial3D_1f18n")

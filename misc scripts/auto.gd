@@ -1,15 +1,20 @@
 extends Node3D
 const gravity = 2
-var player
 var root
 
+var map = load("res://scenes/maps/clementine eagleston yiik/DM_Clem.tscn")
+var player_TEMP = load("res://scenes/player/player.tscn")
+
 func _ready():
-	player = get_node("/root").get_child(1).get_node("player")
 	root = get_tree().root
+	var node = map.instantiate()
+	add_child(node)
+	var player = player_TEMP.instantiate()
+	add_child(player)
+	player.global_position = Vector3(15,10,0)
 
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().quit()
+	pass
 		
 func line(pos1: Vector3, pos2: Vector3, color = Color.BLACK):
 	var mesh_instance := MeshInstance3D.new()
@@ -44,7 +49,7 @@ func curve_length(pos1: Vector3, pos2: Vector3,pos3: Vector3, detail: float):
 func pCurve(pos1: Vector3, pos2: Vector3, pos3: Vector3, weight: float):
 	return lerp(lerp(pos1,pos3,weight),lerp(pos3,pos2,weight),weight)
 
-func ScreenPointToRay(camera: Camera3D, mask = 0b00000000_00000000_00000000_00000010, exclude = null):
+func ScreenPointToRay(camera: Camera3D, mask = 0b00000000_00000000_00000000_00000010, exclude = null, return_full = false):
 	var spaceState = get_world_3d().direct_space_state
 	var mousePos = get_viewport().get_mouse_position()
 	var rayOrigin = camera.project_ray_origin(mousePos)
@@ -54,6 +59,25 @@ func ScreenPointToRay(camera: Camera3D, mask = 0b00000000_00000000_00000000_0000
 	if exclude:
 		rayQuery.exclude = exclude
 	var rayArray = spaceState.intersect_ray(rayQuery)
+	if return_full:
+		return rayArray
 	if rayArray.has("position"):
 		return rayArray["position"]
 	return rayEnd
+
+func get_angle(vector: Vector2):
+	if vector == Vector2.ZERO:
+		return 0
+	if vector.y >= 0:
+		return atan2(vector.y,vector.x)
+	if vector.x >= 0:
+		return atan2(vector.y,vector.x) + (PI)
+	if vector.x < 0:
+		return atan2(vector.y,vector.x) - (PI)
+	return 0
+	
+func shapecast_to_array(cast:ShapeCast3D) -> Array:
+	var array: Array
+	for i in cast.get_collision_count():
+		array.append(cast.get_collider(i))
+	return array

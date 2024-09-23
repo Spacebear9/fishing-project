@@ -18,7 +18,8 @@ var bControl = Vector3.ZERO
 
 
 func _ready():
-	camera = auto.player.get_node("Camera3D")
+	get_player()
+	camera = player.get_node("Camera3D")
 	anim = get_node("AnimationPlayer")
 	
 	bobber = load("res://scenes/bobber/bobber.tscn").instantiate()
@@ -31,7 +32,8 @@ func _ready():
 
 func _process(_delta):
 		#begin cast if able
-	if Input.is_action_just_pressed("primary_action") && !anim.is_playing() && bState == 0:
+		###!!!!!!! change if inputjustpressed to a method of all inventory items to simplify
+	if Input.is_action_just_pressed("primary_action") && !anim.is_playing() && bState == 0 && player.moveable:
 		anim.play("swing")
 		s = Time.get_ticks_msec()
 		bTravel = 0

@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/fish/bullets/bullet01/bullet_1.gd" id="1_eapuc"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_elj2u"]
-radius = 1.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_apvnq"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_2nnpj"]
 radius = 1.0
@@ -12,15 +11,15 @@ height = 2.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y45yi"]
 albedo_color = Color(0, 0, 0, 1)
 
-[node name="bullet" type="ShapeCast3D" node_paths=PackedStringArray("mesh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("SphereShape3D_elj2u")
+[node name="bullet" type="Area3D" node_paths=PackedStringArray("mesh")]
+collision_layer = 0
 script = ExtResource("1_eapuc")
-smallR = 1.0
-bigR = 6.0
 mesh = NodePath("MeshInstance3D")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_apvnq")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("SphereMesh_2nnpj")
 surface_material_override/0 = SubResource("StandardMaterial3D_y45yi")

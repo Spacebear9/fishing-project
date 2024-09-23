@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bccrvplk5dmdr"
-path="res://.godot/imported/bobber.blend-6db548470aa75e829e1cadefdfe6c001.scn"
+uid="uid://dtckrk0hjic50"
+path="res://.godot/imported/map.blend-875932c4ab87849d7496d9bf3b86bd0d.scn"
 
 [deps]
 
-source_file="res://bobber.blend"
-dest_files=["res://.godot/imported/bobber.blend-6db548470aa75e829e1cadefdfe6c001.scn"]
+source_file="res://scenes/maps/clementine eagleston yiik/map.blend"
+dest_files=["res://.godot/imported/map.blend-875932c4ab87849d7496d9bf3b86bd0d.scn"]
 
 [params]
 

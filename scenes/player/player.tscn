@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://iddn68oqxoub"]
+[gd_scene load_steps=14 format=3 uid="uid://iddn68oqxoub"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_qgp6a"]
 [ext_resource type="Script" path="res://scenes/player/inventory.gd" id="3_elx3b"]
@@ -6,16 +6,29 @@
 [ext_resource type="Script" path="res://scenes/player/SubViewport.gd" id="3_x4mqh"]
 [ext_resource type="Script" path="res://scenes/player/speedometer.gd" id="4_7mblk"]
 [ext_resource type="Script" path="res://scenes/player/hotbar.gd" id="4_jyruq"]
+[ext_resource type="Script" path="res://scenes/player/pause.gd" id="4_po5os"]
+[ext_resource type="Script" path="res://scenes/player/compass.gd" id="6_f36jn"]
+[ext_resource type="Script" path="res://scenes/player/crosshair.gd" id="8_7rqjo"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jt5y5"]
+radius = 2.0
+height = 8.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mvgaa"]
 
+[sub_resource type="PrismMesh" id="PrismMesh_n2a2i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ityev"]
+bg_color = Color(0, 0, 0, 0.431373)
+
 [node name="player" type="CharacterBody3D"]
+collision_layer = 5
+safe_margin = 0.005
 script = ExtResource("1_qgp6a")
 
 [node name="player" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+layers = 4
 mesh = SubResource("CapsuleMesh_jt5y5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -23,13 +36,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_mvgaa")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-cull_mask = 1048573
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.25, 0)
+cull_mask = 1048569
 fov = 90.0
 
 [node name="inventory" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 script = ExtResource("3_elx3b")
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="Camera3D"]
+visible = false
+offset_left = 45.0
+offset_top = 51.0
+offset_right = 295.0
+offset_bottom = 306.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Camera3D/SubViewportContainer2"]
+handle_input_locally = false
+size = Vector2i(250, 255)
+render_target_update_mode = 0
+
+[node name="Camera3D2" type="Camera3D" parent="Camera3D/SubViewportContainer2/SubViewport"]
+transform = Transform3D(-0.499601, 0.03994, -0.865334, 0.01997, 0.999202, 0.034589, 0.866025, -1.86265e-09, -0.5, -3, 2, 6)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D/SubViewportContainer2/SubViewport/Camera3D2"]
+transform = Transform3D(0.999601, -0.0203117, 0.0196245, -0.0196205, 0.000398749, 0.999808, -0.0203157, -0.999794, 1.4808e-07, 0, 0, 0)
+mesh = SubResource("PrismMesh_n2a2i")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Camera3D"]
 anchors_preset = 15
@@ -46,20 +79,70 @@ render_target_update_mode = 4
 script = ExtResource("3_x4mqh")
 
 [node name="view_cam" type="Camera3D" parent="Camera3D/SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
 cull_mask = 1047554
 fov = 90.0
 
-[node name="Panel" type="Panel" parent="."]
+[node name="player ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="pause" type="Panel" parent="player ui"]
+layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.85
-anchor_right = 0.35
-anchor_bottom = 0.95
+anchor_left = 0.4
+anchor_top = 0.3
+anchor_right = 0.6
+anchor_bottom = 0.7
+script = ExtResource("4_po5os")
+
+[node name="Label" type="Label" parent="player ui/pause"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="player ui/pause"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.24
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="resume" type="Button" parent="player ui/pause/VBoxContainer"]
+layout_mode = 2
+text = "Resume Game"
+
+[node name="exit" type="Button" parent="player ui/pause/VBoxContainer"]
+layout_mode = 2
+text = "Exit Game"
+
+[node name="hotbar" type="Panel" parent="player ui"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.82563
+anchor_right = 0.311
+anchor_bottom = 0.981
+offset_left = 15.48
+offset_top = -17.0082
+offset_right = 14.728
+offset_bottom = -16.6884
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="player ui/hotbar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,32 +150,54 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer2" type="CenterContainer" parent="Panel/VBoxContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="player ui/hotbar/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/CenterContainer2"]
+[node name="Label" type="Label" parent="player ui/hotbar/VBoxContainer/CenterContainer2" node_paths=PackedStringArray("player")]
 layout_mode = 2
 text = "a"
 script = ExtResource("4_7mblk")
+player = NodePath("../../../../..")
 
-[node name="CenterContainer" type="CenterContainer" parent="Panel/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="player ui/hotbar/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="player ui/hotbar/VBoxContainer/CenterContainer" node_paths=PackedStringArray("player")]
 layout_mode = 2
 script = ExtResource("4_jyruq")
+player = NodePath("../../../../..")
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer"]
-layout_mode = 2
+[node name="compass" type="Panel" parent="player ui" node_paths=PackedStringArray("player")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.01
+anchor_right = 0.7
+anchor_bottom = 0.05
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ityev")
+script = ExtResource("6_f36jn")
+player = NodePath("../..")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="crosshair" type="CenterContainer" parent="player ui"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("8_7rqjo")
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+[node name="TextureRect" type="TextureRect" parent="player ui/crosshair"]
 texture_filter = 2
 layout_mode = 2
 texture = ExtResource("3_fd3r2")
+
+[connection signal="inv_changed" from="Camera3D/inventory" to="player ui/hotbar/VBoxContainer/CenterContainer/HBoxContainer" method="_on_inventory_inv_changed"]
+[connection signal="pause" from="player ui/pause" to="." method="_on_pause_pause"]
+[connection signal="pause" from="player ui/pause" to="player ui/crosshair" method="_on_pause_pause"]
+[connection signal="unpause" from="player ui/pause" to="." method="_on_pause_unpause"]
+[connection signal="unpause" from="player ui/pause" to="player ui/crosshair" method="_on_pause_unpause"]
+[connection signal="pressed" from="player ui/pause/VBoxContainer/resume" to="player ui/pause" method="_on_resume_pressed"]
+[connection signal="pressed" from="player ui/pause/VBoxContainer/exit" to="player ui/pause" method="_on_button_pressed"]
