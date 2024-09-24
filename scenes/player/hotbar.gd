@@ -23,7 +23,7 @@ func _set_hotbar():
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		if slot == inv_get.selected:
 			label.label_settings.font_color = Color.RED
-		var icon = inv_get.inventory[slot].instantiate().icon
+		var icon = inv_get.inventory[slot].instantiate().icon;
 		var rect = TextureRect.new()
 		rect.texture = icon
 		rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE

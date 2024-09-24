@@ -9,7 +9,7 @@ var selected = 0
 func _ready():
 	inventory.append(load("res://scenes/rod/rod.tscn"))
 	inventory.append(load("res://scenes/fish/bass/bass.tscn"))
-	inventory.append(load("res://scenes/fish/bass/bass.tscn"))
+	#inventory.append(load("res://scenes/fish/bass/bass.tscn"))
 	
 	add_child(inventory[selected].instantiate())
 
