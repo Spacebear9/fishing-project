@@ -6,8 +6,7 @@ var player: Player
 var icon : Texture2D
 func _ready():
 	get_player()
-	set_icon()
 func get_player():
 	player = get_parent().get_parent().get_parent()
-func set_icon():
-	icon = Inventoryresource.icon
+func get_icon():
+	return Inventoryresource.Icon

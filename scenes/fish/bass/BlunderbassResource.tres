@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://c4gpud2io7eta" path="res://scenes/fish/bullets/bullet01/bullet.tscn" id="1_aixml"]
 [ext_resource type="Script" path="res://misc scripts/InventoryItem/projecticleresource.gd" id="1_kaxpi"]
-[ext_resource type="Texture2D" uid="uid://dvhbijd30eh2k" path="res://misc textures/circle2.png" id="2_2okve"]
+[ext_resource type="Texture2D" uid="uid://brhx44inomvlg" path="res://misc textures/circle.png" id="2_uywwi"]
 
 [resource]
 script = ExtResource("1_kaxpi")
 Bullet = ExtResource("1_aixml")
 Name = "Blunder-Bass"
-icon = ExtResource("2_2okve")
+Icon = ExtResource("2_uywwi")

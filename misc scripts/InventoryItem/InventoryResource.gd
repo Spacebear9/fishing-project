@@ -1,4 +1,4 @@
 extends Resource
 class_name InventoryResource 
 @export var Name : String
-@export var icon: Texture2D
+@export var Icon: Texture2D

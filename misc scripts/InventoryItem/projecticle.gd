@@ -16,5 +16,5 @@ func _fire(launch: Vector3,target: Vector3):
 	b = bullet.instantiate()
 	b._spawn(launch,target,player)
 	auto.root.add_child(b)
-func set_icon():
-	icon = projecticleresource.icon
+func get_icon():
+	return projecticleresource.Icon
