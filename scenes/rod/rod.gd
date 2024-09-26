@@ -1,9 +1,10 @@
 extends InventoryItem
-#@export var RodResoruce: InventoryResource
+
 var camera: Camera3D
 var anim: AnimationPlayer
 var bobber: StaticBody3D
 var cast_point
+
 var s = 0
 var e = 0
 var stop = false
@@ -17,12 +18,16 @@ var bControl = Vector3.ZERO
 
 
 func _ready():
-	super()
+	get_player()
 	camera = player.get_node("Camera3D")
 	anim = get_node("AnimationPlayer")
+	
 	bobber = load("res://scenes/bobber/bobber.tscn").instantiate()
 	add_child(bobber)
 	bobber.scale*=10
+
+	
+	#
 	cast_point = get_node("cast_point")
 
 func _process(_delta):
@@ -34,6 +39,7 @@ func _process(_delta):
 		bTravel = 0
 		bState = 1
 		stop = false
+	
 	if bState == 1 && bTravel <= 1 && !anim.is_playing():
 		bStart = cast_point.global_position
 		bEnd = auto.ScreenPointToRay(camera)
@@ -41,20 +47,27 @@ func _process(_delta):
 		bControl. y += abs(bStart.y-bEnd.y)
 		print(snapped(auto.curve_length(bStart,bEnd,bControl,10),.01))
 		bState = 2
+	
 	if bState == 2 && bTravel <= 1 && !anim.is_playing():
 		bTravel += bSpeed/auto.curve_length(bStart,bEnd,bControl,10)
+	
 	if bState == 2 && bTravel >= 1 && !stop:
 		stop = true
 		e = Time.get_ticks_msec()
 		print("in " + str(e-s))
+		
 	if bState == 2 && bTravel >= 1 && !anim.is_playing() && Input.is_action_just_pressed("primary_action"):
 		anim.play("reel")
 		bState = 3
+		
 	if bState == 3 && bobber.global_position.distance_to(cast_point.global_position) >= 0.00001:
 		bobber.global_position = bobber.global_position.move_toward(cast_point.global_position,2)
 	if bState == 3 && bobber.global_position.distance_to(cast_point.global_position) <= 0.00001:
 		anim.play("return")
 		bState = 0
+	
+	
+	
 	if bState < 2:
 		bobber.global_position = Vector3(cast_point.global_position.x,cast_point.global_position.y-3,cast_point.global_position.z)
 		auto.line(bobber.global_position,cast_point.global_position)

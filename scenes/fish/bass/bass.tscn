@@ -2,8 +2,8 @@
 
 [ext_resource type="ArrayMesh" uid="uid://iboklj1suao5" path="res://scenes/fish/bass/bass.obj" id="1_yi38g"]
 [ext_resource type="Texture2D" uid="uid://dhn06q0f0gpas" path="res://scenes/fish/bass/bass.png" id="2_quo2e"]
-[ext_resource type="Script" path="res://misc scripts/InventoryItem/projecticle.gd" id="3_cfoaw"]
-[ext_resource type="Resource" uid="uid://henk4pn1en2i" path="res://scenes/fish/bass/BlunderbassResource.tres" id="4_dpftk"]
+[ext_resource type="Script" path="res://scenes/fish/bass/bass.gd" id="3_8gu0h"]
+[ext_resource type="Texture2D" uid="uid://cg66csa8swm8o" path="res://scenes/fish/bass/bassicon.png" id="4_p26we"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bchrx"]
 specular_mode = 2
@@ -75,8 +75,8 @@ transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, 2, 1, 
 layers = 2
 mesh = ExtResource("1_yi38g")
 surface_material_override/0 = SubResource("StandardMaterial3D_bchrx")
-script = ExtResource("3_cfoaw")
-projecticleresource = ExtResource("4_dpftk")
+script = ExtResource("3_8gu0h")
+icon = ExtResource("4_p26we")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
