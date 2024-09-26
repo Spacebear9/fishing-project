@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://bjdm7yfo4b8ph"]
 
 [ext_resource type="ArrayMesh" uid="uid://bfdxji8028m8n" path="res://scenes/rod/rod_1.obj" id="1_upim7"]
-[ext_resource type="Script" path="res://scenes/rod/rod.gd" id="2_pd4ym"]
-[ext_resource type="Texture2D" uid="uid://dlqi5pkao7gb5" path="res://testicon.png" id="3_t81r5"]
+[ext_resource type="Script" path="res://misc scripts/InventoryItem/rod.gd" id="2_pd4ym"]
+[ext_resource type="Resource" uid="uid://d4nupba4hb3u8" path="res://scenes/rod/RodResource.tres" id="3_lxwt8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rnwy8"]
 diffuse_mode = 1
@@ -85,7 +85,7 @@ layers = 2
 mesh = ExtResource("1_upim7")
 surface_material_override/0 = SubResource("StandardMaterial3D_rnwy8")
 script = ExtResource("2_pd4ym")
-icon = ExtResource("3_t81r5")
+Inventoryresource = ExtResource("3_lxwt8")
 
 [node name="cast_point" type="Node3D" parent="."]
 transform = Transform3D(1, 1.03029e-13, 1.42109e-14, -8.17124e-14, 1, -2.98023e-08, 4.9738e-14, 2.98023e-08, 1, 0.462241, 39.6794, 0.0380278)

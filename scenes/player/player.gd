@@ -99,6 +99,7 @@ func friction(delta):
 
 func _on_pause_pause() -> void:
 	moveable = false
+	input_vec = Vector2.ZERO
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 func _on_pause_unpause() -> void:
 	moveable = true
