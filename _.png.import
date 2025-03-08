@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b27acxxax0nb2"
-path.s3tc="res://.godot/imported/archerfish_cc.jpg-ede994af7e93e6c3d01d00fe7f946d4c.s3tc.ctex"
+uid="uid://ihmwlpjp8uxq"
+path.s3tc="res://.godot/imported/_.png-542147b65c689361691145db59964013.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://misc textures/archerfish_cc.jpg"
-dest_files=["res://.godot/imported/archerfish_cc.jpg-ede994af7e93e6c3d01d00fe7f946d4c.s3tc.ctex"]
+source_file="res://_.png"
+dest_files=["res://.godot/imported/_.png-542147b65c689361691145db59964013.s3tc.ctex"]
 
 [params]
 
