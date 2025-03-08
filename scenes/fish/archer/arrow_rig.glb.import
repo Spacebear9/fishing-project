@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bj6r5bkihes5f"
-path="res://.godot/imported/arrow_rig.glb-a6a4bac47c0c4c2148c280822e8068d1.scn"
+path="res://.godot/imported/arrow_rig.glb-e2c4d23d5516b57fd93320fd279cc8fc.scn"
 
 [deps]
 
-source_file="res://misc textures/arrow_rig.glb"
-dest_files=["res://.godot/imported/arrow_rig.glb-a6a4bac47c0c4c2148c280822e8068d1.scn"]
+source_file="res://scenes/fish/archer/arrow_rig.glb"
+dest_files=["res://.godot/imported/arrow_rig.glb-e2c4d23d5516b57fd93320fd279cc8fc.scn"]
 
 [params]
 

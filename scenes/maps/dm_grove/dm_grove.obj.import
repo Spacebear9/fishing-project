@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://31if46gs10ee"
+path="res://.godot/imported/dm_grove.obj-f4d7406fa08c3f8105706b3a5879665d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/dm_grove.obj-f4d7406fa08c3f8105706b3a5879665d.mesh"]
+
+source_file="res://scenes/maps/dm_grove/dm_grove.obj"
+dest_files=["res://.godot/imported/dm_grove.obj-f4d7406fa08c3f8105706b3a5879665d.mesh", "res://.godot/imported/dm_grove.obj-f4d7406fa08c3f8105706b3a5879665d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

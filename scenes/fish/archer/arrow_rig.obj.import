@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dmnb77hxj2hff"
+path="res://.godot/imported/arrow_rig.obj-c0f2959f0055db1c419cb0df82c48b46.mesh"
+
+[deps]
+
+files=["res://.godot/imported/arrow_rig.obj-c0f2959f0055db1c419cb0df82c48b46.mesh"]
+
+source_file="res://scenes/fish/archer/arrow_rig.obj"
+dest_files=["res://.godot/imported/arrow_rig.obj-c0f2959f0055db1c419cb0df82c48b46.mesh", "res://.godot/imported/arrow_rig.obj-c0f2959f0055db1c419cb0df82c48b46.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

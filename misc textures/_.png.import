@@ -2,26 +2,27 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlqi5pkao7gb5"
-path="res://.godot/imported/testicon.png-7af506e95eb3ac375b412e2f20445227.ctex"
+uid="uid://ihmwlpjp8uxq"
+path.s3tc="res://.godot/imported/_.png-97c094b81933fb8ba8ab98c984e31ead.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://testicon.png"
-dest_files=["res://.godot/imported/testicon.png-7af506e95eb3ac375b412e2f20445227.ctex"]
+source_file="res://misc textures/_.png"
+dest_files=["res://.godot/imported/_.png-97c094b81933fb8ba8ab98c984e31ead.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +32,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

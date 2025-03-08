@@ -2,7 +2,7 @@ extends Node3D
 const gravity = 2
 var root
 
-var map = load("res://dm_grove.tscn")
+var map = load("res://scenes/maps/dm_grove/dm_grove.tscn")
 var player_TEMP = load("res://scenes/player/player.tscn")
 
 func _ready():

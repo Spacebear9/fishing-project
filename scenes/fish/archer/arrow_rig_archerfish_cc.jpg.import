@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ihmwlpjp8uxq"
-path.s3tc="res://.godot/imported/_.png-542147b65c689361691145db59964013.s3tc.ctex"
+uid="uid://dv72b4aw7jkmo"
+path.s3tc="res://.godot/imported/arrow_rig_archerfish_cc.jpg-0f2b41dd066623bb49b654cb318cbc0a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "6ac5d7307ee2b15918083b28d9c71710"
+}
 
 [deps]
 
-source_file="res://_.png"
-dest_files=["res://.godot/imported/_.png-542147b65c689361691145db59964013.s3tc.ctex"]
+source_file="res://scenes/fish/archer/arrow_rig_archerfish_cc.jpg"
+dest_files=["res://.godot/imported/arrow_rig_archerfish_cc.jpg-0f2b41dd066623bb49b654cb318cbc0a.s3tc.ctex"]
 
 [params]
 
