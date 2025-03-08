@@ -27,6 +27,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="fishing"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 movement_forward={
