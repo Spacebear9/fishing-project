@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://0dj1f775ktnc"]
 
-[ext_resource type="ArrayMesh" uid="uid://31if46gs10ee" path="res://dm_grove.obj" id="1_ocqys"]
+[ext_resource type="ArrayMesh" uid="uid://31if46gs10ee" path="res://scenes/maps/dm_grove/dm_grove.obj" id="1_ocqys"]
 [ext_resource type="Material" uid="uid://c07011urgn4mq" path="res://misc textures/grid.tres" id="2_jj2ag"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_a12vf"]

@@ -13,7 +13,7 @@ func _process(delta):
 func _fire(launch: Vector3,target: Vector3):
 	anim.play("shoot")
 	var b: Bullet
-	b = bullet.instantiate()
+	b = bullet.instantiate() 
 	b._spawn(launch,target,player)
 	auto.root.add_child(b)
 func get_icon():

@@ -1,14 +1,14 @@
 [gd_scene load_steps=26 format=3 uid="uid://bu1qvdsjesfjm"]
 
-[ext_resource type="Script" path="res://scenes/maps/t_stage/t_stage.gd" id="1_goh6c"]
+[ext_resource type="Script" uid="uid://rwuom2ktria" path="res://scenes/maps/t_stage/t_stage.gd" id="1_goh6c"]
 [ext_resource type="ArrayMesh" uid="uid://mfjvm6y2e6i8" path="res://scenes/maps/t_stage/test_stage.obj" id="2_34k0s"]
 [ext_resource type="Texture2D" uid="uid://p8ykiunaimpe" path="res://scenes/maps/t_stage/bake.png" id="3_2s7sa"]
-[ext_resource type="Shader" path="res://scenes/maps/map_objects/water/water.gdshader" id="4_ol3dd"]
+[ext_resource type="Shader" uid="uid://dl3jbpytgxl4f" path="res://scenes/maps/map_objects/water/water.gdshader" id="4_ol3dd"]
 [ext_resource type="Texture2D" uid="uid://w2r0kgwwjmd2" path="res://misc textures/noise_seamless_1.png" id="5_8nyye"]
 [ext_resource type="Texture2D" uid="uid://cf6tmgqh45gr2" path="res://misc textures/noise_seamless_2.png" id="6_4pmkk"]
 [ext_resource type="Texture2D" uid="uid://vpccveta2tsq" path="res://scenes/maps/map_objects/water/deep_blue.png" id="7_hksm4"]
 [ext_resource type="Texture2D" uid="uid://b73pidtjys7me" path="res://scenes/maps/map_objects/water/electric_blue.png" id="8_xbye7"]
-[ext_resource type="Script" path="res://scenes/maps/map_objects/water/water.gd" id="9_j6scx"]
+[ext_resource type="Script" uid="uid://bayaqtvn38aw6" path="res://scenes/maps/map_objects/water/water.gd" id="9_j6scx"]
 [ext_resource type="Texture2D" uid="uid://dp5vaj20eyrg" path="res://scenes/maps/map_objects/water/water.png" id="10_dxg6w"]
 [ext_resource type="PackedScene" uid="uid://bsfv1u74prki0" path="res://scenes/WaterEffectArea.tscn" id="11_rctyb"]
 [ext_resource type="PackedScene" uid="uid://cetq5vqqfalmj" path="res://scenes/fish/bass/bass.tscn" id="12_y0qir"]
@@ -47,9 +47,12 @@ subdivide_depth = 80
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e2vwf"]
 render_priority = 0
 shader = ExtResource("4_ol3dd")
-shader_parameter/planeWidth = null
-shader_parameter/planeHeight = null
-shader_parameter/textScale = null
+shader_parameter/planeWidth = 0.0
+shader_parameter/planeHeight = 0.0
+shader_parameter/textScale = 0.0
+shader_parameter/noise = ExtResource("5_8nyye")
+shader_parameter/noise2 = ExtResource("6_4pmkk")
+shader_parameter/text = ExtResource("7_hksm4")
 shader_parameter/n1dir = Vector2(-1, -1)
 shader_parameter/n2dir = Vector2(1, 1)
 shader_parameter/aldir = Vector2(-1, -1)
@@ -60,17 +63,17 @@ shader_parameter/height_offset = 0.1
 shader_parameter/height_scale = 3.0
 shader_parameter/alpha = 0.9
 shader_parameter/scale_devide = 2.0
-shader_parameter/noise = ExtResource("5_8nyye")
-shader_parameter/noise2 = ExtResource("6_4pmkk")
-shader_parameter/text = ExtResource("7_hksm4")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o3ikm"]
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_e2vwf")
 shader = ExtResource("4_ol3dd")
-shader_parameter/planeWidth = null
-shader_parameter/planeHeight = null
+shader_parameter/planeWidth = 0.0
+shader_parameter/planeHeight = 0.0
 shader_parameter/textScale = 0.2
+shader_parameter/noise = ExtResource("5_8nyye")
+shader_parameter/noise2 = ExtResource("6_4pmkk")
+shader_parameter/text = ExtResource("8_xbye7")
 shader_parameter/n1dir = Vector2(-1, -1)
 shader_parameter/n2dir = Vector2(1, 1)
 shader_parameter/aldir = Vector2(1, 2)
@@ -81,9 +84,6 @@ shader_parameter/height_offset = 0.0
 shader_parameter/height_scale = 6.1
 shader_parameter/alpha = 0.34
 shader_parameter/scale_devide = 2.0
-shader_parameter/noise = ExtResource("5_8nyye")
-shader_parameter/noise2 = ExtResource("6_4pmkk")
-shader_parameter/text = ExtResource("8_xbye7")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y5rah"]
 size = Vector3(80, 0.5, 60)
