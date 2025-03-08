@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c4gpud2io7eta"]
 
-[ext_resource type="Script" path="res://scenes/fish/bullets/bullet01/bullet_1.gd" id="1_eapuc"]
+[ext_resource type="Script" uid="uid://bqcuyw20c2f1k" path="res://scenes/fish/bullets/bullet01/bullet_1.gd" id="1_eapuc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_elj2u"]
 radius = 1.0

@@ -2,7 +2,7 @@
 
 [ext_resource type="ArrayMesh" uid="uid://iboklj1suao5" path="res://scenes/fish/bass/bass.obj" id="1_yi38g"]
 [ext_resource type="Texture2D" uid="uid://dhn06q0f0gpas" path="res://scenes/fish/bass/bass.png" id="2_quo2e"]
-[ext_resource type="Script" path="res://misc scripts/InventoryItem/projecticle.gd" id="3_cfoaw"]
+[ext_resource type="Script" uid="uid://b0as1vjfx02hu" path="res://misc scripts/InventoryItem/projecticle.gd" id="3_cfoaw"]
 [ext_resource type="Resource" uid="uid://henk4pn1en2i" path="res://scenes/fish/bass/BlunderbassResource.tres" id="4_dpftk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bchrx"]
@@ -66,8 +66,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bfpnt"]
 _data = {
-"RESET": SubResource("Animation_i0o88"),
-"shoot": SubResource("Animation_i3aaf")
+&"RESET": SubResource("Animation_i0o88"),
+&"shoot": SubResource("Animation_i3aaf")
 }
 
 [node name="Node3D" type="MeshInstance3D"]
@@ -80,7 +80,7 @@ projecticleresource = ExtResource("4_dpftk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_bfpnt")
+&"": SubResource("AnimationLibrary_bfpnt")
 }
 
 [node name="fire_point" type="Node3D" parent="."]
