@@ -5,7 +5,7 @@ render_mode cull_disabled;
 //multiply scale by plane x/y
 uniform float planeWidth;
 uniform float planeHeight;
-uniform float textScale: hint_range(0.0, 0.01, 0.001);
+uniform float textScale: hint_range(0.0, 0.1, 0.01);
 uniform sampler2D noise;
 uniform sampler2D noise2;
 uniform sampler2D text : filter_nearest;
@@ -24,7 +24,7 @@ uniform float scale_devide = 2.0;
 void vertex() {
 	float height = 0.0;
 	float scale = (planeHeight+planeWidth)/2.0;
-	
+
 	//height += texture(noise, vec2(VERTEX.x,VERTEX.z)+(TIME*n1spd)).x*height_scale-(height_scale/scale_devide);
 	//height += texture(noise2, vec2(VERTEX.x,VERTEX.z)-(TIME*n2spd)).x*height_scale-(height_scale/scale_devide);
 	//height += texture(noise, vec2(VERTEX.x+(n1spd*TIME*normalize(n1dir).x),VERTEX.z+(n1spd*TIME*normalize(n1dir).y))/scale).x*height_scale-(height_scale/scale_devide)-height_offset;
@@ -34,11 +34,6 @@ void vertex() {
 }
 
 void fragment() {
-	ALBEDO = texture(text,vec2((UV.x*planeWidth)+(alspd*TIME*normalize(aldir).x),(UV.y*planeHeight)+(alspd*TIME*normalize(aldir).y))*textScale).rgb;
+	ALBEDO = texture(text,vec2(UV.x*planeWidth + (alspd*TIME*normalize(aldir).x),UV.y*planeHeight + (alspd*TIME*normalize(aldir).y))*textScale).rgb;
 	ALPHA = alpha;
 }
-
-//void light() {
-	// Called for every pixel for every light affecting the material.
-	// Uncomment to replace the default light processing function with this one.
-//}

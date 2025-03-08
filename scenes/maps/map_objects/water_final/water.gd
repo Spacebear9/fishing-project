@@ -1,6 +1,6 @@
 @tool
 extends MeshInstance3D
-class_name Water
+class_name Water_old
 
 @export_range(0,500) var width: int = 100
 @export_range(0,500) var height: int = 100
