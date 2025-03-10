@@ -92,5 +92,5 @@ transform = Transform3D(1, 1.03029e-13, 1.42109e-14, -8.17124e-14, 1, -2.98023e-
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_8tgm2")
+&"": SubResource("AnimationLibrary_8tgm2")
 }

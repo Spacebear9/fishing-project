@@ -19,5 +19,6 @@ glow_enabled = true
 environment = SubResource("Environment_wdvov")
 
 [node name="t_sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.857684, 0.496248, 0.134595, 0.0193348, -0.230456, 0.972891, 0.513813, 0.837035, 0.188064, 0, 0, 0)
+transform = Transform3D(0.291762, 0.945278, -0.146028, -0.738131, 0.31961, 0.594148, 0.608307, -0.0655626, 0.79099, 0, 0, 0)
 shadow_enabled = true
+directional_shadow_max_distance = 500.0
