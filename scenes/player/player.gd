@@ -97,6 +97,14 @@ func friction(delta):
 	if is_on_floor():
 		lateral_vel = lateral_vel.move_toward(Vector2.ZERO,speed_friction*delta)
 
+@export var water_rect:ColorRect
+var in_water = false
+func enter_water():
+	in_water = true
+	water_rect.visible = true
+func exit_water():
+	in_water = false
+	water_rect.visible = false
 
 func _on_pause_pause() -> void:
 	moveable = false

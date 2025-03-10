@@ -19,10 +19,11 @@ height = 8.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ityev"]
 bg_color = Color(0, 0, 0, 0.431373)
 
-[node name="player" type="CharacterBody3D"]
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("water_rect")]
 collision_layer = 5
 safe_margin = 0.005
 script = ExtResource("1_qgp6a")
+water_rect = NodePath("player ui/water_tint")
 
 [node name="player" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
@@ -85,6 +86,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="water_tint" type="ColorRect" parent="player ui"]
+visible = false
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 1, 0.427451)
 
 [node name="pause" type="Panel" parent="player ui"]
 layout_mode = 1

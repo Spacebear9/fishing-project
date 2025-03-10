@@ -37,6 +37,7 @@ func _process(_delta):
 	if bState == 1 && bTravel <= 1 && !anim.is_playing():
 		bStart = cast_point.global_position
 		bEnd = auto.ScreenPointToRay(camera)
+		print(bEnd)
 		bControl = lerp(bStart,Vector3(bEnd.x,bStart.y,bEnd.z),.5)
 		bControl. y += abs(bStart.y-bEnd.y)
 		print(snapped(auto.curve_length(bStart,bEnd,bControl,10),.01))

@@ -4,6 +4,8 @@ var root
 
 var map = load("res://scenes/maps/dm_grove/dm_grove.tscn")
 var player_TEMP = load("res://scenes/player/player.tscn")
+var players_active: Array[Player]
+
 
 func _ready():
 	root = get_tree().root
@@ -11,6 +13,7 @@ func _ready():
 	add_child(node)
 	var player = player_TEMP.instantiate()
 	add_child(player)
+	players_active.append(player)
 	player.global_position = Vector3(15,10,0)
 
 func _process(_delta):
@@ -45,7 +48,6 @@ func curve_length(pos1: Vector3, pos2: Vector3,pos3: Vector3, detail: float):
 	for i in Vector3(0,1,(1/detail)):
 		sum = lerp(lerp(pos1,pos3,i),lerp(pos3,pos2,i),i).distance_to(lerp(lerp(pos1,pos3,i+(1/detail)),lerp(pos3,pos2,i+(1/detail)),i+(1/detail)))
 	return sum
-	
 func pCurve(pos1: Vector3, pos2: Vector3, pos3: Vector3, weight: float):
 	return lerp(lerp(pos1,pos3,weight),lerp(pos3,pos2,weight),weight)
 
@@ -81,3 +83,7 @@ func shapecast_to_array(cast:ShapeCast3D) -> Array:
 	for i in cast.get_collision_count():
 		array.append(cast.get_collider(i))
 	return array
+
+#TEMP REPLACE LATER!!!!
+func get_players() -> Array[Player]:
+	return players_active
