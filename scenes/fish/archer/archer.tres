@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="WorldFishRes" load_steps=5 format=3 uid="uid://bxyqck41oddmi"]
+
+[ext_resource type="Texture2D" uid="uid://b27acxxax0nb2" path="res://scenes/fish/archer/archerfish_cc.jpg" id="1_7uvwx"]
+[ext_resource type="PackedScene" uid="uid://tsucsor0nyfh" path="res://scenes/fish/archer/arrow_rig_fix.glb" id="2_7uvwx"]
+[ext_resource type="Script" uid="uid://qajv56yvfp1l" path="res://scenes/fish/shared scripts/fish_world_res.gd" id="3_pnx1m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0tsd"]
+specular_mode = 2
+albedo_texture = ExtResource("1_7uvwx")
+albedo_texture_force_srgb = true
+
+[resource]
+script = ExtResource("3_pnx1m")
+model = ExtResource("2_7uvwx")
+anim_swim = 1
+anim_bind = 0
+material = SubResource("StandardMaterial3D_d0tsd")
+scale = 0.5
+metadata/_custom_type_script = "uid://qajv56yvfp1l"

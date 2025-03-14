@@ -101,10 +101,10 @@ func friction(delta):
 var in_water = false
 func enter_water():
 	in_water = true
-	water_rect.visible = true
+	#water_rect.visible = true
 func exit_water():
 	in_water = false
-	water_rect.visible = false
+	#water_rect.visible = false
 
 func _on_pause_pause() -> void:
 	moveable = false

@@ -5,8 +5,7 @@ class_name Water
 @export var water_plane: Vector2
 @export var water_roughness: float
 
-@export var spawn_size:Vector3
-@export var spawn_height:float
+@export var spawn_bounds:Vector4
 
 var plane_child: MeshInstance3D
 var shape: Shape3D
@@ -18,7 +17,7 @@ func _ready() -> void:
 	plane_child.mesh = mesh
 	
 	shape = BoxShape3D.new()
-	shape.size = spawn_size
+	shape.size = Vector3(spawn_bounds.x,spawn_bounds.y,spawn_bounds.z)
 	
 	if Engine.is_editor_hint():
 		ed_mesh = BoxMesh.new()
@@ -32,6 +31,11 @@ func _ready() -> void:
 		edit_update()
 	update()
 	add_child(plane_child)
+	
+	var timer = Timer.new()
+	timer.connect("timeout",spawn_fish)
+	add_child(timer)
+	timer.start(0.01)
 
 
 func _process(delta: float) -> void:
@@ -40,6 +44,24 @@ func _process(delta: float) -> void:
 		edit_update()
 	else:
 		check_under()
+
+@export var spawnable_fish:Array[WorldFishRes]
+var spawned_fish:Array[WorldFish]
+func spawn_fish():
+	if can_spawn():
+		var spawning = WorldFish.new(spawnable_fish[randi_range(0,spawnable_fish.size())-1],spawn_bounds,get_random())
+		add_child(spawning)
+		spawned_fish.append(spawning)
+		print(spawned_fish)
+
+func can_spawn():
+	if spawned_fish.size() < 3:
+		return true
+	else:
+		return false
+
+func get_random() -> Vector3:
+	return Vector3(randf_range(-spawn_bounds.x,spawn_bounds.x)/2,randf_range(-spawn_bounds.y,spawn_bounds.y)/2-spawn_bounds.w,randf_range(-spawn_bounds.z,spawn_bounds.z)/2)
 
 func check_under():
 	for player in auto.get_players():
@@ -61,6 +83,6 @@ func update():
 var ed_mesh: BoxMesh
 var ed_mesh_inst: MeshInstance3D
 func edit_update():
-	ed_mesh.size = spawn_size
+	ed_mesh.size = Vector3(spawn_bounds.x,spawn_bounds.y,spawn_bounds.z)
 	ed_mesh_inst.mesh = ed_mesh
-	ed_mesh_inst.position.y = -spawn_height
+	ed_mesh_inst.position.y = -spawn_bounds.w
