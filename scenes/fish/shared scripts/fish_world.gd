@@ -36,8 +36,10 @@ func _process(delta: float) -> void:
 var target: Vector3
 var control: Vector3
 func swim():
-	if position.distance_to(target) < 0.1:
+	if position.distance_to(target) < 1:
 		target = parent.get_random()
 		control = parent.get_random()
 	position = position.move_toward(target,0.25)
+	var temp = rotation
 	look_at(target,Vector3(0,1,0))
+	rotation = Vector3(temp.x,rotation.y,temp.z)

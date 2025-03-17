@@ -52,7 +52,6 @@ func spawn_fish():
 		var spawning = WorldFish.new(spawnable_fish[randi_range(0,spawnable_fish.size())-1],spawn_bounds,get_random())
 		add_child(spawning)
 		spawned_fish.append(spawning)
-		print(spawned_fish)
 
 func can_spawn():
 	if spawned_fish.size() < 3:

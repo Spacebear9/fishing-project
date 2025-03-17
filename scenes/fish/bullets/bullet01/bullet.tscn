@@ -16,8 +16,6 @@ albedo_color = Color(0, 0, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_elj2u")
 script = ExtResource("1_eapuc")
-smallR = 1.0
-bigR = 6.0
 mesh = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

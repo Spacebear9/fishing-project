@@ -2,8 +2,11 @@ extends CharacterBody3D
 class_name Player
 
 @export var anim: AnimationPlayer
+@onready var inventory = $Camera3D/inventory
 @onready var camera = $Camera3D
 @onready var view_cam = $Camera3D/SubViewportContainer/SubViewport/view_cam
+
+var held_item: InventoryItem
 
 var moveable = true
 
@@ -65,7 +68,18 @@ func _physics_process(delta):
 
 
 
-
+func _input(event: InputEvent) -> void:
+	if moveable:
+		if event.is_action("primary_action"):
+			held_item.primary_function()
+		#!action_released() is the only thing that works with scroll wheel, find a better solution later 
+		if event.is_action_released("inventory_next"):
+			inventory.switch_next()
+		if event.is_action_released("inventory_previous"):
+			inventory.switch_prev()
+		for i in range(1,5):
+			if event.is_action_pressed("inventory_"+str(i)):
+				inventory.switch_inventory(i-1)
 
 func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseMotion && moveable:
@@ -98,13 +112,16 @@ func friction(delta):
 		lateral_vel = lateral_vel.move_toward(Vector2.ZERO,speed_friction*delta)
 
 @export var water_rect:ColorRect
+@export var use_water_effects = true
 var in_water = false
 func enter_water():
 	in_water = true
-	#water_rect.visible = true
+	if use_water_effects:
+		water_rect.visible = true
 func exit_water():
 	in_water = false
-	#water_rect.visible = false
+	if use_water_effects:
+		water_rect.visible = false
 
 func _on_pause_pause() -> void:
 	moveable = false

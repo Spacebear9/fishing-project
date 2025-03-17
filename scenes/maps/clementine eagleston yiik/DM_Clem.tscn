@@ -12,9 +12,6 @@ data = PackedVector3Array(-49.5212, 1, -9.3149, -47.5212, 1, -9.3149, -49.5212, 
 size = Vector3(164.607, 4.78299, 97.0459)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3m48f"]
-size = Vector2(365, 151)
-subdivide_width = 60
-subdivide_depth = 25
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xmpj1"]
 radius = 2.0

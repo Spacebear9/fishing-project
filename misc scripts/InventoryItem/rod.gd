@@ -15,7 +15,13 @@ var bStart = Vector3.ZERO
 var bEnd = Vector3.ZERO
 var bControl = Vector3.ZERO
 
-
+enum states{
+		resting,
+		swinging,
+		floating,
+		reeling,
+		ending
+	}
 func _ready():
 	super()
 	camera = player.get_node("Camera3D")
@@ -26,45 +32,46 @@ func _ready():
 	cast_point = get_node("cast_point")
 
 func _process(_delta):
-		#begin cast if able
-		###!!!!!!! change if inputjustpressed to a method of all inventory items to simplify
-	if Input.is_action_just_pressed("primary_action") && !anim.is_playing() && bState == 0 && player.moveable:
-		anim.play("swing")
-		s = Time.get_ticks_msec()
-		bTravel = 0
-		bState = 1
-		stop = false
-	if bState == 1 && bTravel <= 1 && !anim.is_playing():
-		bStart = cast_point.global_position
-		bEnd = auto.ScreenPointToRay(camera)
-		print(bEnd)
-		bControl = lerp(bStart,Vector3(bEnd.x,bStart.y,bEnd.z),.5)
-		bControl. y += abs(bStart.y-bEnd.y)
-		print(snapped(auto.curve_length(bStart,bEnd,bControl,10),.01))
-		bState = 2
-	if bState == 2 && bTravel <= 1 && !anim.is_playing():
-		bTravel += bSpeed/auto.curve_length(bStart,bEnd,bControl,10)
-	if bState == 2 && bTravel >= 1 && !stop:
-		stop = true
-		e = Time.get_ticks_msec()
-		print("in " + str(e-s))
-	if bState == 2 && bTravel >= 1 && !anim.is_playing() && Input.is_action_just_pressed("primary_action"):
-		anim.play("reel")
-		bState = 3
-	if bState == 3 && bobber.global_position.distance_to(cast_point.global_position) >= 0.00001:
-		bobber.global_position = bobber.global_position.move_toward(cast_point.global_position,2)
-	if bState == 3 && bobber.global_position.distance_to(cast_point.global_position) <= 0.00001:
-		anim.play("return")
-		bState = 0
-	if bState < 2:
-		bobber.global_position = Vector3(cast_point.global_position.x,cast_point.global_position.y-3,cast_point.global_position.z)
-		auto.line(bobber.global_position,cast_point.global_position)
-	elif bState == 2:
-		bobber.global_position = auto.pCurve(bStart,bEnd,bControl,bTravel)
-		auto.curve(bobber.global_position,cast_point.global_position,Vector3(cast_point.global_position.x,bobber.global_position.y,cast_point.global_position.z),10)
-	elif bState == 3:
-		auto.curve(bobber.global_position,cast_point.global_position,Vector3(cast_point.global_position.x,bobber.global_position.y,cast_point.global_position.z),10)
-	#auto.line(bStart,bControl,Color.DARK_GREEN)
-	#auto.line(bEnd,bControl,Color.DARK_RED)
-	#auto.line(bStart,bEnd,Color.YELLOW)
-	#auto.curve(bStart,bEnd,bControl,10.0)
+	match bState:
+			states.resting:
+				bobber.global_position = cast_point.global_position - Vector3(0,4,0)
+				auto.line(bobber.global_position,cast_point.global_position)
+				if input && not anim.is_playing():
+					anim.play("swing")
+					
+					bStart = cast_point.global_position
+					bEnd = auto.ScreenPointToRay(camera)
+					bControl = lerp(bStart,Vector3(bEnd.x,bStart.y,bEnd.z),.5)
+					bControl. y += abs(bStart.y-bEnd.y)
+					bTravel = 0
+					
+					bState = states.swinging
+			states.swinging:
+				bTravel += bSpeed/auto.curve_length(bStart,bEnd,bControl,10)
+				bobber.global_position = auto.pCurve(bStart,bEnd,bControl,bTravel)
+				auto.curve(bobber.global_position,cast_point.global_position,Vector3(cast_point.global_position.x,bobber.global_position.y,cast_point.global_position.z),10)
+				if bTravel >= 1:
+					input = false
+					bState = states.floating
+			states.floating:
+				auto.curve(bobber.global_position,cast_point.global_position,Vector3(cast_point.global_position.x,bobber.global_position.y,cast_point.global_position.z),10)
+				bobber.global_position = bEnd
+				if input:
+					anim.play("reel")
+					bState = states.reeling
+			states.reeling:
+				auto.curve(bobber.global_position,cast_point.global_position,Vector3(cast_point.global_position.x,bobber.global_position.y,cast_point.global_position.z),10)
+				bobber.global_position = bobber.global_position.move_toward(cast_point.global_position,2)
+				if bobber.global_position.distance_to(cast_point.global_position) < 0.1:
+					anim.play("return")
+					input = false
+					bState = states.resting
+
+	auto.line(bStart,bControl,Color.DARK_GREEN)
+	auto.line(bEnd,bControl,Color.DARK_RED)
+	auto.line(bStart,bEnd,Color.YELLOW)
+	auto.curve(bStart,bEnd,bControl,10.0)
+
+var input = false
+func primary_function():
+	input = true
