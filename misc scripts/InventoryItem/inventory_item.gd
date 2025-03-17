@@ -10,3 +10,6 @@ func get_player():
 	player = get_parent().get_parent().get_parent()
 func get_icon():
 	return Inventoryresource.Icon
+
+func primary_function():
+	pass

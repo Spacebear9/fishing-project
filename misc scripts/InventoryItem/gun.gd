@@ -11,7 +11,9 @@ func _ready():
 	anim = get_node("AnimationPlayer")
 	fire_point = get_node("fire_point")
 func _process(_delta):
-	if Input.is_action_just_pressed("primary_action") && !anim.is_playing() && player.moveable:
+	pass
+func primary_function():
+	if not anim.is_playing():
 		_fire(camera.global_position,auto.ScreenPointToRay(camera,1,[player.get_rid()]))
 #run when lmb is pressed
 func _fire(launch: Vector3,target: Vector3):

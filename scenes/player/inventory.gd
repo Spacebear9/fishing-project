@@ -1,34 +1,30 @@
 extends Node3D
 class_name PlayerInventory
-@export var player = Player
+@export var player: Player
 signal inv_changed
 
 var inventory = []
-var selected = 0
 
 func _ready():
 	inventory.append(load("res://scenes/rod/rod.tscn"))
 	inventory.append(load("res://scenes/fish/bass/bass.tscn"))
 	
-	add_child(inventory[selected].instantiate())
+	switch_inventory(0)
 
 
-func _process(_delta):
-	if Input.is_action_just_pressed("inventory_next"):
-		selected = (selected+1)%inventory.size()
-		_switch_inventory()
-	if Input.is_action_just_pressed("inventory_previous"):
-		selected = (selected-1+inventory.size())%inventory.size()
-		_switch_inventory()
-	for i in range(1,5):
-		if Input.is_action_just_pressed("inventory_"+str(i)):
-			if inventory.size() >= i:
-				selected = i -1
-				_switch_inventory()
+func switch_next():
+	switch_inventory((selected+1+inventory.size())%inventory.size())
+func switch_prev():
+	switch_inventory((selected-1+inventory.size())%inventory.size())
 
-
-func _switch_inventory():
+var selected = 0
+func switch_inventory(switch_to:int):
 	if get_child(0):
-		get_child(0).queue_free()
-	add_child(inventory[selected].instantiate())
-	inv_changed.emit()
+			get_child(0).queue_free()
+	if inventory.size() > switch_to:
+		var add = inventory[switch_to].instantiate()
+		add_child(add)
+		player.held_item = add
+		selected = switch_to
+		inv_changed.emit()
+		

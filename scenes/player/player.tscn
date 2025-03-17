@@ -39,9 +39,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.25, 0)
 cull_mask = 1048569
 fov = 90.0
 
-[node name="inventory" type="Node3D" parent="Camera3D"]
+[node name="inventory" type="Node3D" parent="Camera3D" node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 script = ExtResource("3_elx3b")
+player = NodePath("../..")
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="Camera3D"]
 visible = false

@@ -1,19 +1,22 @@
 extends Bullet
 
-@export var smallR: float
-@export var bigR: float
+
 @export var mesh: MeshInstance3D
 const meshExp = 10
 var collide = false
 var lifespan_exp = 1000
 var timestamp = 0
 
+
+var smallR: float
+var bigR: float
+
 func _ready():
 	speed = 100
-	if shape.is_class("SphereShape3D"):
-		shape.radius = smallR
+	shape = SphereShape3D.new()
+	shape.radius = 3
 	mesh.scale = Vector3(smallR,smallR,smallR)
-	_ready1()
+	super()
 func _physics_process(delta):
 	if !collide:
 		_process1(delta)
@@ -30,15 +33,18 @@ func _collide():
 	for i in col.size():
 		print(col[i].name)
 	
-	var sp = SphereShape3D.new()
-	sp.radius = 1000
-	set_shape(sp)
-	mesh.scale = Vector3(bigR,bigR,bigR)
+		_effect_explode(10)
 	
-	var sfom = StandardMaterial3D.new()
-	sfom.cull_mode = BaseMaterial3D.CULL_DISABLED
-	sfom.albedo_color = Color(255,0,0,1)
-	mesh.set_surface_override_material(0,sfom)
+	
+	#var sp = SphereShape3D.new()
+	#sp.radius = 1000
+	#set_shape(sp)
+	#mesh.scale = Vector3(bigR,bigR,bigR)
+	
+	#var sfom = StandardMaterial3D.new()
+	#sfom.cull_mode = BaseMaterial3D.CULL_DISABLED
+	#sfom.albedo_color = Color(255,0,0,1)
+	#mesh.set_surface_override_material(0,sfom)
 	
 	#collision_mask = 0b00000100
 	
