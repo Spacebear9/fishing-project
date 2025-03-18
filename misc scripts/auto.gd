@@ -78,11 +78,6 @@ func get_angle(vector: Vector2):
 		return atan2(vector.y,vector.x) - (PI)
 	return 0
 	
-func shapecast_to_array(cast:ShapeCast3D) -> Array:
-	var array: Array
-	for i in cast.get_collision_count():
-		array.append(cast.get_collider(i))
-	return array
 
 #TEMP REPLACE LATER!!!!
 func get_players() -> Array[Player]:

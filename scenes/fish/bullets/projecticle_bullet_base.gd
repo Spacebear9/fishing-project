@@ -38,7 +38,7 @@ func _ready() -> void:
 
 func _process1(delta1):
 	target_position = vel*delta1
-	col = auto.shapecast_to_array(self)	
+	#col = auto.shapecast_to_array(self)
 	if  col:
 		for i in col:
 			if i != player:
