@@ -198,6 +198,7 @@ script = ExtResource("8_7rqjo")
 
 [node name="TextureRect" type="TextureRect" parent="player ui/crosshair"]
 texture_filter = 2
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 texture = ExtResource("3_fd3r2")
 

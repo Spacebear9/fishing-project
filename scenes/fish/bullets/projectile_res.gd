@@ -3,4 +3,8 @@ extends Resource
 class_name ProjectileRes
 
 @export var mesh:Mesh
+@export var shape:Shape3D
+
+@export var speed:float
+
 @export var effects:Array[ProjectileEffect]

@@ -1,14 +1,38 @@
-[gd_scene load_steps=9 format=3 uid="uid://cetq5vqqfalmj"]
+[gd_scene load_steps=17 format=3 uid="uid://cetq5vqqfalmj"]
 
 [ext_resource type="ArrayMesh" uid="uid://iboklj1suao5" path="res://scenes/fish/bass/bass.obj" id="1_yi38g"]
 [ext_resource type="Texture2D" uid="uid://dhn06q0f0gpas" path="res://scenes/fish/bass/bass.png" id="2_quo2e"]
 [ext_resource type="Script" uid="uid://b0as1vjfx02hu" path="res://misc scripts/InventoryItem/projecticle.gd" id="3_cfoaw"]
-[ext_resource type="Resource" uid="uid://henk4pn1en2i" path="res://scenes/fish/bass/BlunderbassResource.tres" id="4_dpftk"]
+[ext_resource type="Script" uid="uid://ccsgsm44hmb40" path="res://scenes/fish/bullets/projectile_effect.gd" id="4_gg503"]
+[ext_resource type="Script" uid="uid://cebfthoqbtbtc" path="res://scenes/fish/bullets/projectile_res.gd" id="5_qx407"]
+[ext_resource type="Texture2D" uid="uid://cg66csa8swm8o" path="res://scenes/fish/bass/bassicon.png" id="6_hxisb"]
+[ext_resource type="Script" uid="uid://cwd5k4n5tiuh8" path="res://misc scripts/InventoryItem/gun_resource.gd" id="7_os7gm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bchrx"]
 specular_mode = 2
 albedo_texture = ExtResource("2_quo2e")
 albedo_texture_force_srgb = true
+
+[sub_resource type="Resource" id="Resource_hxisb"]
+script = ExtResource("4_gg503")
+metadata/_custom_type_script = "uid://ccsgsm44hmb40"
+
+[sub_resource type="SphereMesh" id="SphereMesh_os7gm"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hxisb"]
+
+[sub_resource type="Resource" id="Resource_hpbmf"]
+script = ExtResource("5_qx407")
+mesh = SubResource("SphereMesh_os7gm")
+shape = SubResource("SphereShape3D_hxisb")
+speed = 3.0
+effects = Array[ExtResource("4_gg503")]([SubResource("Resource_hxisb")])
+metadata/_custom_type_script = "uid://cebfthoqbtbtc"
+
+[sub_resource type="Resource" id="Resource_boosr"]
+script = ExtResource("7_os7gm")
+inventory_icon = ExtResource("6_hxisb")
+metadata/_custom_type_script = "uid://cwd5k4n5tiuh8"
 
 [sub_resource type="Animation" id="Animation_i0o88"]
 length = 0.001
@@ -76,7 +100,8 @@ layers = 2
 mesh = ExtResource("1_yi38g")
 surface_material_override/0 = SubResource("StandardMaterial3D_bchrx")
 script = ExtResource("3_cfoaw")
-projecticleresource = ExtResource("4_dpftk")
+projectileresource = SubResource("Resource_hpbmf")
+gun_res = SubResource("Resource_boosr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
