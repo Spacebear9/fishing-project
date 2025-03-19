@@ -2,8 +2,8 @@
 
 [ext_resource type="ArrayMesh" uid="uid://iboklj1suao5" path="res://scenes/fish/bass/bass.obj" id="1_yi38g"]
 [ext_resource type="Texture2D" uid="uid://dhn06q0f0gpas" path="res://scenes/fish/bass/bass.png" id="2_quo2e"]
-[ext_resource type="Script" uid="uid://b0as1vjfx02hu" path="res://misc scripts/InventoryItem/projecticle.gd" id="3_cfoaw"]
-[ext_resource type="Script" uid="uid://ccsgsm44hmb40" path="res://scenes/fish/bullets/projectile_effect.gd" id="4_gg503"]
+[ext_resource type="Script" uid="uid://b0as1vjfx02hu" path="res://misc scripts/InventoryItem/gun_projecticle.gd" id="3_cfoaw"]
+[ext_resource type="Script" uid="uid://ccsgsm44hmb40" path="res://misc scripts/InventoryItem/projectile_effect.gd" id="4_gg503"]
 [ext_resource type="Script" uid="uid://cebfthoqbtbtc" path="res://scenes/fish/bullets/projectile_res.gd" id="5_qx407"]
 [ext_resource type="Texture2D" uid="uid://cg66csa8swm8o" path="res://scenes/fish/bass/bassicon.png" id="6_hxisb"]
 [ext_resource type="Script" uid="uid://cwd5k4n5tiuh8" path="res://misc scripts/InventoryItem/gun_resource.gd" id="7_os7gm"]
