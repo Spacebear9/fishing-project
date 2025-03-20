@@ -1,16 +1,15 @@
-[gd_resource type="Resource" script_class="ProjecticleResource" load_steps=5 format=3 uid="uid://henk4pn1en2i"]
+[gd_resource type="Resource" script_class="ProjectileRes" load_steps=5 format=3 uid="uid://henk4pn1en2i"]
 
-[ext_resource type="PackedScene" uid="uid://c4gpud2io7eta" path="res://scenes/fish/bullets/bullet01/bullet.tscn" id="1_aixml"]
-[ext_resource type="Script" uid="uid://ckni4xoftw6c3" path="res://misc scripts/InventoryItem/projecticleresource.gd" id="1_kaxpi"]
-[ext_resource type="Texture2D" uid="uid://cg66csa8swm8o" path="res://scenes/fish/bass/bassicon.png" id="2_gjyo2"]
+[ext_resource type="Script" uid="uid://ccsgsm44hmb40" path="res://misc scripts/InventoryItem/projectile_effect.gd" id="1_31k07"]
+[ext_resource type="Script" uid="uid://cebfthoqbtbtc" path="res://scenes/fish/bullets/projectile_res.gd" id="1_kaxpi"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_gjyo2"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_wy2dc"]
+
 [resource]
 script = ExtResource("1_kaxpi")
-Bullet = ExtResource("1_aixml")
-model = SubResource("SphereMesh_gjyo2")
-smallR = 4.0
-bigR = 10.0
-Name = "Blunder-Bass"
-Icon = ExtResource("2_gjyo2")
+mesh = SubResource("SphereMesh_gjyo2")
+shape = SubResource("SphereShape3D_wy2dc")
+speed = 0.5
+effects = Array[ExtResource("1_31k07")]([])

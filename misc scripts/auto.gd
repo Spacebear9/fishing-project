@@ -53,7 +53,9 @@ func pCurve(pos1: Vector3, pos2: Vector3, pos3: Vector3, weight: float):
 
 func ScreenPointToRay(camera: Camera3D, mask = 0b00000000_00000000_00000000_00000010, exclude = null, return_full = false):
 	var spaceState = get_world_3d().direct_space_state
-	var mousePos = get_viewport().get_mouse_position()
+	#var mousePos = get_viewport().get_mouse_position()
+	# I think this works better but I will keep the old one
+	var mousePos = Vector2(get_viewport().get_visible_rect().size.x/2,get_viewport().get_visible_rect().size.y/2)
 	var rayOrigin = camera.project_ray_origin(mousePos)
 	var rayEnd = camera.project_ray_normal(mousePos)*4000
 	var rayQuery = PhysicsRayQueryParameters3D.create(rayOrigin,rayEnd)
