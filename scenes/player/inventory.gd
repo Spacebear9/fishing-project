@@ -3,14 +3,12 @@ class_name PlayerInventory
 @export var player: Player
 signal inv_changed
 
+#var inventory: Array[InventoryItem] = []
 var inventory = []
-
 func _ready():
 	inventory.append(load("res://scenes/rod/rod.tscn"))
 	inventory.append(load("res://scenes/fish/bass/bass.tscn"))
-	
 	switch_inventory(0)
-
 
 func switch_next():
 	switch_inventory((selected+1+inventory.size())%inventory.size())
@@ -27,4 +25,3 @@ func switch_inventory(switch_to:int):
 		player.held_item = add
 		selected = switch_to
 		inv_changed.emit()
-		

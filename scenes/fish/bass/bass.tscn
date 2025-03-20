@@ -1,38 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://cetq5vqqfalmj"]
+[gd_scene load_steps=10 format=3 uid="uid://cetq5vqqfalmj"]
 
 [ext_resource type="ArrayMesh" uid="uid://iboklj1suao5" path="res://scenes/fish/bass/bass.obj" id="1_yi38g"]
+[ext_resource type="Resource" uid="uid://henk4pn1en2i" path="res://scenes/fish/bass/BlunderbassResource.tres" id="2_gg503"]
 [ext_resource type="Texture2D" uid="uid://dhn06q0f0gpas" path="res://scenes/fish/bass/bass.png" id="2_quo2e"]
 [ext_resource type="Script" uid="uid://b0as1vjfx02hu" path="res://misc scripts/InventoryItem/gun_projecticle.gd" id="3_cfoaw"]
-[ext_resource type="Script" uid="uid://ccsgsm44hmb40" path="res://misc scripts/InventoryItem/projectile_effect.gd" id="4_gg503"]
-[ext_resource type="Script" uid="uid://cebfthoqbtbtc" path="res://scenes/fish/bullets/projectile_res.gd" id="5_qx407"]
-[ext_resource type="Texture2D" uid="uid://cg66csa8swm8o" path="res://scenes/fish/bass/bassicon.png" id="6_hxisb"]
-[ext_resource type="Script" uid="uid://cwd5k4n5tiuh8" path="res://misc scripts/InventoryItem/gun_resource.gd" id="7_os7gm"]
+[ext_resource type="Resource" uid="uid://c1dwd1cuo0e1o" path="res://scenes/fish/bass/bassInventoryResource.tres" id="7_hxisb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bchrx"]
 specular_mode = 2
 albedo_texture = ExtResource("2_quo2e")
 albedo_texture_force_srgb = true
-
-[sub_resource type="Resource" id="Resource_hxisb"]
-script = ExtResource("4_gg503")
-metadata/_custom_type_script = "uid://ccsgsm44hmb40"
-
-[sub_resource type="SphereMesh" id="SphereMesh_os7gm"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_hxisb"]
-
-[sub_resource type="Resource" id="Resource_hpbmf"]
-script = ExtResource("5_qx407")
-mesh = SubResource("SphereMesh_os7gm")
-shape = SubResource("SphereShape3D_hxisb")
-speed = 3.0
-effects = Array[ExtResource("4_gg503")]([SubResource("Resource_hxisb")])
-metadata/_custom_type_script = "uid://cebfthoqbtbtc"
-
-[sub_resource type="Resource" id="Resource_boosr"]
-script = ExtResource("7_os7gm")
-inventory_icon = ExtResource("6_hxisb")
-metadata/_custom_type_script = "uid://cwd5k4n5tiuh8"
 
 [sub_resource type="Animation" id="Animation_i0o88"]
 length = 0.001
@@ -94,19 +71,21 @@ _data = {
 &"shoot": SubResource("Animation_i3aaf")
 }
 
-[node name="Node3D" type="MeshInstance3D"]
+[node name="Node3D" type="Node3D"]
+script = ExtResource("3_cfoaw")
+projectileresource = ExtResource("2_gg503")
+Inventoryresource = ExtResource("7_hxisb")
+
+[node name="fire_point" type="Node3D" parent="."]
+transform = Transform3D(-3.61999e-06, 3.55271e-15, -1, 0, 1, 0, 1, 1.28608e-20, -3.61999e-06, 2.00001, 1.02275, -3.64991)
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, 2, 1, -2)
 layers = 2
 mesh = ExtResource("1_yi38g")
 surface_material_override/0 = SubResource("StandardMaterial3D_bchrx")
-script = ExtResource("3_cfoaw")
-projectileresource = SubResource("Resource_hpbmf")
-gun_res = SubResource("Resource_boosr")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Mesh"]
 libraries = {
 &"": SubResource("AnimationLibrary_bfpnt")
 }
-
-[node name="fire_point" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, -1.86056, 1.07669, 0)

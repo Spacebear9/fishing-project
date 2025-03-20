@@ -25,11 +25,11 @@ enum states{
 func _ready():
 	super()
 	camera = player.get_node("Camera3D")
-	anim = get_node("AnimationPlayer")
+	anim = get_node("Mesh/AnimationPlayer")
 	bobber = load("res://scenes/bobber/bobber.tscn").instantiate()
 	add_child(bobber)
-	bobber.scale*=10
-	cast_point = get_node("cast_point")
+	bobber.scale*=2
+	cast_point = get_node("Mesh/cast_point")
 
 func _process(_delta):
 	match bState:

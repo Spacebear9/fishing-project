@@ -79,18 +79,20 @@ _data = {
 &"swing": SubResource("Animation_buiom")
 }
 
-[node name="rod" type="MeshInstance3D"]
+[node name="rod" type="Node3D"]
+script = ExtResource("2_pd4ym")
+Inventoryresource = ExtResource("3_lxwt8")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.1, -1.15059e-07, -2.21414e-07, 7.35451e-09, 0.0873365, -0.0487067, 2.49417e-07, -0.0487067, -0.0873365, 1.42531, 0.128924, -2.26395)
 layers = 2
 mesh = ExtResource("1_upim7")
 surface_material_override/0 = SubResource("StandardMaterial3D_rnwy8")
-script = ExtResource("2_pd4ym")
-Inventoryresource = ExtResource("3_lxwt8")
 
-[node name="cast_point" type="Node3D" parent="."]
+[node name="cast_point" type="Node3D" parent="Mesh"]
 transform = Transform3D(1, 1.03029e-13, 1.42109e-14, -8.17124e-14, 1, -2.98023e-08, 4.9738e-14, 2.98023e-08, 1, 0.462241, 39.6794, 0.0380278)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Mesh"]
 libraries = {
 &"": SubResource("AnimationLibrary_8tgm2")
 }

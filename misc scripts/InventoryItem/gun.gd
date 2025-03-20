@@ -2,7 +2,6 @@ extends InventoryItem
 class_name Gun
 
 @export var gun_res:GunRes
-
 var camera: Camera3D
 var anim: AnimationPlayer
 var fire_point
@@ -10,7 +9,7 @@ var anim_shoot
 func _ready():
 	super()
 	camera = player.get_node("Camera3D")
-	anim = get_node("AnimationPlayer")
+	anim = get_node("Mesh/AnimationPlayer")
 	fire_point = get_node("fire_point")
 func _process(_delta):
 	pass
