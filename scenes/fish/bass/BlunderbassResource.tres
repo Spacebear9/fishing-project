@@ -1,7 +1,12 @@
-[gd_resource type="Resource" script_class="ProjectileRes" load_steps=5 format=3 uid="uid://henk4pn1en2i"]
+[gd_resource type="Resource" script_class="ProjectileRes" load_steps=6 format=3 uid="uid://henk4pn1en2i"]
 
 [ext_resource type="Script" uid="uid://ccsgsm44hmb40" path="res://misc scripts/InventoryItem/projectile_effect.gd" id="1_31k07"]
 [ext_resource type="Script" uid="uid://cebfthoqbtbtc" path="res://scenes/fish/bullets/projectile_res.gd" id="1_kaxpi"]
+
+[sub_resource type="Curve" id="Curve_31k07"]
+_limits = [0.0, 1.0, 0.0, 10.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(3.25, 1), 0.0, 0.0219493, 1, 0, Vector2(10, 0), -0.207433, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="SphereMesh" id="SphereMesh_gjyo2"]
 
@@ -11,5 +16,8 @@
 script = ExtResource("1_kaxpi")
 mesh = SubResource("SphereMesh_gjyo2")
 shape = SubResource("SphereShape3D_wy2dc")
-speed = 0.5
+speed = 6.0
+aoe_radius = 100.0
+knockback = 80.0
+knockback_falloff = SubResource("Curve_31k07")
 effects = Array[ExtResource("1_31k07")]([])

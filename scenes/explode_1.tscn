@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://djeuv863hsyqm"]
+
+[ext_resource type="Texture2D" uid="uid://b88hnnipv85ah" path="res://misc textures/explode.png" id="1_2ram1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjlad"]
+transparency = 1
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0.419608, 1)
+albedo_texture = ExtResource("1_2ram1")
+albedo_texture_force_srgb = true
+emission_enabled = true
+emission = Color(1, 0.26407, 0.157661, 1)
+emission_energy_multiplier = 5.39
+texture_filter = 0
+
+[sub_resource type="Curve" id="Curve_1p84o"]
+_data = [Vector2(0, 0.539326), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.650251, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_5b5av"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.29214, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_ya1ke"]
+curve_x = SubResource("Curve_1p84o")
+curve_y = SubResource("Curve_5b5av")
+curve_z = SubResource("Curve_1p84o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jf12j"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 45.093
+initial_velocity_min = 42.5
+initial_velocity_max = 47.5
+gravity = Vector3(0, -80, 0)
+scale_curve = SubResource("CurveXYZTexture_ya1ke")
+color = Color(1, 1, 0.662745, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ge4hk"]
+size = Vector2(5, 5)
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_jjlad")
+emitting = false
+amount = 80
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+collision_base_size = 0.1
+trail_lifetime = 1.22
+process_material = SubResource("ParticleProcessMaterial_jf12j")
+draw_pass_1 = SubResource("QuadMesh_ge4hk")
