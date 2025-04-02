@@ -89,6 +89,7 @@ func _unhandled_input(event: InputEvent):
 		rotation.y -= mouse_dir.x * sense
 		#rotate pitch
 		camera.rotation.x -= mouse_dir.y * sense
+		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
 
 func accelerate(direction_vec,current_vel,delta):
 	if direction_vec != Vector2(0,0):
