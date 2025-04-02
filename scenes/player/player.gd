@@ -31,7 +31,7 @@ var speed_accel_ground = 425
 var speed_accel_air = 35
 var speed_friction = 165
 
-
+var knockback = Vector3.ZERO
 
 func _ready():	
 	#capture mouse
@@ -60,10 +60,15 @@ func _physics_process(delta):
 	
 	lateral_vel = accelerate(input_vec,lateral_vel,delta)
 	
+	
 	#all player velocity checks
 	if !is_on_floor():
 		velocity.y -= auto.gravity
+	
 	velocity = Vector3(lateral_vel.x,velocity.y,lateral_vel.y)
+	velocity += knockback
+	knockback = Vector3.ZERO
+	
 	move_and_slide()
 
 
@@ -110,6 +115,7 @@ func accelerate(direction_vec,current_vel,delta):
 func friction(delta):
 	if is_on_floor():
 		lateral_vel = lateral_vel.move_toward(Vector2.ZERO,speed_friction*delta)
+		
 
 @export var water_rect:ColorRect
 @export var use_water_effects = true

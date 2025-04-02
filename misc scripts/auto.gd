@@ -19,7 +19,7 @@ func _ready():
 func _process(_delta):
 	pass
 		
-func line(pos1: Vector3, pos2: Vector3, color = Color.BLACK):
+func line(pos1: Vector3, pos2: Vector3, color = Color.BLACK,time = 1,on_top = true):
 	var mesh_instance := MeshInstance3D.new()
 	var immediate_mesh := ImmediateMesh.new()
 	var material := StandardMaterial3D.new()
@@ -27,7 +27,8 @@ func line(pos1: Vector3, pos2: Vector3, color = Color.BLACK):
 	mesh_instance.mesh = immediate_mesh
 	mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	
-	mesh_instance.layers = 0b00000000_00000000_00000000_00000010
+	if on_top:
+		mesh_instance.layers = 0b00000000_00000000_00000000_00000010
 	
 	immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINES, material)
 	immediate_mesh.surface_add_vertex(pos1)
@@ -38,7 +39,10 @@ func line(pos1: Vector3, pos2: Vector3, color = Color.BLACK):
 	material.albedo_color = color
 	
 	get_tree().get_root().add_child(mesh_instance)
-	await get_tree().physics_frame
+	if time == 0:
+		return
+	elif time == 1:
+		await get_tree().physics_frame
 	mesh_instance.queue_free()
 func curve(pos1: Vector3, pos2: Vector3,pos3: Vector3, detail: float, color = Color.BLACK):
 	for i in Vector3(0,1,(1/detail)):
@@ -53,11 +57,10 @@ func pCurve(pos1: Vector3, pos2: Vector3, pos3: Vector3, weight: float):
 
 func ScreenPointToRay(camera: Camera3D, mask = 0b00000000_00000000_00000000_00000010, exclude = null, return_full = false):
 	var spaceState = get_world_3d().direct_space_state
-	#var mousePos = get_viewport().get_mouse_position()
-	# I think this works better but I will keep the old one
-	var mousePos = Vector2(get_viewport().get_visible_rect().size.x/2,get_viewport().get_visible_rect().size.y/2)
-	var rayOrigin = camera.project_ray_origin(mousePos)
-	var rayEnd = camera.project_ray_normal(mousePos)*4000
+	#var mousePos = Vector2(get_viewport().get_visible_rect().size.x/2,get_viewport().get_visible_rect().size.y/2)
+	var rayOrigin = camera.global_position
+	#change later this sucks
+	var rayEnd = camera.project_ray_normal(Vector2(576,324))*4000
 	var rayQuery = PhysicsRayQueryParameters3D.create(rayOrigin,rayEnd)
 	rayQuery.collision_mask = mask
 	if exclude:
