@@ -1,11 +1,12 @@
-extends AnimatableBody3D
+extends RayCast3D
 class_name Bullet
 
 var res:ProjectileRes
 
 var target:Vector3
 var travel:Vector3
-var target_position:Vector3
+
+const travel_div = 0.001
 
 var moving = true
 
@@ -16,30 +17,36 @@ func _init(_res:ProjectileRes,_pos:Vector3,_target:Vector3):
 	
 var lifespan: int =0
 func _ready() -> void:
-	add_collision_exception_with(auto.get_players()[0])
+	
+	#temp line
+	add_exception(auto.players_active[0])
+	
+	
 	global_position = target_position
-	travel = -(target_position - target).normalized()
+	travel = -(global_position - target).normalized()
 	var mesh = MeshInstance3D.new()
 	mesh.mesh = res.mesh
 	add_child(mesh)
 	
-
+	
 var previewarray: Array
 func _process(delta):
 	lifespan = 1+lifespan
 func _physics_process(delta: float) -> void:
 	if moving:
-		#var collisionObject = []
-		var collision 
-		collision = move_and_collide(travel * res.speed * delta , false)
-		#collisionObject = get_colliding_bodies()
-		if collision != null:
-			print(collision)
+		var collisions = []
+		target_position = travel * res.speed
+		force_raycast_update()
+		if get_collider():
 			moving = false
-			damage(global_position)
+			auto.line(global_position,global_position + target_position,Color.RED,0,false)
+			auto.line(global_position+target_position,get_collision_point() ,Color.GREEN,0,false)
+			global_position = get_collision_point()
+			damage(get_collision_point())
 			return
 		else:
 			auto.line(global_position,global_position + target_position,Color.WHITE_SMOKE,0,false)
+		position += target_position
 
 func damage(pos:Vector3):
 	var area = Area3D.new()
