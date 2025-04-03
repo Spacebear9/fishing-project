@@ -9,24 +9,25 @@ var travel:Vector3
 const travel_div = 0.001
 
 var moving = true
-
-func _init(_res:ProjectileRes,_pos:Vector3,_target:Vector3):
+var explode_immediatly
+func _init(_res:ProjectileRes,_pos:Vector3,_target:Vector3, _explode_immediatly:bool = false):
 	res = _res
 	target_position = _pos
 	target = _target
+	explode_immediatly = _explode_immediatly
 	
 var lifespan: int =0
 func _ready() -> void:
-	
-	#temp line
 	add_exception(auto.players_active[0])
-	
-	
 	global_position = target_position
 	travel = -(global_position - target).normalized()
 	var mesh = MeshInstance3D.new()
 	mesh.mesh = res.mesh
 	add_child(mesh)
+	if explode_immediatly:
+		damage(global_position)
+		moving = false
+		return
 	
 	
 var previewarray: Array
@@ -62,6 +63,7 @@ func damage(pos:Vector3):
 	for collide:PhysicsBody3D in area.get_overlapping_bodies():
 		if collide is Player:
 			#print(res.knockback_falloff.sample(pos.distance_to(collide.position))," , ",pos.distance_to(collide.position))
+			
 			var player:Player = collide
 			player.knockback += pos.direction_to(player.position) * res.knockback_falloff.sample(pos.distance_to(collide.position)) * res.knockback
 			print(pos.direction_to(player.position),',',player.knockback)
