@@ -12,7 +12,7 @@ func _fire(launch: Vector3, target: Vector3):
 	var space_state = get_world_3d().direct_space_state
 	var ray_query = PhysicsRayQueryParameters3D.new()
 	ray_query.exclude = [auto.get_players()[0]]
-	ray_query.from = auto.get_players()[0].global_position
+	ray_query.from = auto.get_players()[0].camera.global_position
 	ray_query.to = launch
 	var result = space_state.intersect_ray(ray_query)
 	var explode_immediatly = (result.size() > 0)
