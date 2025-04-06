@@ -3,7 +3,7 @@ class_name Player
 
 @export var anim: AnimationPlayer
 @onready var inventory = $Camera3D/inventory
-@onready var camera = $Camera3D
+@onready var camera:Camera3D = $Camera3D
 @onready var view_cam = $Camera3D/SubViewportContainer/SubViewport/view_cam
 
 var held_item: InventoryItem
