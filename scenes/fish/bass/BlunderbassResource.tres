@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ProjectileRes" load_steps=6 format=3 uid="uid://henk4pn1en2i"]
+[gd_resource type="Resource" script_class="ProjectileRes" load_steps=5 format=3 uid="uid://henk4pn1en2i"]
 
 [ext_resource type="Script" uid="uid://ccsgsm44hmb40" path="res://scripts/InventoryItem/resources/projectile_effect.gd" id="1_31k07"]
 [ext_resource type="Script" uid="uid://cebfthoqbtbtc" path="res://scripts/InventoryItem/resources/projectile_res.gd" id="2_31k07"]
@@ -10,12 +10,9 @@ point_count = 3
 
 [sub_resource type="SphereMesh" id="SphereMesh_gjyo2"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_wy2dc"]
-
 [resource]
 script = ExtResource("2_31k07")
 mesh = SubResource("SphereMesh_gjyo2")
-shape = SubResource("SphereShape3D_wy2dc")
 speed = 6.0
 aoe_radius = 100.0
 knockback = 80.0

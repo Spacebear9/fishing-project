@@ -14,8 +14,13 @@ func _ready():
 func _process(_delta):
 	pass
 func primary_function():
-	if not anim.is_playing():
+	if (get_parent() as PlayerInventory).weaponid[Inventoryresource] == 0:
+		(get_parent() as PlayerInventory).weaponid[Inventoryresource] = Inventoryresource.cooldown
 		_fire(fire_point.global_position,auto.ScreenPointToRay(camera,1,[player.get_rid()]))
+	else:
+		return
+	#if not anim.is_playing():
+		#_fire(fire_point.global_position,auto.ScreenPointToRay(camera,1,[player.get_rid()]))
 #run when lmb is pressed
 func _fire(launch: Vector3,target: Vector3):
 	pass

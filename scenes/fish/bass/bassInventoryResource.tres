@@ -7,4 +7,5 @@
 script = ExtResource("2_b3dgx")
 Name = "Blunder Bass"
 Icon = ExtResource("1_pwm6a")
+cooldown = 1.0
 metadata/_custom_type_script = "uid://coj1prtxw5r7r"

@@ -1,12 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://cetq5vqqfalmj"]
+[gd_scene load_steps=14 format=3 uid="uid://cetq5vqqfalmj"]
 
 [ext_resource type="ArrayMesh" uid="uid://iboklj1suao5" path="res://scenes/fish/bass/bass.obj" id="1_yi38g"]
 [ext_resource type="Script" uid="uid://ccsgsm44hmb40" path="res://scripts/InventoryItem/resources/projectile_effect.gd" id="2_hxisb"]
 [ext_resource type="Texture2D" uid="uid://dhn06q0f0gpas" path="res://scenes/fish/bass/bass.png" id="2_quo2e"]
 [ext_resource type="Script" uid="uid://b0as1vjfx02hu" path="res://scripts/InventoryItem/gun_projectile.gd" id="3_cfoaw"]
 [ext_resource type="Script" uid="uid://cebfthoqbtbtc" path="res://scripts/InventoryItem/resources/projectile_res.gd" id="3_os7gm"]
-[ext_resource type="Texture2D" uid="uid://cg66csa8swm8o" path="res://scenes/fish/bass/bassicon.png" id="4_hpbmf"]
-[ext_resource type="Script" uid="uid://coj1prtxw5r7r" path="res://scripts/InventoryItem/resources/InventoryResource.gd" id="5_boosr"]
+[ext_resource type="Resource" uid="uid://c1dwd1cuo0e1o" path="res://scenes/fish/bass/bassInventoryResource.tres" id="4_qx407"]
 
 [sub_resource type="Curve" id="Curve_ujy55"]
 _limits = [0.0, 1.0, 0.0, 10.0]
@@ -24,12 +23,6 @@ knockback = 80.0
 knockback_falloff = SubResource("Curve_ujy55")
 effects = Array[ExtResource("2_hxisb")]([])
 metadata/_custom_type_script = "uid://cebfthoqbtbtc"
-
-[sub_resource type="Resource" id="Resource_8yefj"]
-script = ExtResource("5_boosr")
-Name = "Blunderbass"
-Icon = ExtResource("4_hpbmf")
-metadata/_custom_type_script = "uid://coj1prtxw5r7r"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bchrx"]
 specular_mode = 2
@@ -99,7 +92,7 @@ _data = {
 [node name="Node3D" type="Node3D"]
 script = ExtResource("3_cfoaw")
 projectileresource = SubResource("Resource_gn28i")
-Inventoryresource = SubResource("Resource_8yefj")
+Inventoryresource = ExtResource("4_qx407")
 
 [node name="fire_point" type="Node3D" parent="."]
 transform = Transform3D(-3.61999e-06, 3.55271e-15, -1, 0, 1, 0, 1, 1.28608e-20, -3.61999e-06, 2.00001, 1.02275, -3.64991)

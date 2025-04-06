@@ -4,7 +4,12 @@ class_name PlayerInventory
 signal inv_changed
 
 #var inventory: Array[InventoryItem] = []
+@export var weaponid:Dictionary[InventoryResource,float] = {} 
 var inventory = []
+func _process(delta: float) -> void:
+	for fishie in weaponid:
+		weaponid[fishie] -= delta
+		weaponid[fishie] = clamp(weaponid[fishie],0,INF)
 func _ready():
 	inventory.append(load("res://scenes/rod/rod.tscn"))
 	inventory.append(load("res://scenes/fish/bass/bass.tscn"))
