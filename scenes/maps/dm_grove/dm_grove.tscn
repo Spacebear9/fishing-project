@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://0dj1f775ktnc"]
+[gd_scene load_steps=7 format=3 uid="uid://0dj1f775ktnc"]
 
 [ext_resource type="ArrayMesh" uid="uid://31if46gs10ee" path="res://scenes/maps/dm_grove/dm_grove.obj" id="1_ocqys"]
 [ext_resource type="Material" uid="uid://c07011urgn4mq" path="res://misc textures/grid.tres" id="2_jj2ag"]
 [ext_resource type="Script" uid="uid://c7ixbro75hyh8" path="res://scenes/maps/map_objects/water final v2/water.gd" id="3_pgqxt"]
-[ext_resource type="Script" uid="uid://bo84fhxwcrsqb" path="res://scenes/fish/shared scripts/fish_world.gd" id="4_d0tsd"]
 [ext_resource type="Resource" uid="uid://bxyqck41oddmi" path="res://scenes/fish/archer/archer.tres" id="5_yn7mc"]
 [ext_resource type="Script" uid="uid://qajv56yvfp1l" path="res://scenes/fish/shared scripts/fish_world_res.gd" id="6_jjlad"]
 
@@ -31,9 +30,3 @@ water_roughness = 3.0
 spawn_bounds = Vector4(70, 6, 70, 6)
 spawnable_fish = Array[ExtResource("6_jjlad")]([ExtResource("5_yn7mc")])
 metadata/_custom_type_script = "uid://c7ixbro75hyh8"
-
-[node name="WorldFish" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.8612, 6.54349, 0)
-script = ExtResource("4_d0tsd")
-properties = ExtResource("5_yn7mc")
-metadata/_custom_type_script = "uid://bo84fhxwcrsqb"

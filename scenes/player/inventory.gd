@@ -19,7 +19,7 @@ var selected = -1
 func switch_inventory(switch_to:int):
 	if switch_to == selected:
 		return
-	if get_child(0):
+	if get_children().size() > 0:
 			get_child(0).queue_free()
 	if inventory.size() > switch_to:
 		var add = inventory[switch_to].instantiate()
