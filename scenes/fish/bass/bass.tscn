@@ -3,7 +3,7 @@
 [ext_resource type="ArrayMesh" uid="uid://iboklj1suao5" path="res://scenes/fish/bass/bass.obj" id="1_yi38g"]
 [ext_resource type="Resource" uid="uid://henk4pn1en2i" path="res://scenes/fish/bass/BlunderbassResource.tres" id="2_gg503"]
 [ext_resource type="Texture2D" uid="uid://dhn06q0f0gpas" path="res://scenes/fish/bass/bass.png" id="2_quo2e"]
-[ext_resource type="Script" uid="uid://b0as1vjfx02hu" path="res://scripts/InventoryItem/gun_projecticle.gd" id="3_cfoaw"]
+[ext_resource type="Script" uid="uid://r42byd0hdk22" path="res://scripts/InventoryItem/gun_projectile.gd" id="3_cfoaw"]
 [ext_resource type="Resource" uid="uid://c1dwd1cuo0e1o" path="res://scenes/fish/bass/bassInventoryResource.tres" id="7_hxisb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bchrx"]
