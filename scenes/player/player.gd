@@ -63,7 +63,10 @@ func _physics_process(delta):
 	
 	#all player velocity checks
 	if !is_on_floor():
-		velocity.y -= auto.gravity
+		if Input.is_action_pressed("crouch"):
+			velocity.y -= auto.gravity*5
+		else:
+			velocity.y -= auto.gravity
 	
 	velocity = Vector3(lateral_vel.x,velocity.y,lateral_vel.y)
 	velocity += knockback
