@@ -1,11 +1,42 @@
-[gd_resource type="Resource" script_class="InventoryResource" load_steps=3 format=3 uid="uid://c1dwd1cuo0e1o"]
+[gd_resource type="Resource" script_class="InventoryResource" load_steps=12 format=3 uid="uid://c1dwd1cuo0e1o"]
 
 [ext_resource type="Texture2D" uid="uid://cg66csa8swm8o" path="res://scenes/fish/bass/bassicon.png" id="1_pwm6a"]
+[ext_resource type="Script" uid="uid://62wu7p0fp1na" path="res://scripts/InventoryItem/resources/ability_input_resource.gd" id="2_b2b72"]
 [ext_resource type="Script" uid="uid://coj1prtxw5r7r" path="res://scripts/InventoryItem/resources/InventoryResource.gd" id="2_b3dgx"]
+[ext_resource type="Script" uid="uid://gvuqcphlh5op" path="res://scripts/InventoryItem/resources/ability_resource.gd" id="2_h68sf"]
+[ext_resource type="Script" uid="uid://ccsgsm44hmb40" path="res://scripts/InventoryItem/resources/projectile_effect.gd" id="3_b2b72"]
+[ext_resource type="Script" uid="uid://bw7q2jeu7dyib" path="res://scripts/InventoryItem/resources/ability_projectile.gd" id="4_4hns3"]
+
+[sub_resource type="Curve" id="Curve_4hns3"]
+_limits = [0.0, 1.0, 0.0, 20.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(20, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_jbwbh"]
+
+[sub_resource type="Resource" id="Resource_umf40"]
+script = ExtResource("4_4hns3")
+mesh = SubResource("SphereMesh_jbwbh")
+speed = 8.0
+aoe_radius = 20.0
+knockback = 80.0
+knockback_falloff = SubResource("Curve_4hns3")
+effects = Array[ExtResource("3_b2b72")]([])
+metadata/_custom_type_script = "uid://bw7q2jeu7dyib"
+
+[sub_resource type="InputEventAction" id="InputEventAction_u8see"]
+action = &"secondary_action"
+
+[sub_resource type="Resource" id="Resource_2d01v"]
+script = ExtResource("2_b2b72")
+input_action = SubResource("InputEventAction_u8see")
+abilities = Array[ExtResource("2_h68sf")]([SubResource("Resource_umf40")])
+metadata/_custom_type_script = "uid://62wu7p0fp1na"
 
 [resource]
 script = ExtResource("2_b3dgx")
 Name = "Blunder Bass"
 Icon = ExtResource("1_pwm6a")
 cooldown = 1.0
+actions = Array[ExtResource("2_b2b72")]([SubResource("Resource_2d01v")])
 metadata/_custom_type_script = "uid://coj1prtxw5r7r"

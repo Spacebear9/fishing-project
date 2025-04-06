@@ -1,7 +1,5 @@
-extends Resource
-#projectile properties to be assigned in the inspector, unique properties of each projectile
-class_name ProjectileRes
-
+extends Ability
+class_name AbilityProjectile
 
 @export var mesh:Mesh
 
