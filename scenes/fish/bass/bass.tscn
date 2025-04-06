@@ -9,7 +9,8 @@
 [ext_resource type="Script" uid="uid://coj1prtxw5r7r" path="res://scripts/InventoryItem/resources/InventoryResource.gd" id="5_boosr"]
 
 [sub_resource type="Curve" id="Curve_ujy55"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.216667, 1), 0.0, 0.0, 0, 0, Vector2(0.616667, 0.247191), -1.61798, -1.61798, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_limits = [0.0, 1.0, 0.0, 10.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(3.05556, 1), 0.0, 0.0, 0, 0, Vector2(5.94444, 0.41573), -0.148315, -0.148315, 0, 0, Vector2(10, 0), -0.0635634, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="SphereMesh" id="SphereMesh_4rnp0"]
@@ -18,7 +19,7 @@ point_count = 4
 script = ExtResource("3_os7gm")
 mesh = SubResource("SphereMesh_4rnp0")
 speed = 10.0
-aoe_radius = 100.0
+aoe_radius = 20000.0
 knockback = 80.0
 knockback_falloff = SubResource("Curve_ujy55")
 effects = Array[ExtResource("2_hxisb")]([])
