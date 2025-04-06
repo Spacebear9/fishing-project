@@ -75,7 +75,7 @@ func _physics_process(delta):
 
 func _input(event: InputEvent) -> void:
 	if moveable:
-		if event.is_action("primary_action"):
+		if event.is_action_pressed("primary_action"):
 			held_item.primary_function()
 		#!action_released() is the only thing that works with scroll wheel, find a better solution later 
 		if event.is_action_released("inventory_next"):
