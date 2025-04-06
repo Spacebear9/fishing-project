@@ -1,4 +1,4 @@
-extends "res://misc scripts/InventoryItem/gun.gd"
+extends Gun
 
 @export var projectileresource : ProjectileRes
 

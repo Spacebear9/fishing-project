@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="InventoryResource" load_steps=3 format=3 uid="uid://c1dwd1cuo0e1o"]
 
 [ext_resource type="Texture2D" uid="uid://cg66csa8swm8o" path="res://scenes/fish/bass/bassicon.png" id="1_pwm6a"]
-[ext_resource type="Script" uid="uid://coj1prtxw5r7r" path="res://misc scripts/InventoryItem/InventoryResource.gd" id="2_b3dgx"]
+[ext_resource type="Script" uid="uid://coj1prtxw5r7r" path="res://scripts/InventoryItem/resources/InventoryResource.gd" id="2_b3dgx"]
 
 [resource]
 script = ExtResource("2_b3dgx")

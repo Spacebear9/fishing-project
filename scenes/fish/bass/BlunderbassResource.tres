@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ProjectileRes" load_steps=6 format=3 uid="uid://henk4pn1en2i"]
 
-[ext_resource type="Script" uid="uid://ccsgsm44hmb40" path="res://misc scripts/InventoryItem/projectile_effect.gd" id="1_31k07"]
-[ext_resource type="Script" uid="uid://cebfthoqbtbtc" path="res://scenes/fish/bullets/projectile_res.gd" id="1_kaxpi"]
+[ext_resource type="Script" uid="uid://ccsgsm44hmb40" path="res://scripts/InventoryItem/resources/projectile_effect.gd" id="1_31k07"]
+[ext_resource type="Script" uid="uid://cebfthoqbtbtc" path="res://scripts/InventoryItem/resources/projectile_res.gd" id="2_31k07"]
 
 [sub_resource type="Curve" id="Curve_31k07"]
 _limits = [0.0, 1.0, 0.0, 10.0]
@@ -13,7 +13,7 @@ point_count = 3
 [sub_resource type="SphereShape3D" id="SphereShape3D_wy2dc"]
 
 [resource]
-script = ExtResource("1_kaxpi")
+script = ExtResource("2_31k07")
 mesh = SubResource("SphereMesh_gjyo2")
 shape = SubResource("SphereShape3D_wy2dc")
 speed = 6.0

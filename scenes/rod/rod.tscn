@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bjdm7yfo4b8ph"]
 
 [ext_resource type="ArrayMesh" uid="uid://bfdxji8028m8n" path="res://scenes/rod/rod_1.obj" id="1_upim7"]
-[ext_resource type="Script" uid="uid://dvvvo4j35ml0w" path="res://misc scripts/InventoryItem/rod.gd" id="2_pd4ym"]
+[ext_resource type="Script" uid="uid://dvvvo4j35ml0w" path="res://scripts/InventoryItem/rod.gd" id="2_pd4ym"]
 [ext_resource type="Resource" uid="uid://d4nupba4hb3u8" path="res://scenes/rod/RodResource.tres" id="3_lxwt8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rnwy8"]
