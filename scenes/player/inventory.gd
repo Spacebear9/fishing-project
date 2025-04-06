@@ -15,8 +15,10 @@ func switch_next():
 func switch_prev():
 	switch_inventory((selected-1+inventory.size())%inventory.size())
 
-var selected = 0
+var selected = -1
 func switch_inventory(switch_to:int):
+	if switch_to == selected:
+		return
 	if get_child(0):
 			get_child(0).queue_free()
 	if inventory.size() > switch_to:
