@@ -7,6 +7,6 @@
 script = ExtResource("1_3mia8")
 Map = ExtResource("1_1c322")
 UseMapNameFromRootNode = true
-MapName = ""
+MapName = "dm_groove"
 SpawnPointArray = Array[NodePath]([])
 metadata/_custom_type_script = "uid://by0nyk6gqix6r"
