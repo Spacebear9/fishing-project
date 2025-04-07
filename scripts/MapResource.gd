@@ -1,13 +1,13 @@
 @tool
 extends Resource
 class_name MapResource
-@export var Map: PackedScene:
+@export var MapPackedScene: PackedScene:
 	set(new_map):
-		Map = new_map
+		MapPackedScene = new_map
 		if Engine.is_editor_hint():
 			read_map_properties()
 @export_category("Settings")
-@export_tool_button("Read Properties from Map") var read_map_properties_button = read_map_properties
+@export_tool_button("Read Properties from MapPackedScene") var read_map_properties_button = read_map_properties
 @export var SpawnPointPackedScene: PackedScene = load("uid://bdlnkqvpjo6dr")
 @export var UseMapNameFromRootNode: bool = true
 @export_category("MapProperties")
@@ -25,10 +25,10 @@ func _internal_set_map_name(new_name: String):
 	notify_property_list_changed()
 
 func read_map_properties():
-	if Map == null:
+	if MapPackedScene == null:
 		return
 	SpawnPointArray.clear()
-	var mapInstance: SceneState = Map.get_state()
+	var mapInstance: SceneState = MapPackedScene.get_state()
 	var found_root_name = false 
 	for i in range(mapInstance.get_node_count()):
 		#print(mapInstance.get_node_instance(i))

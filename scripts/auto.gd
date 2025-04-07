@@ -2,19 +2,19 @@ extends Node3D
 const gravity = 2
 var root
 
-var map = load("res://scenes/maps/dm_grove/dm_grove.tscn")
+var mapResource:MapResource = load("res://scenes/maps/dm_grove/dm_grove.tres")
 var player_TEMP = load("res://scenes/player/player.tscn")
 var players_active: Array[Player]
-
+var MapNode: Node3D
 
 func _ready():
 	root = get_tree().root
-	var MapNode = map.instantiate()
+	MapNode = mapResource.MapPackedScene.instantiate()
 	add_child(MapNode)
 	var player = player_TEMP.instantiate()
 	add_child(player)
 	players_active.append(player)
-	player.global_position = Vector3(15,10,0)
+	respawn_player(player)	
 func _process(_delta):
 	pass
 		
@@ -92,3 +92,18 @@ func recurivelygetchildren(node: Node)-> Array[Node]:
 #TEMP REPLACE LATER!!!!
 func get_players() -> Array[Player]:
 	return players_active
+func respawn_player(player_to_spawn:Player):
+	var respawn_point_list:Array[SpawnPoint]
+	for respawnpointNodePath in mapResource.SpawnPointArray:
+		respawn_point_list.append(MapNode.get_node(respawnpointNodePath))
+	var spawn_point_of_last_resort:SpawnPoint = respawn_point_list.pick_random()
+	while respawn_point_list.size()>0:
+		var spawnpointtocheck:SpawnPoint = respawn_point_list.pick_random()
+		var can_spawn_player = spawnpointtocheck.TrySpawnPlayer(player_to_spawn)
+		if can_spawn_player:
+			player_to_spawn.global_position = spawnpointtocheck.global_position
+			return
+		respawn_point_list.erase(spawnpointtocheck)
+	printerr("No valid spawn point, add more to this map")
+	player_to_spawn.global_position = spawn_point_of_last_resort.global_position
+	

@@ -6,9 +6,9 @@
 
 [resource]
 script = ExtResource("1_3mia8")
-Map = ExtResource("1_1c322")
+MapPackedScene = ExtResource("1_1c322")
 SpawnPointPackedScene = ExtResource("2_eakka")
 UseMapNameFromRootNode = true
 MapName = "dm_groove"
-SpawnPointArray = Array[NodePath]([])
+SpawnPointArray = Array[NodePath]([NodePath("./SpawnPoint3"), NodePath("./SpawnPoint2"), NodePath("./SpawnPoint"), NodePath("./SpawnPoint4")])
 metadata/_custom_type_script = "uid://by0nyk6gqix6r"

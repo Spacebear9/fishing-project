@@ -7,11 +7,11 @@ func _ready():
 	shapecast.shape = SpawnPointColisionShape
 func TrySpawnPlayer(player: Player):
 	shapecast.enabled = true
-	shapecast.force_raycast_update()
+	shapecast.force_shapecast_update()
 	if shapecast.is_colliding():
 		var Collision_Array = shapecast.collision_result
 		for i in Collision_Array:
-			if i.node is Player:
+			if i.collider is Player:
 				return false
 	shapecast.enabled = false
 	player.global_position = global_position
