@@ -9,13 +9,12 @@ var players_active: Array[Player]
 
 func _ready():
 	root = get_tree().root
-	var node = map.instantiate()
-	add_child(node)
+	var MapNode = map.instantiate()
+	add_child(MapNode)
 	var player = player_TEMP.instantiate()
 	add_child(player)
 	players_active.append(player)
 	player.global_position = Vector3(15,10,0)
-
 func _process(_delta):
 	pass
 		
@@ -83,7 +82,13 @@ func get_angle(vector: Vector2):
 		return atan2(vector.y,vector.x) - (PI)
 	return 0
 	
-
+func recurivelygetchildren(node: Node)-> Array[Node]:
+	var children = []
+	for child in node.get_children():
+		children.append(child)
+		if child.get_child_count() > 0:
+			children += recurivelygetchildren(child)
+	return children
 #TEMP REPLACE LATER!!!!
 func get_players() -> Array[Player]:
 	return players_active
