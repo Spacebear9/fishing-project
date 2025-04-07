@@ -1,8 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://djpqurr4nitlw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8t2b0"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sky_top_color = Color(0.156736, 0.438302, 0.686292, 1)
+sky_horizon_color = Color(0.596078, 0.607843, 0.623529, 1)
+sky_curve = 0.106066
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.596318, 0.606292, 0.62204, 1)
+ground_curve = 0.0123115
+sun_curve = 0.149999
 
 [sub_resource type="Sky" id="Sky_r2gbw"]
 sky_material = SubResource("ProceduralSkyMaterial_8t2b0")
@@ -10,6 +15,8 @@ sky_material = SubResource("ProceduralSkyMaterial_8t2b0")
 [sub_resource type="Environment" id="Environment_wdvov"]
 background_mode = 2
 sky = SubResource("Sky_r2gbw")
+ambient_light_color = Color(0.525101, 0.525101, 0.525101, 1)
+ambient_light_sky_contribution = 0.0
 tonemap_mode = 2
 glow_enabled = true
 

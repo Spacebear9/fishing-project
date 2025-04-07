@@ -1,7 +1,6 @@
 extends InventoryItem
 #@export var RodResoruce: InventoryResource
-var camera: Camera3D
-var anim: AnimationPlayer
+
 var bobber: StaticBody3D
 var cast_point
 var s = 0
@@ -24,8 +23,6 @@ enum states{
 	}
 func _ready():
 	super()
-	camera = player.get_node("Camera3D")
-	anim = get_node("Mesh/AnimationPlayer")
 	bobber = load("res://scenes/bobber/bobber.tscn").instantiate()
 	add_child(bobber)
 	bobber.scale*=2

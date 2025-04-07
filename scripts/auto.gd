@@ -1,5 +1,4 @@
 extends Node3D
-const gravity = 2
 var root
 
 var map = load("res://scenes/maps/dm_grove/dm_grove.tscn")
@@ -12,8 +11,8 @@ func _ready():
 	var node = map.instantiate()
 	add_child(node)
 	var player = player_TEMP.instantiate()
-	add_child(player)
 	players_active.append(player)
+	add_child(player)
 	player.global_position = Vector3(15,10,0)
 
 func _process(_delta):
@@ -87,3 +86,5 @@ func get_angle(vector: Vector2):
 #TEMP REPLACE LATER!!!!
 func get_players() -> Array[Player]:
 	return players_active
+func get_current_player() -> Player:
+	return players_active[0]

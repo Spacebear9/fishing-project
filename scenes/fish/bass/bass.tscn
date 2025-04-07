@@ -1,28 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://cetq5vqqfalmj"]
+[gd_scene load_steps=9 format=3 uid="uid://cetq5vqqfalmj"]
 
+[ext_resource type="Script" uid="uid://thvsuqtfi6m7" path="res://scripts/InventoryItem/inventory_item.gd" id="1_6go8e"]
 [ext_resource type="ArrayMesh" uid="uid://iboklj1suao5" path="res://scenes/fish/bass/bass.obj" id="1_yi38g"]
-[ext_resource type="Script" uid="uid://ccsgsm44hmb40" path="res://scripts/InventoryItem/resources/projectile_effect.gd" id="2_hxisb"]
 [ext_resource type="Texture2D" uid="uid://dhn06q0f0gpas" path="res://scenes/fish/bass/bass.png" id="2_quo2e"]
-[ext_resource type="Script" uid="uid://b0as1vjfx02hu" path="res://scripts/InventoryItem/gun_projectile.gd" id="3_cfoaw"]
-[ext_resource type="Script" uid="uid://cebfthoqbtbtc" path="res://scripts/InventoryItem/resources/projectile_res.gd" id="3_os7gm"]
 [ext_resource type="Resource" uid="uid://c1dwd1cuo0e1o" path="res://scenes/fish/bass/bassInventoryResource.tres" id="4_qx407"]
-
-[sub_resource type="Curve" id="Curve_ujy55"]
-_limits = [0.0, 1.0, 0.0, 10.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(3.05556, 1), 0.0, 0.0, 0, 0, Vector2(5.94444, 0.41573), -0.148315, -0.148315, 0, 0, Vector2(10, 0), -0.0635634, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="SphereMesh" id="SphereMesh_4rnp0"]
-
-[sub_resource type="Resource" id="Resource_gn28i"]
-script = ExtResource("3_os7gm")
-mesh = SubResource("SphereMesh_4rnp0")
-speed = 10.0
-aoe_radius = 20000.0
-knockback = 80.0
-knockback_falloff = SubResource("Curve_ujy55")
-effects = Array[ExtResource("2_hxisb")]([])
-metadata/_custom_type_script = "uid://cebfthoqbtbtc"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bchrx"]
 specular_mode = 2
@@ -90,9 +71,9 @@ _data = {
 }
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("3_cfoaw")
-projectileresource = SubResource("Resource_gn28i")
+script = ExtResource("1_6go8e")
 Inventoryresource = ExtResource("4_qx407")
+metadata/_custom_type_script = "uid://thvsuqtfi6m7"
 
 [node name="fire_point" type="Node3D" parent="."]
 transform = Transform3D(-3.61999e-06, 3.55271e-15, -1, 0, 1, 0, 1, 1.28608e-20, -3.61999e-06, 2.00001, 1.02275, -3.64991)

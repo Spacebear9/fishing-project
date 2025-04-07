@@ -16,6 +16,7 @@ var mouse_dir: Vector2
 var sense = 6
 
 var jump_buffer = 0
+var jump_cooldown = 0
 
 #camera strafe roll strength
 var strafe_factor = .07
@@ -28,8 +29,22 @@ var wish_vec = 0
 var input_rot = 0
 var speed_max = 50
 var speed_accel_ground = 425
-var speed_accel_air = 35
-var speed_friction = 165
+
+
+
+const s_speed_accel_air = 35
+var speed_accel_air = s_speed_accel_air
+
+
+
+
+
+const s_gravity = 2
+var gravity = s_gravity
+const s_terminal_vel = 100
+var terminal_vel = s_terminal_vel
+const s_speed_friction = 165
+var speed_friction = s_speed_friction
 
 var knockback = Vector3.ZERO
 
@@ -47,12 +62,19 @@ func _physics_process(delta):
 	
 	if moveable:
 		#get jump input
+		jump_cooldown -= delta
 		if Input.is_action_pressed("movement_jump"):
 			jump_buffer = 7
 		if jump_buffer > 0:
 			jump_buffer -= 1
-			if is_on_floor():
+			if is_on_floor() && jump_cooldown <= 0:
 				velocity.y += jump_strength+(lateral_vel.length()/10)
+				jump_cooldown = 0.5
+				
+		if Input.is_action_pressed("crouch"):
+			speed_friction = s_speed_friction*3
+		else:
+			speed_friction = s_speed_friction
 		
 		input_vec = Input.get_vector("movement_strafe_left","movement_strafe_right","movement_forward","movement_backward")
 		#camera roll when strafing
@@ -61,12 +83,13 @@ func _physics_process(delta):
 	lateral_vel = accelerate(input_vec,lateral_vel,delta)
 	
 	
-	#all player velocity checks
+	if is_on_floor():
+		gravity = s_gravity
+		terminal_vel = s_terminal_vel
+	
 	if !is_on_floor():
-		if Input.is_action_pressed("crouch"):
-			velocity.y -= auto.gravity*5
-		else:
-			velocity.y -= auto.gravity
+		velocity.y -= gravity
+	velocity.y = clamp(velocity.y,-terminal_vel,INF)
 	
 	velocity = Vector3(lateral_vel.x,velocity.y,lateral_vel.y)
 	velocity += knockback
@@ -78,8 +101,6 @@ func _physics_process(delta):
 
 func _input(event: InputEvent) -> void:
 	if moveable:
-		if event.is_action_pressed("primary_action"):
-			held_item.primary_function()
 		#!action_released() is the only thing that works with scroll wheel, find a better solution later 
 		if event.is_action_released("inventory_next"):
 			inventory.switch_next()
@@ -88,6 +109,11 @@ func _input(event: InputEvent) -> void:
 		for i in range(1,5):
 			if event.is_action_pressed("inventory_"+str(i)):
 				inventory.switch_inventory(i-1)
+		if event.is_action_pressed("crouch"):
+			if terminal_vel == s_terminal_vel:
+				velocity.y = 0
+			gravity = s_gravity * 3
+			terminal_vel = s_terminal_vel*5
 
 func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseMotion && moveable:
@@ -112,7 +138,6 @@ func accelerate(direction_vec,current_vel,delta):
 		speed_gain = max(min(speed_gain,speed_accel_ground*delta),0)
 	else:
 		speed_gain = max(min(speed_gain,speed_accel_air*delta),0)
-	auto.line(global_position,global_position+Vector3(wish_vec.x,0,wish_vec.y))
 	return current_vel+(wish_vec*speed_gain)
 
 func friction(delta):
