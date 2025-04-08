@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdlnkqvpjo6dr"]
+
+[ext_resource type="Script" uid="uid://18ya1a420qkc" path="res://scenes/maps/map_objects/SpawnPoint/SpawnPoint.gd" id="1_t58wc"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_t58wc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hewwo"]
+albedo_color = Color(1, 0.673163, 0.295436, 1)
+
+[node name="SpawnPoint" type="Node3D"]
+script = ExtResource("1_t58wc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_t58wc")
+surface_material_override/0 = SubResource("StandardMaterial3D_hewwo")
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]

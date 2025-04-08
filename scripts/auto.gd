@@ -2,20 +2,19 @@ extends Node3D
 const gravity = 2
 var root
 
-var map = load("res://scenes/maps/dm_grove/dm_grove.tscn")
+var mapResource:MapResource = load("res://scenes/maps/dm_grove/dm_grove.tres")
 var player_TEMP = load("res://scenes/player/player.tscn")
 var players_active: Array[Player]
-
+var MapNode: Node3D
 
 func _ready():
 	root = get_tree().root
-	var node = map.instantiate()
-	add_child(node)
+	MapNode = mapResource.MapPackedScene.instantiate()
+	add_child(MapNode)
 	var player = player_TEMP.instantiate()
 	add_child(player)
 	players_active.append(player)
-	player.global_position = Vector3(15,10,0)
-
+	respawn_player(player)	
 func _process(_delta):
 	pass
 		
@@ -83,7 +82,31 @@ func get_angle(vector: Vector2):
 		return atan2(vector.y,vector.x) - (PI)
 	return 0
 	
-
+func recurivelygetchildren(node: Node)-> Array[Node]:
+	var children = []
+	for child in node.get_children():
+		children.append(child)
+		if child.get_child_count() > 0:
+			children += recurivelygetchildren(child)
+	return children
 #TEMP REPLACE LATER!!!!
 func get_players() -> Array[Player]:
 	return players_active
+func respawn_player(player_to_spawn:Player):
+	var respawn_point_list:Array[SpawnPoint]
+	for respawnpointNodePath in mapResource.SpawnPointArray:
+		respawn_point_list.append(MapNode.get_node(respawnpointNodePath))
+	var spawn_point_of_last_resort:SpawnPoint = respawn_point_list.pick_random()
+	while respawn_point_list.size()>0:
+		var spawnpointtocheck:SpawnPoint = respawn_point_list.pick_random()
+		var can_spawn_player = spawnpointtocheck.TrySpawnPlayer(player_to_spawn)
+		if can_spawn_player:
+			spawn_point_of_last_resort = spawnpointtocheck
+			break
+		respawn_point_list.erase(spawnpointtocheck)
+	if respawn_point_list.size()==0:
+		printerr("No valid spawn point, add more to this map")
+	player_to_spawn.global_position = spawn_point_of_last_resort.global_position
+	player_to_spawn.rotation.y = spawn_point_of_last_resort.rotation.y + PI
+	player_to_spawn.velocity = Vector3.ZERO
+	player_to_spawn.knockback = Vector3.ZERO
