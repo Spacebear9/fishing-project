@@ -138,6 +138,10 @@ grow_vertical = 2
 layout_mode = 2
 text = "Resume Game"
 
+[node name="Button" type="Button" parent="player ui/pause/VBoxContainer"]
+layout_mode = 2
+text = "Respawn"
+
 [node name="exit" type="Button" parent="player ui/pause/VBoxContainer"]
 layout_mode = 2
 text = "Exit Game"
@@ -215,4 +219,5 @@ texture = ExtResource("3_fd3r2")
 [connection signal="unpause" from="player ui/pause" to="." method="_on_pause_unpause"]
 [connection signal="unpause" from="player ui/pause" to="player ui/crosshair" method="_on_pause_unpause"]
 [connection signal="pressed" from="player ui/pause/VBoxContainer/resume" to="player ui/pause" method="_on_resume_pressed"]
+[connection signal="pressed" from="player ui/pause/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="player ui/pause/VBoxContainer/exit" to="player ui/pause" method="_on_button_pressed"]
