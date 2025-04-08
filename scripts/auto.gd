@@ -101,9 +101,12 @@ func respawn_player(player_to_spawn:Player):
 		var spawnpointtocheck:SpawnPoint = respawn_point_list.pick_random()
 		var can_spawn_player = spawnpointtocheck.TrySpawnPlayer(player_to_spawn)
 		if can_spawn_player:
-			player_to_spawn.global_position = spawnpointtocheck.global_position
-			return
+			spawn_point_of_last_resort = spawnpointtocheck
+			break
 		respawn_point_list.erase(spawnpointtocheck)
-	printerr("No valid spawn point, add more to this map")
+	if respawn_point_list.size()==0:
+		printerr("No valid spawn point, add more to this map")
 	player_to_spawn.global_position = spawn_point_of_last_resort.global_position
-	
+	player_to_spawn.rotation.y = spawn_point_of_last_resort.rotation.y + PI
+	player_to_spawn.velocity = Vector3.ZERO
+	player_to_spawn.knockback = Vector3.ZERO

@@ -1,10 +1,14 @@
+@tool
 extends Node3D
 class_name SpawnPoint
-@export var SpawnPointColisionShape: Shape3D
+@export var spawn_point_CollisionShape: Shape3D
 var shapecast: ShapeCast3D
 func _ready():
 	shapecast = get_node("ShapeCast3D")
-	shapecast.shape = SpawnPointColisionShape
+	shapecast.shape = spawn_point_CollisionShape
+	if Engine.is_editor_hint():
+		var arrow_mesh: MeshInstance3D = get_node("MeshInstance3D")
+		arrow_mesh.visible = true
 func TrySpawnPlayer(player: Player):
 	shapecast.enabled = true
 	shapecast.force_shapecast_update()
