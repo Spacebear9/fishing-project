@@ -11,7 +11,7 @@ class_name MapResource
 @export var SpawnPointPackedScene: PackedScene = load("uid://bdlnkqvpjo6dr")
 @export var UseMapNameFromRootNode: bool = true
 @export_category("MapProperties")
-var _map_name: String
+@export_storage var _map_name: String
 @export var MapName: String:
 	get:
 		return _map_name
