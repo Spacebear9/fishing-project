@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="MapResource" load_steps=4 format=3 uid="uid://chondq16l4wwc"]
+[gd_resource type="Resource" script_class="MapResource" load_steps=5 format=3 uid="uid://chondq16l4wwc"]
 
 [ext_resource type="PackedScene" uid="uid://0dj1f775ktnc" path="res://scenes/maps/dm_grove/dm_grove.tscn" id="1_1c322"]
 [ext_resource type="Script" uid="uid://by0nyk6gqix6r" path="res://scripts/MapResource.gd" id="1_3mia8"]
 [ext_resource type="PackedScene" uid="uid://bdlnkqvpjo6dr" path="res://scenes/maps/map_objects/SpawnPoint/SpawnPoint.tscn" id="2_eakka"]
+[ext_resource type="Texture2D" uid="uid://dejus37pt34hs" path="res://scenes/maps/dm_grove/Screenshot 2025-04-08 012456.png" id="2_ndhn2"]
 
 [resource]
 script = ExtResource("1_3mia8")
@@ -11,5 +12,6 @@ SpawnPointPackedScene = ExtResource("2_eakka")
 UseMapNameFromRootNode = true
 _map_name = "dm_groove"
 MapName = "dm_groove"
+MapScreenshot = ExtResource("2_ndhn2")
 SpawnPointArray = Array[NodePath]([NodePath("./SpawnPoint3"), NodePath("./SpawnPoint2"), NodePath("./SpawnPoint"), NodePath("./SpawnPoint4")])
 metadata/_custom_type_script = "uid://by0nyk6gqix6r"

@@ -18,7 +18,7 @@ class_name MapResource
 	set(new_name):
 		if !UseMapNameFromRootNode:
 			_internal_set_map_name(new_name)
-@export var MapScreenshot: Texture2D
+@export var MapScreenshot: CompressedTexture2D
 @export var SpawnPointArray: Array[NodePath] = []
 func _internal_set_map_name(new_name: String):
 	_map_name = new_name
