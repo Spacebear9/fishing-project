@@ -21,3 +21,4 @@ mesh = SubResource("PrismMesh_t58wc")
 surface_material_override/0 = SubResource("StandardMaterial3D_hewwo")
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+shape = SubResource("BoxShape3D_t58wc")
