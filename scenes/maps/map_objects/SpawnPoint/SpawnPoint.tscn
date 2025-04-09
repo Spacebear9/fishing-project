@@ -12,6 +12,7 @@ script = ExtResource("1_t58wc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, -6.55671e-07, -2, 0, 15, -8.74228e-08, 0, 0, 0)
+visible = false
 mesh = SubResource("PrismMesh_t58wc")
 surface_material_override/0 = SubResource("StandardMaterial3D_hewwo")
 
