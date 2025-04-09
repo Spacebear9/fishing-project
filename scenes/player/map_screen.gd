@@ -12,6 +12,6 @@ func _ready() -> void:
 		else:
 			icon.texture_normal = load("res://misc textures/unknown.png")
 		var label = icon.get_child(0) as Label
-		print(map._map_name)
 		label.text = map.MapName
 		grid.add_child(icon)
+		icon.connect("pressed",auto.load_map.bind(map))

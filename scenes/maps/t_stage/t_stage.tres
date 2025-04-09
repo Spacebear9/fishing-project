@@ -11,5 +11,5 @@ SpawnPointPackedScene = ExtResource("1_dx827")
 UseMapNameFromRootNode = true
 _map_name = "t_stage"
 MapName = "t_stage"
-SpawnPointArray = Array[NodePath]([])
+SpawnPointArray = Array[NodePath]([NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3")])
 metadata/_custom_type_script = "uid://by0nyk6gqix6r"

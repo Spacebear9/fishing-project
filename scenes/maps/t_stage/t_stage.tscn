@@ -1,17 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://bu1qvdsjesfjm"]
+[gd_scene load_steps=17 format=3 uid="uid://bu1qvdsjesfjm"]
 
 [ext_resource type="Script" uid="uid://rwuom2ktria" path="res://scenes/maps/t_stage/t_stage.gd" id="1_goh6c"]
 [ext_resource type="ArrayMesh" uid="uid://mfjvm6y2e6i8" path="res://scenes/maps/t_stage/test_stage.obj" id="2_34k0s"]
 [ext_resource type="Texture2D" uid="uid://p8ykiunaimpe" path="res://scenes/maps/t_stage/bake.png" id="3_2s7sa"]
-[ext_resource type="Material" uid="uid://b4yhseu28a0e8" path="res://scenes/maps/map_objects/water final v2/water_second.tres" id="4_5koru"]
-[ext_resource type="Shader" uid="uid://dl3jbpytgxl4f" path="res://scenes/maps/map_objects/water/water.gdshader" id="4_ol3dd"]
-[ext_resource type="Texture2D" uid="uid://w2r0kgwwjmd2" path="res://misc textures/noise_seamless_1.png" id="5_8nyye"]
-[ext_resource type="Texture2D" uid="uid://cf6tmgqh45gr2" path="res://misc textures/noise_seamless_2.png" id="6_4pmkk"]
-[ext_resource type="Texture2D" uid="uid://b73pidtjys7me" path="res://scenes/maps/map_objects/water/electric_blue.png" id="8_xbye7"]
-[ext_resource type="Script" uid="uid://bayaqtvn38aw6" path="res://scenes/maps/map_objects/water/water.gd" id="9_j6scx"]
-[ext_resource type="Texture2D" uid="uid://dp5vaj20eyrg" path="res://scenes/maps/map_objects/water/water.png" id="10_dxg6w"]
-[ext_resource type="PackedScene" uid="uid://bsfv1u74prki0" path="res://scenes/WaterEffectArea.tscn" id="11_rctyb"]
-[ext_resource type="PackedScene" uid="uid://cetq5vqqfalmj" path="res://scenes/fish/bass/bass.tscn" id="12_y0qir"]
+[ext_resource type="Script" uid="uid://c7ixbro75hyh8" path="res://scenes/maps/map_objects/water final v2/water.gd" id="4_lserm"]
+[ext_resource type="PackedScene" uid="uid://bdlnkqvpjo6dr" path="res://scenes/maps/map_objects/SpawnPoint/SpawnPoint.tscn" id="5_1qxw4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kgjjr"]
 specular_mode = 2
@@ -39,37 +32,23 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ho7o6"]
 albedo_color = Color(0, 0, 1, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_4kdfn"]
-size = Vector2(80, 60)
-subdivide_width = 80
-subdivide_depth = 80
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1qxw4"]
+sky_top_color = Color(0.195678, 0.319073, 0.404838, 1)
+sky_horizon_color = Color(0.463925, 0.596278, 0.692356, 1)
+ground_bottom_color = Color(0.11, 0.0766883, 0.0231, 1)
+ground_horizon_color = Color(0.463925, 0.596278, 0.692356, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8hlun"]
-render_priority = 0
-next_pass = ExtResource("4_5koru")
-shader = ExtResource("4_ol3dd")
-shader_parameter/planeWidth = 80.0
-shader_parameter/planeHeight = 80.0
-shader_parameter/scale_devide = 1.0
-shader_parameter/albedo_scale = 0.01
-shader_parameter/albedo_texture = ExtResource("8_xbye7")
-shader_parameter/albedo_speed = 2.0
-shader_parameter/albedo_direction = 0.0
-shader_parameter/noise_1 = ExtResource("6_4pmkk")
-shader_parameter/noise_1_direction = 3.0
-shader_parameter/noise_1_speed = 0.012
-shader_parameter/noise_2 = ExtResource("5_8nyye")
-shader_parameter/noise_2_direction = 0.0
-shader_parameter/noise_2_speed = 0.01
-shader_parameter/height_offset = 0.0
-shader_parameter/height_scale = 3.0
-shader_parameter/alpha = 0.195
+[sub_resource type="Sky" id="Sky_njuhd"]
+sky_material = SubResource("ProceduralSkyMaterial_1qxw4")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_y5rah"]
-size = Vector3(80, 0.5, 60)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_se0br"]
-size = Vector3(12.35, 10.479, 8.5686)
+[sub_resource type="Environment" id="Environment_pr8bu"]
+background_mode = 2
+sky = SubResource("Sky_njuhd")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.15
+ambient_light_energy = 0.5
+tonemap_mode = 2
+glow_enabled = true
 
 [node name="t_stage" type="Node"]
 script = ExtResource("1_goh6c")
@@ -115,30 +94,30 @@ mesh = SubResource("PrismMesh_43sio")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_ho7o6")
 
-[node name="water" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1933, 10.8827, 8.59644)
-mesh = SubResource("PlaneMesh_4kdfn")
-surface_material_override/0 = SubResource("ShaderMaterial_8hlun")
-script = ExtResource("9_j6scx")
+[node name="Water" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9646, -2.62521, 15.2853)
+script = ExtResource("4_lserm")
+water_plane = Vector2(45, 45)
+water_roughness = 3.0
+spawn_bounds = Vector4(20, 2, 18, 3)
+metadata/_custom_type_script = "uid://c7ixbro75hyh8"
 
-[node name="StaticBody3D" type="StaticBody3D" parent="water"]
-collision_layer = 2
-collision_mask = 0
+[node name="SpawnPoint" parent="." instance=ExtResource("5_1qxw4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.06662, 2.8197, -39.7667)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="water/StaticBody3D"]
-shape = SubResource("BoxShape3D_y5rah")
+[node name="SpawnPoint2" parent="." instance=ExtResource("5_1qxw4")]
+transform = Transform3D(-0.865081, 0, 0.501632, 0, 1, 0, -0.501632, 0, -0.865081, -46.198, 2.8197, 50.0082)
 
-[node name="water_png" type="TextureRect" parent="water"]
-visible = false
-offset_left = -65.0
-offset_top = -28.0
-offset_right = 1209.0
-offset_bottom = 744.0
-texture = ExtResource("10_dxg6w")
+[node name="SpawnPoint3" parent="." instance=ExtResource("5_1qxw4")]
+transform = Transform3D(-0.635553, 0, -0.772057, 0, 1, 0, 0.772057, 0, -0.635553, 54.8985, 2.8197, 50.1474)
 
-[node name="WaterEffectArea" parent="water" instance=ExtResource("11_rctyb")]
-FishToSpawn = Array[PackedScene]([ExtResource("12_y0qir")])
+[node name="SpawnPoint4" parent="." instance=ExtResource("5_1qxw4")]
+transform = Transform3D(0.411053, 0, -0.911611, 0, 1, 0, 0.911611, 0, 0.411053, 60.2026, 2.8197, -41.6999)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="water/WaterEffectArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.19376, -4.7395, 1.0929)
-shape = SubResource("BoxShape3D_se0br")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pr8bu")

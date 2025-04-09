@@ -13,5 +13,5 @@ UseMapNameFromRootNode = true
 _map_name = "DM_Clem"
 MapName = "DM_Clem"
 MapScreenshot = ExtResource("2_qyyap")
-SpawnPointArray = Array[NodePath]([])
+SpawnPointArray = Array[NodePath]([NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4")])
 metadata/_custom_type_script = "uid://by0nyk6gqix6r"
