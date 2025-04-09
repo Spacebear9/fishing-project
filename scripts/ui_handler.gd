@@ -1,5 +1,5 @@
 extends CanvasLayer
-class_name UiHandler
+class_name UIHandler
 
 @export var first_active:MenuItem
 var active:Control
