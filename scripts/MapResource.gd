@@ -31,19 +31,16 @@ func read_map_properties():
 	var mapInstance: SceneState = MapPackedScene.get_state()
 	var found_root_name = false 
 	for i in range(mapInstance.get_node_count()):
-		#print(mapInstance.get_node_instance(i))
-		#print(mapInstance.get_node_name(i))
 		if UseMapNameFromRootNode and !found_root_name and mapInstance.get_node_path(i) == NodePath("."):
 			_internal_set_map_name(mapInstance.get_node_name(i))
 			found_root_name = true
 		if mapInstance.get_node_instance(i)==SpawnPointPackedScene:
 			SpawnPointArray.append(mapInstance.get_node_path(i))
-			#for j in range(mapInstance.get_node_instance(i).get_state().get_node_count()):
-			#	print(mapInstance.get_node_instance(i).get_state().GET_NODE)
-			#if mapInstance.get_node_instance(i).get_state():
-			#`	SpawnPointArray.append(mapInstance.get_node_path(i))
 	notify_property_list_changed()
+	emit_changed()
+	ResourceSaver.save(self)
 	
+
 func recurivelygetchildren(node: Node)-> Array[Node]:
 	var children: Array[Node] = []
 	for child in node.get_children():
