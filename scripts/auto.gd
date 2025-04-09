@@ -1,23 +1,36 @@
 extends Node3D
 const gravity = 2
-var root
+var root:Node
 
 var mapResource:MapResource = load("res://scenes/maps/dm_grove/dm_grove.tres")
 var player_TEMP = load("res://scenes/player/player.tscn")
 var players_active: Array[Player]
-var MapNode: Node3D
+var MapNode: Node
 
 func _ready():
 	root = get_tree().root
-	MapNode = mapResource.MapPackedScene.instantiate()
+	load_map(mapResource)
+
+#temp will need to change with multiplayer
+func load_map(map:MapResource):
+	unload_all()
+	MapNode = map.MapPackedScene.instantiate()
 	add_child(MapNode)
 	var player = player_TEMP.instantiate()
 	add_child(player)
 	players_active.append(player)
-	respawn_player(player)	
-func _process(_delta):
-	pass
-		
+	respawn_player(player)
+
+func unload_all():
+	for c in get_children():
+		c.queue_free()
+	for n in root.get_children():
+		if n != self:
+			n.queue_free()
+	players_active.clear()
+	
+	
+	
 func line(pos1: Vector3, pos2: Vector3, color = Color.BLACK,time = 1,on_top = true):
 	var mesh_instance := MeshInstance3D.new()
 	var immediate_mesh := ImmediateMesh.new()

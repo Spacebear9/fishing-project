@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MapResource" load_steps=4 format=3 uid="uid://btspj2d125ql1"]
+
+[ext_resource type="PackedScene" uid="uid://bdlnkqvpjo6dr" path="res://scenes/maps/map_objects/SpawnPoint/SpawnPoint.tscn" id="1_dx827"]
+[ext_resource type="PackedScene" uid="uid://bu1qvdsjesfjm" path="res://scenes/maps/t_stage/t_stage.tscn" id="1_t3y81"]
+[ext_resource type="Script" uid="uid://by0nyk6gqix6r" path="res://scripts/MapResource.gd" id="2_t3y81"]
+
+[resource]
+script = ExtResource("2_t3y81")
+MapPackedScene = ExtResource("1_t3y81")
+SpawnPointPackedScene = ExtResource("1_dx827")
+UseMapNameFromRootNode = true
+_map_name = "t_stage"
+MapName = "t_stage"
+SpawnPointArray = Array[NodePath]([NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3")])
+metadata/_custom_type_script = "uid://by0nyk6gqix6r"
