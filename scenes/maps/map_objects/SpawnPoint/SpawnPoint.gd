@@ -7,8 +7,9 @@ func _ready():
 	shapecast = get_node("ShapeCast3D")
 	shapecast.shape = spawn_point_CollisionShape
 	if Engine.is_editor_hint():
-		var arrow_mesh: MeshInstance3D = get_node("MeshInstance3D")
-		arrow_mesh.visible = true
+		visible = true
+	else:
+		visible = false
 func TrySpawnPlayer(player: Player):
 	shapecast.enabled = true
 	shapecast.force_shapecast_update()
