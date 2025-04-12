@@ -5,7 +5,7 @@ signal inv_changed
 
 #var inventory: Array[InventoryItem] = []
 @export var weaponid:Dictionary[InventoryResource,float] = {} 
-var inventory = []
+var inventory: Array
 func _process(delta: float) -> void:
 	for fishie in weaponid:
 		weaponid[fishie] -= delta

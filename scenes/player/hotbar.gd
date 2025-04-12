@@ -11,9 +11,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	for icon in icons.size():
-		icons[icon].material.set_shader_parameter("percent",inv_get.weaponid)
-
+	for icon in icons:
+		icon.material.set_shader_parameter("percent",1 - inv_get.weaponid[icons[icon]])
 func _set_hotbar():
 	icons.clear()
 	for child in get_children():
@@ -26,10 +25,10 @@ func _set_hotbar():
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		if slot == inv_get.selected:
 			label.label_settings.font_color = Color.RED
-		var inventoryitem = inv_get.inventory[slot].instantiate();
+		var inventoryitem:InventoryItem = inv_get.inventory[slot].instantiate();
 		var icon = inventoryitem.get_icon()
 		var rect = TextureRect.new()
-		icons[rect] = inv_get.inventory[slot]
+		icons[rect] = inventoryitem.Inventoryresource
 		rect.material = load("uid://dq02w0vu74cxg").duplicate()
 		rect.texture = icon
 		rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE

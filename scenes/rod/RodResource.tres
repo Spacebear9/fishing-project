@@ -7,3 +7,4 @@
 script = ExtResource("1_8hhcc")
 Name = "Fisherm'n's Rod"
 Icon = ExtResource("1_1buws")
+cooldown = 0.0
