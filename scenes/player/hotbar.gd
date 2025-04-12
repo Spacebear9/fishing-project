@@ -1,5 +1,6 @@
 extends HBoxContainer
 
+var icons: Dictionary[TextureRect,InventoryResource]
 var inv_get: PlayerInventory
 @export var player: Player
 func _ready():
@@ -10,9 +11,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	for icon in icons.size():
+		icons[icon].material.set_shader_parameter("percent",inv_get.weaponid)
 
 func _set_hotbar():
+	icons.clear()
 	for child in get_children():
 		child.queue_free()
 	inv_get = player.get_node("Camera3D").get_node("inventory")
@@ -26,6 +29,8 @@ func _set_hotbar():
 		var inventoryitem = inv_get.inventory[slot].instantiate();
 		var icon = inventoryitem.get_icon()
 		var rect = TextureRect.new()
+		icons[rect] = inv_get.inventory[slot]
+		rect.material = load("uid://dq02w0vu74cxg").duplicate()
 		rect.texture = icon
 		rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		rect.custom_minimum_size = Vector2(35,35)

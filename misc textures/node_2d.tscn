@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4k6ofp1g85r2"]
+
+[ext_resource type="Material" uid="uid://dq02w0vu74cxg" path="res://misc textures/cdbar_shader.tres" id="1_bknmc"]
+[ext_resource type="Texture2D" uid="uid://dlqi5pkao7gb5" path="res://misc textures/testicon.png" id="2_s7o6c"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("1_bknmc")
+position = Vector2(492, -69)
+texture = ExtResource("2_s7o6c")

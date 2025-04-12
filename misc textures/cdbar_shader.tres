@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dq02w0vu74cxg"]
+
+[ext_resource type="Shader" uid="uid://b2wbsauwhsyc2" path="res://progressbar.gdshader" id="1_01yda"]
+
+[resource]
+shader = ExtResource("1_01yda")
+shader_parameter/percent = 1.0
