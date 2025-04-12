@@ -54,8 +54,8 @@ func _process(delta):
 	center = move_toward(center,t1c,abs(center - t1c)/6 + 0.001)
 	
 	if center < 0 || center > 1:
-		gra.set_color(0,Color(255,notblue/5,notblue/5))
-		gra.set_color(1,Color(255,notblue/5,notblue/5))
+		gra.set_color(0,Color(255,0,0))
+		gra.set_color(1,Color(255,0,0))
 	
 
 	t1.anchor_left = center - cscale
