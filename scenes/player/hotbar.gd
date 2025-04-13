@@ -10,7 +10,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if !is_multiplayer_authority(): return
 	for icon in icons:
 		icon.material.set_shader_parameter("percent",1 - inv_get.weaponid[icons[icon]])
