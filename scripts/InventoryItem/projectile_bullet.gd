@@ -18,7 +18,7 @@ func _init(_res:ProjectileRes,_pos:Vector3,_target:Vector3, _explode_immediatly:
 	
 var lifespan: int =0
 func _ready() -> void:
-	add_exception(auto.players_active[0])
+	add_exception(auto.get_client_player())
 	global_position = target_position
 	travel = -(global_position - target).normalized()
 	var mesh = MeshInstance3D.new()

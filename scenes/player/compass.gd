@@ -31,6 +31,7 @@ func _ready():
 
 
 func _process(delta):
+	return
 	t1c = player.lateral_vel.angle()-player.wish_vec.angle()
 	if !player.is_on_floor():
 		gra.set_color(0,Color(notblue,notblue,255))

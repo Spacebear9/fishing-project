@@ -64,7 +64,7 @@ func get_random() -> Vector3:
 	return Vector3(randf_range(-spawn_bounds.x,spawn_bounds.x)/2,randf_range(-spawn_bounds.y,spawn_bounds.y)/2-spawn_bounds.w,randf_range(-spawn_bounds.z,spawn_bounds.z)/2)
 
 func check_under():
-	for player in auto.get_players():
+	for player in auto.get_players().values():
 		if player.global_position.x < plane_child.global_position.x + water_plane.x && player.global_position.x > plane_child.global_position.x - water_plane.x && player.global_position.z < plane_child.global_position.z + water_plane.y && player.global_position.z > plane_child.global_position.z - water_plane.y && player.camera.global_position.y < plane_child.global_position.y:
 			if not player.in_water:
 				player.enter_water()

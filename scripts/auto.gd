@@ -4,28 +4,33 @@ var root:Node
 
 var mapResource:MapResource = load("res://scenes/maps/dm_grove/dm_grove.tres")
 var player_TEMP = load("res://scenes/player/player.tscn")
-var players_active: Array[Player]
+var players_active: Dictionary[int,Player] = {}
 var MapNode: Node
-
+var local_MultiplayerSpawner: MultiplayerSpawner
+var local_MultiplayerSynchronizer: MultiplayerSynchronizer
 func _ready():
 	root = get_tree().root
+	local_MultiplayerSpawner = MultiplayerSpawner.new()
+	add_child(local_MultiplayerSpawner)
+	local_MultiplayerSpawner.add_spawnable_scene("res://scenes/player/player.tscn")
+	local_MultiplayerSpawner.spawn_path=local_MultiplayerSpawner.get_path()
+	local_MultiplayerSynchronizer = MultiplayerSynchronizer.new()
+	add_child(local_MultiplayerSynchronizer)
+	local_MultiplayerSynchronizer.replication_config = SceneReplicationConfig.new()
 	load_map(mapResource)
 
 #temp will need to change with multiplayer
 func load_map(map:MapResource):
-	unload_all()
+	#unload_all()
 	MapNode = map.MapPackedScene.instantiate()
 	add_child(MapNode)
-	var player = player_TEMP.instantiate()
-	add_child(player)
-	players_active.append(player)
-	respawn_player(player)
+	host_server()
 
 func unload_all():
 	for c in get_children():
 		c.queue_free()
 	for n in root.get_children():
-		if n != self:
+		if n != self and n is not MultiplayerSpawner and n is not MultiplayerSynchronizer:
 			n.queue_free()
 	players_active.clear()
 	
@@ -103,8 +108,13 @@ func recurivelygetchildren(node: Node)-> Array[Node]:
 			children += recurivelygetchildren(child)
 	return children
 #TEMP REPLACE LATER!!!!
-func get_players() -> Array[Player]:
+func get_players() -> Dictionary[int,Player]:
 	return players_active
+func get_client_player() -> Player:
+	for playeriter in players_active:
+		if playeriter == multiplayer.get_unique_id():
+			return players_active[playeriter]
+	return null
 func respawn_player(player_to_spawn:Player):
 	var respawn_point_list:Array[SpawnPoint]
 	for respawnpointNodePath in mapResource.SpawnPointArray:
@@ -123,3 +133,38 @@ func respawn_player(player_to_spawn:Player):
 	player_to_spawn.rotation.y = spawn_point_of_last_resort.rotation.y + PI
 	player_to_spawn.velocity = Vector3.ZERO
 	player_to_spawn.knockback = Vector3.ZERO
+
+#Multiplayer
+
+var host:bool = false
+var eNetPeer:ENetMultiplayerPeer = ENetMultiplayerPeer.new()
+const MULTIPLAYER_PORT = 42123
+func host_server():
+	eNetPeer.create_server(MULTIPLAYER_PORT)
+	host = true
+	multiplayer.multiplayer_peer = eNetPeer
+	multiplayer.peer_connected.connect(add_player)
+	add_player(multiplayer.get_unique_id())
+	return "abc"
+func join_server(ip:String): 
+	host = false
+	get_client_player().queue_free()
+	players_active.clear()
+	eNetPeer.close()
+	eNetPeer.generate_unique_id()
+	eNetPeer.create_client(ip, MULTIPLAYER_PORT)
+	multiplayer.multiplayer_peer = eNetPeer
+	print(get_client_player())
+	add_player(multiplayer.get_unique_id())
+func add_player(peer_id:int):
+	print(multiplayer.get_unique_id())
+	var player:Player = player_TEMP.instantiate()
+	player.peer_id = peer_id
+	local_MultiplayerSpawner.add_child(player)
+	players_active[peer_id] = player
+	#player.set_multiplayer_authority(peer_id)
+	var changed_SceneReplicationConfig: SceneReplicationConfig = local_MultiplayerSynchronizer.replication_config
+	changed_SceneReplicationConfig.add_property(str(player.get_path())+":rotation")
+	changed_SceneReplicationConfig.add_property(str(player.get_path())+":position")
+	local_MultiplayerSynchronizer.replication_config = changed_SceneReplicationConfig
+	respawn_player(player)

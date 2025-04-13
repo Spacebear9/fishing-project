@@ -11,9 +11,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if !is_multiplayer_authority(): return
 	for icon in icons:
 		icon.material.set_shader_parameter("percent",1 - inv_get.weaponid[icons[icon]])
 func _set_hotbar():
+	if !is_multiplayer_authority(): return
 	icons.clear()
 	for child in get_children():
 		child.queue_free()

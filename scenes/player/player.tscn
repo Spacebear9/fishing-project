@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://iddn68oqxoub"]
+[gd_scene load_steps=26 format=3 uid="uid://iddn68oqxoub"]
 
 [ext_resource type="Script" uid="uid://cn62rgertaw0i" path="res://scenes/player/player.gd" id="1_qgp6a"]
 [ext_resource type="Script" uid="uid://c56uu60ufdww8" path="res://scenes/player/inventory.gd" id="3_elx3b"]
@@ -11,14 +11,15 @@
 [ext_resource type="Script" uid="uid://doxerreythe8d" path="res://scenes/player/pause.gd" id="4_po5os"]
 [ext_resource type="Resource" uid="uid://d4nupba4hb3u8" path="res://scenes/rod/RodResource.tres" id="5_fm80t"]
 [ext_resource type="Script" uid="uid://d1ceuh6rofeg5" path="res://scenes/player/compass.gd" id="6_f36jn"]
-[ext_resource type="Script" path="res://scripts/ui_handler.gd" id="7_gx1jg"]
+[ext_resource type="Script" uid="uid://emdd47moljkt" path="res://scripts/ui_handler.gd" id="7_gx1jg"]
 [ext_resource type="Script" uid="uid://io3ork63gyyc" path="res://scenes/player/crosshair.gd" id="8_7rqjo"]
-[ext_resource type="Script" path="res://scripts/menu_item.gd" id="8_ugbui"]
-[ext_resource type="Script" path="res://scenes/player/map_screen.gd" id="15_uf5tr"]
+[ext_resource type="Script" uid="uid://jptxvp867udf" path="res://scripts/menu_item.gd" id="8_ugbui"]
+[ext_resource type="Script" uid="uid://cnsib352u81kj" path="res://scenes/player/map_screen.gd" id="15_uf5tr"]
 [ext_resource type="Script" uid="uid://by0nyk6gqix6r" path="res://scripts/MapResource.gd" id="16_lgqa7"]
 [ext_resource type="Resource" uid="uid://chondq16l4wwc" path="res://scenes/maps/dm_grove/dm_grove.tres" id="17_8ydkj"]
 [ext_resource type="Resource" uid="uid://cmimeq1g0yskc" path="res://scenes/maps/clementine eagleston yiik/dm_clem.tres" id="18_3j4b4"]
 [ext_resource type="Resource" uid="uid://btspj2d125ql1" path="res://scenes/maps/t_stage/t_stage.tres" id="19_lgqa7"]
+[ext_resource type="Script" uid="uid://dxlnjblv21o87" path="res://scenes/player/multiplayer_menu.gd" id="20_8ydkj"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jt5y5"]
 radius = 2.0
@@ -43,7 +44,7 @@ safe_margin = 0.005
 script = ExtResource("1_qgp6a")
 water_rect = NodePath("UiHandler/player ui/water_tint")
 
-[node name="player" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 layers = 4
 mesh = SubResource("CapsuleMesh_jt5y5")
@@ -194,7 +195,7 @@ custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 texture = ExtResource("3_fd3r2")
 
-[node name="Pause" type="Control" parent="UiHandler" node_paths=PackedStringArray("map_screen")]
+[node name="Pause" type="Control" parent="UiHandler" node_paths=PackedStringArray("map_screen", "multiplayer_menu")]
 visible = false
 layout_mode = 3
 anchor_left = 0.35
@@ -205,6 +206,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_po5os")
 map_screen = NodePath("../MapScreen")
+multiplayer_menu = NodePath("../MultiplayerLobby")
 escapable = false
 metadata/_edit_use_anchors_ = true
 
@@ -246,6 +248,10 @@ text = "Respawn"
 [node name="map" type="Button" parent="UiHandler/Pause/Label/VBoxContainer"]
 layout_mode = 2
 text = "Change Map"
+
+[node name="multiplayerlobby" type="Button" parent="UiHandler/Pause/Label/VBoxContainer"]
+layout_mode = 2
+text = "Host/Join"
 
 [node name="exit" type="Button" parent="UiHandler/Pause/Label/VBoxContainer"]
 layout_mode = 2
@@ -294,10 +300,65 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 8
 
+[node name="MultiplayerLobby" type="Control" parent="UiHandler" node_paths=PackedStringArray("host_Label", "join_TextEdit")]
+layout_mode = 3
+anchor_left = 0.3
+anchor_top = 0.1
+anchor_right = 0.7
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("20_8ydkj")
+host_Label = NodePath("Panel/MarginContainer/VBoxContainer/HostIP")
+join_TextEdit = NodePath("Panel/MarginContainer/VBoxContainer/JoinIP")
+metadata/_custom_type_script = "uid://jptxvp867udf"
+
+[node name="Panel" type="Panel" parent="UiHandler/MultiplayerLobby"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UiHandler/MultiplayerLobby/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.05
+anchor_right = 0.9
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UiHandler/MultiplayerLobby/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Host" type="Button" parent="UiHandler/MultiplayerLobby/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="HostIP" type="Label" parent="UiHandler/MultiplayerLobby/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Join" type="Button" parent="UiHandler/MultiplayerLobby/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join
+"
+
+[node name="JoinIP" type="LineEdit" parent="UiHandler/MultiplayerLobby/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+placeholder_text = "IP:PORT"
+emoji_menu_enabled = false
+
 [connection signal="inv_changed" from="Camera3D/inventory" to="UiHandler/player ui/hotbar/VBoxContainer/CenterContainer/HBoxContainer" method="_on_inventory_inv_changed"]
 [connection signal="pause" from="UiHandler/Pause" to="." method="_on_pause_pause"]
 [connection signal="unpause" from="UiHandler/Pause" to="." method="_on_pause_unpause"]
 [connection signal="pressed" from="UiHandler/Pause/Label/VBoxContainer/resume" to="UiHandler/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="UiHandler/Pause/Label/VBoxContainer/respawn" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="UiHandler/Pause/Label/VBoxContainer/map" to="UiHandler/Pause" method="switch_map"]
+[connection signal="pressed" from="UiHandler/Pause/Label/VBoxContainer/multiplayerlobby" to="UiHandler/Pause" method="switch_multiplayer"]
 [connection signal="pressed" from="UiHandler/Pause/Label/VBoxContainer/exit" to="UiHandler/Pause" method="_on_exit_pressed"]
+[connection signal="pressed" from="UiHandler/MultiplayerLobby/Panel/MarginContainer/VBoxContainer/Host" to="UiHandler/MultiplayerLobby" method="_on_host_pressed"]
+[connection signal="pressed" from="UiHandler/MultiplayerLobby/Panel/MarginContainer/VBoxContainer/Join" to="UiHandler/MultiplayerLobby" method="on_join_pressed"]

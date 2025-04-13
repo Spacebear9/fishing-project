@@ -10,6 +10,8 @@ var held_item: InventoryItem
 
 var moveable = true
 
+var peer_id
+
 #mouse direction
 var mouse_dir: Vector2
 #look sensitivity (scaler for mouse_dir)
@@ -33,15 +35,25 @@ var speed_friction = 165
 
 var knockback = Vector3.ZERO
 
+func _enter_tree():
+	set_multiplayer_authority(peer_id,true)
+
 func _ready():	
+	if !is_multiplayer_authority():
+		var local_mesh:MeshInstance3D = get_node("Mesh")
+		local_mesh.layers = 1000
+		camera.queue_free()
+		view_cam.queue_free()
 	#capture mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(_delta):
+	if !is_multiplayer_authority(): return
 	view_cam.global_transform = camera.global_transform
 
 
 func _physics_process(delta):
+	if !is_multiplayer_authority(): return
 	lateral_vel = Vector2(velocity.x,velocity.z)
 	friction(delta)
 	
@@ -77,6 +89,7 @@ func _physics_process(delta):
 
 
 func _input(event: InputEvent) -> void:
+	if !is_multiplayer_authority(): return
 	if moveable:
 		if event.is_action_pressed("primary_action"):
 			held_item.primary_function()
@@ -90,6 +103,7 @@ func _input(event: InputEvent) -> void:
 				inventory.switch_inventory(i-1)
 
 func _unhandled_input(event: InputEvent):
+	if !is_multiplayer_authority(): return
 	if event is InputEventMouseMotion && moveable:
 		#get mouse direction
 		mouse_dir = event.relative * 0.001
