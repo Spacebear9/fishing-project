@@ -1,33 +1,38 @@
-extends Panel
+extends MenuItem
 var paused = false
 signal pause
 signal unpause
 
+@export var map_screen:MenuItem
+
 func _ready() -> void:
+	super()
 	_unpause()
 
 func _process(delta: float) -> void:
-	if !paused:
-		if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_cancel"):
+		if !paused:
 			_pause()
-	else:
-		if Input.is_action_just_pressed("ui_cancel"):
+		else:
 			_unpause()
 		
 func _pause():
 	paused = true
-	visible = true
+	menu.switch(self)
 	pause.emit()
+	
 	
 func _unpause():
 	paused = false
-	visible = false
+	menu.escape()
 	unpause.emit()
 
-
-func _on_button_pressed() -> void:
-	get_tree().quit()
-
+func switch_map():
+	menu.switch(map_screen)
 
 func _on_resume_pressed() -> void:
 	_unpause()
+
+
+func _on_exit_pressed() -> void:
+	get_tree().quit()

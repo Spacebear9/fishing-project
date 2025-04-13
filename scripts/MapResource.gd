@@ -1,0 +1,50 @@
+@tool
+extends Resource
+class_name MapResource
+@export var MapPackedScene: PackedScene:
+	set(new_map):
+		MapPackedScene = new_map
+		if Engine.is_editor_hint():
+			read_map_properties()
+@export_category("Settings")
+@export_tool_button("Read Properties from MapPackedScene") var read_map_properties_button = read_map_properties
+@export var SpawnPointPackedScene: PackedScene = load("uid://bdlnkqvpjo6dr")
+@export var UseMapNameFromRootNode: bool = true
+@export_category("MapProperties")
+@export_storage var _map_name: String
+@export var MapName: String:
+	get:
+		return _map_name
+	set(new_name):
+		if !UseMapNameFromRootNode:
+			_internal_set_map_name(new_name)
+@export var MapScreenshot: CompressedTexture2D
+@export var SpawnPointArray: Array[NodePath] = []
+func _internal_set_map_name(new_name: String):
+	_map_name = new_name
+	notify_property_list_changed()
+
+func read_map_properties():
+	if MapPackedScene == null:
+		return
+	SpawnPointArray.clear()
+	var mapInstance: SceneState = MapPackedScene.get_state()
+	var found_root_name = false 
+	for i in range(mapInstance.get_node_count()):
+		if UseMapNameFromRootNode and !found_root_name and mapInstance.get_node_path(i) == NodePath("."):
+			_internal_set_map_name(mapInstance.get_node_name(i))
+			found_root_name = true
+		if mapInstance.get_node_instance(i)==SpawnPointPackedScene:
+			SpawnPointArray.append(mapInstance.get_node_path(i))
+	notify_property_list_changed()
+	emit_changed()
+	ResourceSaver.save(self)
+	
+
+func recurivelygetchildren(node: Node)-> Array[Node]:
+	var children: Array[Node] = []
+	for child in node.get_children():
+		children.append(child)
+		if child.get_child_count() > 0:
+			children += recurivelygetchildren(child)
+	return children

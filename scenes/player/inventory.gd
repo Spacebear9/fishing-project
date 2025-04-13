@@ -5,7 +5,8 @@ signal inv_changed
 
 
 @export var weaponid:Dictionary[InventoryResource,float] = {} 
-var inventory = []
+
+var inventory: Array
 
 func _ready():
 	inventory.append(load("res://scenes/rod/rod.tscn"))

@@ -31,11 +31,11 @@ func _ready() -> void:
 		edit_update()
 	update()
 	add_child(plane_child)
-	
-	var timer = Timer.new()
-	timer.connect("timeout",spawn_fish)
-	add_child(timer)
-	timer.start(0.01)
+	if not Engine.is_editor_hint():
+		var timer = Timer.new()
+		timer.connect("timeout",spawn_fish)
+		add_child(timer)
+		timer.start(0.01)
 
 
 func _process(delta: float) -> void:
@@ -49,9 +49,10 @@ func _process(delta: float) -> void:
 var spawned_fish:Array[WorldFish]
 func spawn_fish():
 	if can_spawn():
-		var spawning = WorldFish.new(spawnable_fish[randi_range(0,spawnable_fish.size())-1],spawn_bounds,get_random())
-		add_child(spawning)
-		spawned_fish.append(spawning)
+		if spawnable_fish.size() > 0:
+			var spawning = WorldFish.new(spawnable_fish[randi_range(0,spawnable_fish.size())-1],spawn_bounds,get_random())
+			add_child(spawning)
+			spawned_fish.append(spawning)
 
 func can_spawn():
 	if spawned_fish.size() < 3:

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MapResource" load_steps=5 format=3 uid="uid://cmimeq1g0yskc"]
+
+[ext_resource type="PackedScene" uid="uid://d2rva882mewlb" path="res://scenes/maps/clementine eagleston yiik/DM_Clem.tscn" id="1_u7kts"]
+[ext_resource type="PackedScene" uid="uid://bdlnkqvpjo6dr" path="res://scenes/maps/map_objects/SpawnPoint/SpawnPoint.tscn" id="2_h8a7e"]
+[ext_resource type="Texture2D" uid="uid://beqnh5yifynuu" path="res://scenes/maps/clementine eagleston yiik/Screenshot 2025-04-08 172355.png" id="2_qyyap"]
+[ext_resource type="Script" uid="uid://by0nyk6gqix6r" path="res://scripts/MapResource.gd" id="3_qyyap"]
+
+[resource]
+script = ExtResource("3_qyyap")
+MapPackedScene = ExtResource("1_u7kts")
+SpawnPointPackedScene = ExtResource("2_h8a7e")
+UseMapNameFromRootNode = true
+_map_name = "DM_Clem"
+MapName = "DM_Clem"
+MapScreenshot = ExtResource("2_qyyap")
+SpawnPointArray = Array[NodePath]([NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4")])
+metadata/_custom_type_script = "uid://by0nyk6gqix6r"

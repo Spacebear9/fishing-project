@@ -164,3 +164,6 @@ func _on_pause_pause() -> void:
 func _on_pause_unpause() -> void:
 	moveable = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func _on_button_pressed() -> void:
+	auto.respawn_player(self)

@@ -21,11 +21,3 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="t_root" type="Node3D"]
-
-[node name="t_environment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_wdvov")
-
-[node name="t_sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.291762, 0.945278, -0.146028, -0.738131, 0.31961, 0.594148, 0.608307, -0.0655626, 0.79099, 0, 0, 0)
-shadow_enabled = true
-directional_shadow_max_distance = 500.0
