@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://thvsuqtfi6m7" path="res://scripts/InventoryItem/inventory_item.gd" id="1_6go8e"]
 [ext_resource type="ArrayMesh" uid="uid://iboklj1suao5" path="res://scenes/fish/bass/bass.obj" id="1_yi38g"]
-
 [ext_resource type="Texture2D" uid="uid://dhn06q0f0gpas" path="res://scenes/fish/bass/bass.png" id="2_quo2e"]
 [ext_resource type="Resource" uid="uid://c1dwd1cuo0e1o" path="res://scenes/fish/bass/bassInventoryResource.tres" id="4_qx407"]
 

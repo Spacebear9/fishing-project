@@ -1,9 +1,12 @@
 extends Node3D
 class_name InventoryItem
 
+var inventory:PlayerInventory
 var player: Player
 @export var Inventoryresource : InventoryResource
 var icon : Texture2D
+
+
 
 #vars brought over from Gun
 var camera: Camera3D
@@ -19,6 +22,10 @@ enum action_phases{
 
 
 func _ready():
+	if get_parent() is PlayerInventory:
+		inventory = get_parent()
+	else:
+		printerr('inventory_item.gd could not find PlayerInventory')
 	player = auto.get_current_player()
 	
 	camera = player.get_node("Camera3D")
@@ -50,8 +57,8 @@ func _process(delta: float) -> void:
 					
 			for ability in action.abilities:
 				if ability is AbilityProjectile:
-					if (get_parent() as PlayerInventory).weaponid[Inventoryresource] == 0:
-						(get_parent() as PlayerInventory).weaponid[Inventoryresource] = Inventoryresource.cooldown
+					if (get_parent() as PlayerInventory).weapon_data[Inventoryresource][0] == 0:
+						(get_parent() as PlayerInventory).weapon_data[Inventoryresource][0] = Inventoryresource.cooldown
 						_fire_projectile(fire_point.global_position,auto.ScreenPointToRay(camera,1,[player.get_rid()]),ability)
 				else:
 					unknown_ability(ability,phase)

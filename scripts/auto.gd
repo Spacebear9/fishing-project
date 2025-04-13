@@ -19,6 +19,7 @@ func load_map(map:MapResource):
 	add_child(MapNode)
 	var player = player_TEMP.instantiate()
 	players_active.append(player)
+	add_child(player)
 	respawn_player(player)
 
 func unload_all():

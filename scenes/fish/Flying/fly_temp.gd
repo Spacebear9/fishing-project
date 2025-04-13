@@ -9,6 +9,7 @@ var time = 0
 var state = states.air
 
 func _process(delta: float) -> void:
+	time =-inventory.weapon_data[Inventoryresource][1] + 2 
 	super(delta)
 	print(time)
 	
@@ -25,6 +26,7 @@ func _process(delta: float) -> void:
 			time -= delta
 			if time <= 0:
 				_unhover()
+	inventory.weapon_data[Inventoryresource][1] = -time + 2
 
 func unknown_ability(ability:Ability,phase:int):
 	if phase == action_phases.start:

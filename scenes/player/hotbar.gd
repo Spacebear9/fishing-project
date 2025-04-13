@@ -9,10 +9,10 @@ func _ready():
 	_set_hotbar()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	for icon in icons:
-		icon.material.set_shader_parameter("percent",1 - inv_get.weaponid[icons[icon]])
+		icon.material.set_shader_parameter("percent",1 - (inv_get.weapon_data[icons[icon]][icons[icon].cooldown_display]/icons[icon].cooldown))
+
 func _set_hotbar():
 	icons.clear()
 	for child in get_children():

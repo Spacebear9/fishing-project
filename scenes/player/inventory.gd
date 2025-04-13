@@ -4,7 +4,7 @@ class_name PlayerInventory
 signal inv_changed
 
 
-@export var weaponid:Dictionary[InventoryResource,float] = {} 
+@export var weapon_data:Dictionary[InventoryResource,Array] = {} 
 
 var inventory: Array
 
@@ -16,9 +16,9 @@ func _ready():
 	switch_inventory(0)
 
 func _process(delta: float) -> void:
-	for fishie in weaponid:
-		weaponid[fishie] -= delta
-		weaponid[fishie] = clamp(weaponid[fishie],0,INF)
+	for fishie in weapon_data:
+		weapon_data[fishie][0] -= delta
+		weapon_data[fishie][0] = clamp(weapon_data[fishie][0],0,INF)
 		
 
 func switch_next():

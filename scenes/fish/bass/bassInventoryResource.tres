@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="InventoryResource" load_steps=12 format=3 uid="uid://c1dwd1cuo0e1o"]
 
 [ext_resource type="Texture2D" uid="uid://cg66csa8swm8o" path="res://scenes/fish/bass/bassicon.png" id="1_pwm6a"]
-[ext_resource type="Script" uid="uid://62wu7p0fp1na" path="res://scripts/InventoryItem/resources/ability_input_resource.gd" id="2_b2b72"]
+[ext_resource type="Script" path="res://scripts/InventoryItem/resources/ability_input_resource.gd" id="2_b2b72"]
 [ext_resource type="Script" uid="uid://coj1prtxw5r7r" path="res://scripts/InventoryItem/resources/InventoryResource.gd" id="2_b3dgx"]
-[ext_resource type="Script" uid="uid://gvuqcphlh5op" path="res://scripts/InventoryItem/resources/ability_resource.gd" id="2_h68sf"]
+[ext_resource type="Script" path="res://scripts/InventoryItem/resources/ability_resource.gd" id="2_h68sf"]
 [ext_resource type="Script" uid="uid://ccsgsm44hmb40" path="res://scripts/InventoryItem/resources/projectile_effect.gd" id="3_b2b72"]
-[ext_resource type="Script" uid="uid://bw7q2jeu7dyib" path="res://scripts/InventoryItem/resources/ability_projectile.gd" id="4_4hns3"]
+[ext_resource type="Script" path="res://scripts/InventoryItem/resources/ability_projectile.gd" id="4_4hns3"]
 
 [sub_resource type="Curve" id="Curve_4hns3"]
 _limits = [0.0, 1.0, 0.0, 20.0]
