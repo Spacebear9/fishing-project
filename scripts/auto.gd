@@ -1,4 +1,5 @@
 extends Node3D
+
 const gravity = 2
 var root:Node
 
@@ -17,8 +18,8 @@ func load_map(map:MapResource):
 	MapNode = map.MapPackedScene.instantiate()
 	add_child(MapNode)
 	var player = player_TEMP.instantiate()
-	add_child(player)
 	players_active.append(player)
+	add_child(player)
 	respawn_player(player)
 
 func unload_all():
@@ -105,6 +106,10 @@ func recurivelygetchildren(node: Node)-> Array[Node]:
 #TEMP REPLACE LATER!!!!
 func get_players() -> Array[Player]:
 	return players_active
+
+func get_current_player() -> Player:
+	return players_active[0]
+
 func respawn_player(player_to_spawn:Player):
 	var respawn_point_list:Array[SpawnPoint]
 	for respawnpointNodePath in mapResource.SpawnPointArray:

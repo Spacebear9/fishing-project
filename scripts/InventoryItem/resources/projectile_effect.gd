@@ -1,4 +1,4 @@
 extends Resource
-class_name ProjectileEffect
+class_name AnimationEffect
 
 #make better later

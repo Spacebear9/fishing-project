@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="InventoryResource" load_steps=16 format=3 uid="uid://6bjjbvs0io78"]
+
+[ext_resource type="Script" path="res://scripts/InventoryItem/resources/ability_input_resource.gd" id="1_g3fi3"]
+[ext_resource type="Script" path="res://scripts/InventoryItem/resources/ability_resource.gd" id="2_hva2e"]
+[ext_resource type="Script" uid="uid://ccsgsm44hmb40" path="res://scripts/InventoryItem/resources/projectile_effect.gd" id="3_x6u4j"]
+[ext_resource type="Script" path="res://scripts/InventoryItem/resources/ability_projectile.gd" id="4_1lvvq"]
+[ext_resource type="Script" uid="uid://dt13047dppre5" path="res://scripts/InventoryItem/resources/ability_hover.gd" id="5_qghap"]
+[ext_resource type="Script" uid="uid://coj1prtxw5r7r" path="res://scripts/InventoryItem/resources/InventoryResource.gd" id="6_52ja7"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k7fek"]
+load_path = "res://.godot/imported/flyicon.png-5465a1e09fabb0f5103af4f08dfde297.ctex"
+
+[sub_resource type="Curve" id="Curve_4hns3"]
+_limits = [0.0, 1.0, 0.0, 20.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(20, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_jbwbh"]
+
+[sub_resource type="Resource" id="Resource_n48gn"]
+script = ExtResource("4_1lvvq")
+mesh = SubResource("SphereMesh_jbwbh")
+speed = 10.0
+aoe_radius = 5.0
+knockback = 25.0
+knockback_falloff = SubResource("Curve_4hns3")
+effects = Array[ExtResource("3_x6u4j")]([])
+metadata/_custom_type_script = "uid://bw7q2jeu7dyib"
+
+[sub_resource type="InputEventAction" id="InputEventAction_u8see"]
+action = &"primary_action"
+
+[sub_resource type="Resource" id="Resource_2d01v"]
+script = ExtResource("1_g3fi3")
+input_action = SubResource("InputEventAction_u8see")
+input_type = 0
+abilities = Array[ExtResource("2_hva2e")]([SubResource("Resource_n48gn")])
+metadata/_custom_type_script = "uid://62wu7p0fp1na"
+
+[sub_resource type="Resource" id="Resource_2lc5u"]
+script = ExtResource("5_qghap")
+gravity = 2.0
+terminal_vel = 10.0
+air_accel = 70.0
+time = 1.0
+recovery_rate = 2.5
+effects = Array[ExtResource("3_x6u4j")]([])
+metadata/_custom_type_script = "uid://dt13047dppre5"
+
+[sub_resource type="InputEventAction" id="InputEventAction_n48gn"]
+action = &"movement_jump"
+
+[sub_resource type="Resource" id="Resource_jv2qq"]
+script = ExtResource("1_g3fi3")
+input_action = SubResource("InputEventAction_n48gn")
+input_type = 2
+abilities = Array[ExtResource("2_hva2e")]([SubResource("Resource_2lc5u")])
+metadata/_custom_type_script = "uid://62wu7p0fp1na"
+
+[resource]
+script = ExtResource("6_52ja7")
+Name = "Blunder Bass"
+Icon = SubResource("CompressedTexture2D_k7fek")
+cooldown = 0.25
+actions = Array[ExtResource("1_g3fi3")]([SubResource("Resource_2d01v"), SubResource("Resource_jv2qq")])
+metadata/_custom_type_script = "uid://coj1prtxw5r7r"

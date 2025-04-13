@@ -1,7 +1,7 @@
 extends RayCast3D
 class_name Bullet
 
-var res:ProjectileRes
+var res:AbilityProjectile
 
 var target:Vector3
 var travel:Vector3
@@ -10,7 +10,7 @@ const travel_div = 0.001
 
 var moving = true
 var explode_immediatly
-func _init(_res:ProjectileRes,_pos:Vector3,_target:Vector3, _explode_immediatly:bool = false):
+func _init(_res:AbilityProjectile,_pos:Vector3,_target:Vector3, _explode_immediatly:bool = false):
 	res = _res
 	target_position = _pos
 	target = _target
@@ -64,14 +64,14 @@ func damage(pos:Vector3):
 	await get_tree().physics_frame
 	if explode_immediatly:
 		await get_tree().physics_frame
-	print(collision.global_position)
-	print(area.get_overlapping_bodies())
+	#print(collision.global_position)
+	#print(area.get_overlapping_bodies())
 	for collide:PhysicsBody3D in area.get_overlapping_bodies():
 		if collide is Player:
 			#print(res.knockback_falloff.sample(pos.distance_to(collide.position))," , ",pos.distance_to(collide.position))
 			var player:Player = collide
 			player.knockback += pos.direction_to(player.camera.global_position) * res.knockback_falloff.sample(pos.distance_to(collide.position)) * res.knockback
-			print(pos.direction_to(player.position),',',player.knockback)
+			#print(pos.direction_to(player.position),',',player.knockback)
 	#var meshinst = MeshInstance3D.new()
 	#var mesh2 = SphereMesh.new()
 	#mesh2.height = res.aoe_radius*2
