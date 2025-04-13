@@ -64,25 +64,10 @@ func damage(pos:Vector3):
 	await get_tree().physics_frame
 	if explode_immediatly:
 		await get_tree().physics_frame
-	#print(collision.global_position)
-	#print(area.get_overlapping_bodies())
 	for collide:PhysicsBody3D in area.get_overlapping_bodies():
 		if collide is Player:
-			#print(res.knockback_falloff.sample(pos.distance_to(collide.position))," , ",pos.distance_to(collide.position))
 			var player:Player = collide
 			player.knockback += pos.direction_to(player.camera.global_position) * res.knockback_falloff.sample(pos.distance_to(collide.position)) * res.knockback
-			#print(pos.direction_to(player.position),',',player.knockback)
-	#var meshinst = MeshInstance3D.new()
-	#var mesh2 = SphereMesh.new()
-	#mesh2.height = res.aoe_radius*2
-	#mesh2.radius = res.aoe_radius
-	#meshinst.mesh = mesh2
-	#auto.add_child(meshinst)
-	#meshinst.global_position = pos
-	#var mat = StandardMaterial3D.new()
-	#meshinst.set_surface_override_material(0,mat)
-	#mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	#mat.albedo_color = Color(1.0,0.5,0.5,0.2)
 	effect_explode(pos)
 
 func effect_explode(pos:Vector3):
