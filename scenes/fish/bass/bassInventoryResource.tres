@@ -39,5 +39,6 @@ script = ExtResource("2_b3dgx")
 Name = "Blunder Bass"
 Icon = ExtResource("1_pwm6a")
 cooldown = 1.0
+cooldown_display = 0
 actions = Array[ExtResource("2_b2b72")]([SubResource("Resource_jbwbh")])
 metadata/_custom_type_script = "uid://coj1prtxw5r7r"

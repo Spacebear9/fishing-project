@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/InventoryItem/resources/ability_resource.gd" id="2_hva2e"]
 [ext_resource type="Script" uid="uid://ccsgsm44hmb40" path="res://scripts/InventoryItem/resources/projectile_effect.gd" id="3_x6u4j"]
 [ext_resource type="Script" path="res://scripts/InventoryItem/resources/ability_projectile.gd" id="4_1lvvq"]
-[ext_resource type="Script" path="res://scripts/InventoryItem/resources/ability_hover.gd" id="5_qghap"]
+[ext_resource type="Script" uid="uid://dt13047dppre5" path="res://scripts/InventoryItem/resources/ability_hover.gd" id="5_qghap"]
 [ext_resource type="Script" uid="uid://coj1prtxw5r7r" path="res://scripts/InventoryItem/resources/InventoryResource.gd" id="6_52ja7"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k7fek"]
@@ -42,7 +42,8 @@ script = ExtResource("5_qghap")
 gravity = 2.0
 terminal_vel = 10.0
 air_accel = 70.0
-time = 2.0
+time = 1.0
+recovery_rate = 2.5
 effects = Array[ExtResource("3_x6u4j")]([])
 metadata/_custom_type_script = "uid://dt13047dppre5"
 
@@ -60,8 +61,6 @@ metadata/_custom_type_script = "uid://62wu7p0fp1na"
 script = ExtResource("6_52ja7")
 Name = "Blunder Bass"
 Icon = SubResource("CompressedTexture2D_k7fek")
-cooldown = 2.0
-cooldown_display = 1
-cooldown_invert = 1
+cooldown = 0.25
 actions = Array[ExtResource("1_g3fi3")]([SubResource("Resource_2d01v"), SubResource("Resource_jv2qq")])
 metadata/_custom_type_script = "uid://coj1prtxw5r7r"

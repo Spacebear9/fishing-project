@@ -1,6 +1,7 @@
 extends HBoxContainer
+class_name Hotbar
 
-var icons: Dictionary[TextureRect,InventoryResource]
+var icons: Dictionary[InventoryResource,TextureRect]
 var inv_get: PlayerInventory
 @export var player: Player
 func _ready():
@@ -9,9 +10,8 @@ func _ready():
 	_set_hotbar()
 
 
-func _process(delta):
-	for icon in icons:
-		icon.material.set_shader_parameter("percent",1 - (inv_get.weapon_data[icons[icon]][icons[icon].cooldown_display]/icons[icon].cooldown))
+func set_percent(percent:float,res:InventoryResource):
+	icons[res].material.set_shader_parameter("percent",percent)
 
 func _set_hotbar():
 	icons.clear()
@@ -25,10 +25,10 @@ func _set_hotbar():
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		if slot == inv_get.selected:
 			label.label_settings.font_color = Color.RED
-		var inventoryitem:InventoryItem = inv_get.inventory[slot].instantiate();
+		var inventoryitem:InventoryItem = inv_get.inventory[slot];
 		var icon = inventoryitem.get_icon()
 		var rect = TextureRect.new()
-		icons[rect] = inventoryitem.Inventoryresource
+		icons[inventoryitem.Inventoryresource] = rect
 		rect.material = load("uid://dq02w0vu74cxg").duplicate()
 		rect.texture = icon
 		rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE

@@ -2,9 +2,11 @@ extends CharacterBody3D
 class_name Player
 
 @export var anim: AnimationPlayer
+@export var hotbar: Hotbar
 @onready var inventory = $Camera3D/inventory
 @onready var camera:Camera3D = $Camera3D
 @onready var view_cam = $Camera3D/SubViewportContainer/SubViewport/view_cam
+
 
 var held_item: InventoryItem
 

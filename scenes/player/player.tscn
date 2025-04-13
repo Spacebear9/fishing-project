@@ -1,16 +1,12 @@
-[gd_scene load_steps=26 format=3 uid="uid://iddn68oqxoub"]
+[gd_scene load_steps=22 format=3 uid="uid://iddn68oqxoub"]
 
 [ext_resource type="Script" uid="uid://cn62rgertaw0i" path="res://scenes/player/player.gd" id="1_qgp6a"]
 [ext_resource type="Script" uid="uid://c56uu60ufdww8" path="res://scenes/player/inventory.gd" id="3_elx3b"]
 [ext_resource type="Texture2D" uid="uid://b03smyw2q6qtw" path="res://misc textures/crosshair.png" id="3_fd3r2"]
-[ext_resource type="Script" uid="uid://coj1prtxw5r7r" path="res://scripts/InventoryItem/resources/InventoryResource.gd" id="3_je7p5"]
 [ext_resource type="Script" uid="uid://cx4cm4kmccjkf" path="res://scenes/player/SubViewport.gd" id="3_x4mqh"]
 [ext_resource type="Script" uid="uid://8tanpy5bogwb" path="res://scenes/player/speedometer.gd" id="4_7mblk"]
-[ext_resource type="Resource" uid="uid://c1dwd1cuo0e1o" path="res://scenes/fish/bass/bassInventoryResource.tres" id="4_fm80t"]
 [ext_resource type="Script" uid="uid://ywme1tip8d12" path="res://scenes/player/hotbar.gd" id="4_jyruq"]
 [ext_resource type="Script" uid="uid://doxerreythe8d" path="res://scenes/player/pause.gd" id="4_po5os"]
-[ext_resource type="Resource" uid="uid://d4nupba4hb3u8" path="res://scenes/rod/RodResource.tres" id="5_fm80t"]
-[ext_resource type="Resource" uid="uid://6bjjbvs0io78" path="res://scenes/fish/Flying/fly_temp.tres" id="6_8ydkj"]
 [ext_resource type="Script" uid="uid://d1ceuh6rofeg5" path="res://scenes/player/compass.gd" id="6_f36jn"]
 [ext_resource type="Script" uid="uid://emdd47moljkt" path="res://scripts/ui_handler.gd" id="7_gx1jg"]
 [ext_resource type="Script" uid="uid://io3ork63gyyc" path="res://scenes/player/crosshair.gd" id="8_7rqjo"]
@@ -38,11 +34,13 @@ oversampling = 10.0
 font = SubResource("SystemFont_uf5tr")
 font_size = 35
 
-[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("water_rect")]
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("hotbar", "water_rect")]
 collision_layer = 5
 safe_margin = 0.005
 script = ExtResource("1_qgp6a")
+hotbar = NodePath("UiHandler/player ui/hotbar/VBoxContainer/CenterContainer/HBoxContainer")
 water_rect = NodePath("UiHandler/player ui/water_tint")
+use_water_effects = null
 
 [node name="player" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
@@ -62,11 +60,6 @@ fov = 90.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 script = ExtResource("3_elx3b")
 player = NodePath("../..")
-weapon_data = Dictionary[ExtResource("3_je7p5"), Array]({
-ExtResource("5_fm80t"): [0.0],
-ExtResource("4_fm80t"): [0.0],
-ExtResource("6_8ydkj"): [0.0, 0.0]
-})
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="Camera3D"]
 visible = false

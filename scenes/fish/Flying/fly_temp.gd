@@ -8,10 +8,12 @@ enum states{
 var time = 0
 var state = states.air
 
+func _ready() -> void:
+	super()
+	time = Inventoryresource.actions[1].abilities[0].time
+
 func _process(delta: float) -> void:
-	time =-inventory.weapon_data[Inventoryresource][1] + 2 
 	super(delta)
-	print(time)
 	
 	if player.is_on_floor() && state != states.ground:
 		state = states.ground
@@ -20,13 +22,13 @@ func _process(delta: float) -> void:
 	
 	match state:
 		states.ground:
-			time = Inventoryresource.actions[1].abilities[0].time
+			time += delta * Inventoryresource.actions[1].abilities[0].recovery_rate
+			time = clamp(time,0,Inventoryresource.actions[1].abilities[0].time)
 		states.flying:
 			
 			time -= delta
 			if time <= 0:
 				_unhover()
-	inventory.weapon_data[Inventoryresource][1] = -time + 2
 
 func unknown_ability(ability:Ability,phase:int):
 	if phase == action_phases.start:
@@ -37,6 +39,8 @@ func unknown_ability(ability:Ability,phase:int):
 func end_effects():
 	_unhover()
 
+func write_cooldown():
+	player.hotbar.set_percent(time/Inventoryresource.actions[1].abilities[0].time,Inventoryresource)
 
 func _hover(res:AbilityHover):
 	state = states.flying
