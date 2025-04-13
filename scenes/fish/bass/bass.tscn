@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://cetq5vqqfalmj"]
 
 [ext_resource type="ArrayMesh" uid="uid://iboklj1suao5" path="res://scenes/fish/bass/bass.obj" id="1_yi38g"]
-[ext_resource type="Script" path="res://scripts/InventoryItem/resources/projectile_effect.gd" id="2_hxisb"]
+[ext_resource type="Script" uid="uid://ccsgsm44hmb40" path="res://scripts/InventoryItem/resources/projectile_effect.gd" id="2_hxisb"]
 [ext_resource type="Texture2D" uid="uid://dhn06q0f0gpas" path="res://scenes/fish/bass/bass.png" id="2_quo2e"]
 [ext_resource type="Script" uid="uid://b0as1vjfx02hu" path="res://scripts/InventoryItem/gun_projectile.gd" id="3_cfoaw"]
 [ext_resource type="Script" uid="uid://cebfthoqbtbtc" path="res://scripts/InventoryItem/resources/projectile_res.gd" id="3_os7gm"]
