@@ -7,16 +7,13 @@ var player_TEMP = load("res://scenes/player/player.tscn")
 var players_active: Dictionary[int,Player] = {}
 var MapNode: Node
 var local_MultiplayerSpawner: MultiplayerSpawner
-var local_MultiplayerSynchronizer: MultiplayerSynchronizer
 func _ready():
 	root = get_tree().root
 	local_MultiplayerSpawner = MultiplayerSpawner.new()
 	add_child(local_MultiplayerSpawner)
 	local_MultiplayerSpawner.add_spawnable_scene("res://scenes/player/player.tscn")
 	local_MultiplayerSpawner.spawn_path=local_MultiplayerSpawner.get_path()
-	local_MultiplayerSynchronizer = MultiplayerSynchronizer.new()
-	add_child(local_MultiplayerSynchronizer)
-	local_MultiplayerSynchronizer.replication_config = SceneReplicationConfig.new()
+	local_MultiplayerSpawner.spawn_function = custom_spawn_function
 	load_map(mapResource)
 
 #temp will need to change with multiplayer
@@ -139,25 +136,26 @@ func join_server(ip:String):
 	host = false
 	if get_client_player():
 		get_client_player().queue_free()
-	players_active.clear()
-	eNetPeer.close()
 	eNetPeer.generate_unique_id()
 	eNetPeer.create_client(ip, MULTIPLAYER_PORT)
 	multiplayer.multiplayer_peer = eNetPeer
-	print(get_client_player())
 	add_player(multiplayer.get_unique_id())
 func add_player(peer_id:int):
-	print(multiplayer.get_unique_id())
+	if !multiplayer.is_server():
+		return
+	print(str(multiplayer.get_unique_id())+" " +str(peer_id))
 	var player:Player = player_TEMP.instantiate()
 	player.peer_id = peer_id
+	player.name = str(peer_id)
 	local_MultiplayerSpawner.add_child(player)
 	players_active[peer_id] = player
-	#player.set_multiplayer_authority(peer_id)
-	var changed_SceneReplicationConfig: SceneReplicationConfig = local_MultiplayerSynchronizer.replication_config
-	changed_SceneReplicationConfig.add_property(str(player.get_path())+":rotation")
-	changed_SceneReplicationConfig.add_property(str(player.get_path())+":position")
-	local_MultiplayerSynchronizer.replication_config = changed_SceneReplicationConfig
 	respawn_player(player)
+func custom_spawn_function(data: Array[Variant]):
+	if !multiplayer.is_server():
+		return
+	if data[0] == "bullet":
+		var bullet:Bullet = Bullet.new(data[1],data[2],data[3],data[4])
+		return bullet
 func start_offline():
 	load_map(mapResource)
 	var player:Player = player_TEMP.instantiate()

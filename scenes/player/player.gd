@@ -36,15 +36,16 @@ var speed_friction = 165
 var knockback = Vector3.ZERO
 
 func _enter_tree():
-	set_multiplayer_authority(peer_id,true)
+	set_multiplayer_authority(int(name),true)
 
 func _ready():	
 	if !is_multiplayer_authority():
 		var local_mesh:MeshInstance3D = get_node("Mesh")
 		local_mesh.layers = 1000
-		camera.queue_free()
-		view_cam.queue_free()
+		return
 	#capture mouse
+	camera.current=true
+	#view_cam.current =true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(_delta):
@@ -147,12 +148,15 @@ func exit_water():
 		water_rect.visible = false
 
 func _on_pause_pause() -> void:
+	if !is_multiplayer_authority(): return
 	moveable = false
 	input_vec = Vector2.ZERO
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 func _on_pause_unpause() -> void:
+	if !is_multiplayer_authority(): return
 	moveable = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _on_button_pressed() -> void:
+	if !is_multiplayer_authority(): return
 	auto.respawn_player(self)
