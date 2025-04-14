@@ -17,8 +17,8 @@ func _fire(launch: Vector3, target: Vector3):
 	var result = space_state.intersect_ray(ray_query)
 	var explode_immediatly = (result.size() > 0)
 	if explode_immediatly:
-		auto.root.add_child(Bullet.new(projectileresource, result["position"], target, explode_immediatly))
+		auto.local_MultiplayerSpawner.add_child(Bullet.new(projectileresource, result["position"], target, explode_immediatly))
 	else:
-		auto.root.add_child(Bullet.new(projectileresource, launch, target, explode_immediatly))
+		auto.local_MultiplayerSpawner.add_child(Bullet.new(projectileresource, launch, target, explode_immediatly))
 func get_icon():
 	return Inventoryresource.Icon

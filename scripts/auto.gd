@@ -21,20 +21,10 @@ func _ready():
 
 #temp will need to change with multiplayer
 func load_map(map:MapResource):
-	#unload_all()
+	if MapNode:
+		MapNode.queue_free()
 	MapNode = map.MapPackedScene.instantiate()
 	add_child(MapNode)
-	host_server()
-
-func unload_all():
-	for c in get_children():
-		c.queue_free()
-	for n in root.get_children():
-		if n != self and n is not MultiplayerSpawner and n is not MultiplayerSynchronizer:
-			n.queue_free()
-	players_active.clear()
-	
-	
 	
 func line(pos1: Vector3, pos2: Vector3, color = Color.BLACK,time = 1,on_top = true):
 	var mesh_instance := MeshInstance3D.new()
@@ -71,7 +61,6 @@ func curve_length(pos1: Vector3, pos2: Vector3,pos3: Vector3, detail: float):
 	return sum
 func pCurve(pos1: Vector3, pos2: Vector3, pos3: Vector3, weight: float):
 	return lerp(lerp(pos1,pos3,weight),lerp(pos3,pos2,weight),weight)
-
 func ScreenPointToRay(camera: Camera3D, mask = 0b00000000_00000000_00000000_00000010, exclude = null, return_full = false):
 	var spaceState = get_world_3d().direct_space_state
 	#var mousePos = Vector2(get_viewport().get_visible_rect().size.x/2,get_viewport().get_visible_rect().size.y/2)
@@ -88,7 +77,6 @@ func ScreenPointToRay(camera: Camera3D, mask = 0b00000000_00000000_00000000_0000
 	if rayArray.has("position"):
 		return rayArray["position"]
 	return rayEnd
-
 func get_angle(vector: Vector2):
 	if vector == Vector2.ZERO:
 		return 0
@@ -99,7 +87,6 @@ func get_angle(vector: Vector2):
 	if vector.x < 0:
 		return atan2(vector.y,vector.x) - (PI)
 	return 0
-	
 func recurivelygetchildren(node: Node)-> Array[Node]:
 	var children = []
 	for child in node.get_children():
@@ -107,6 +94,8 @@ func recurivelygetchildren(node: Node)-> Array[Node]:
 		if child.get_child_count() > 0:
 			children += recurivelygetchildren(child)
 	return children
+
+
 #TEMP REPLACE LATER!!!!
 func get_players() -> Dictionary[int,Player]:
 	return players_active
@@ -148,7 +137,8 @@ func host_server():
 	return "abc"
 func join_server(ip:String): 
 	host = false
-	get_client_player().queue_free()
+	if get_client_player():
+		get_client_player().queue_free()
 	players_active.clear()
 	eNetPeer.close()
 	eNetPeer.generate_unique_id()
@@ -167,4 +157,11 @@ func add_player(peer_id:int):
 	changed_SceneReplicationConfig.add_property(str(player.get_path())+":rotation")
 	changed_SceneReplicationConfig.add_property(str(player.get_path())+":position")
 	local_MultiplayerSynchronizer.replication_config = changed_SceneReplicationConfig
+	respawn_player(player)
+func start_offline():
+	load_map(mapResource)
+	var player:Player = player_TEMP.instantiate()
+	player.peer_id = multiplayer.get_unique_id()
+	local_MultiplayerSpawner.add_child(player)
+	players_active[multiplayer.get_unique_id()] = player
 	respawn_player(player)

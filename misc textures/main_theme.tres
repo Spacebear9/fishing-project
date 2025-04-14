@@ -1,0 +1,18 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://fxlv3jhg5u2u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i8fno"]
+bg_color = Color(3.27289e-06, 0.317303, 0.614959, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w48bi"]
+bg_color = Color(9.32533e-08, 0.0549843, 0.142917, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_pa6ya"]
+font_names = PackedStringArray("MS Gothic")
+multichannel_signed_distance_field = true
+oversampling = 5.0
+
+[resource]
+default_font = SubResource("SystemFont_pa6ya")
+default_font_size = 0
+Button/styles/normal = SubResource("StyleBoxFlat_i8fno")
+Panel/styles/panel = SubResource("StyleBoxFlat_w48bi")

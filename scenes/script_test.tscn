@@ -1,3 +1,72 @@
-[gd_scene format=3 uid="uid://djpqurr4nitlw"]
+[gd_scene load_steps=3 format=3 uid="uid://djpqurr4nitlw"]
+
+[ext_resource type="Theme" uid="uid://fxlv3jhg5u2u" path="res://misc textures/main_theme.tres" id="1_53640"]
+[ext_resource type="Script" uid="uid://dxlnjblv21o87" path="res://scenes/player/multiplayer_menu.gd" id="1_ljy5a"]
 
 [node name="t_root" type="Node3D"]
+
+[node name="MultiplayerLobby" type="Control" parent="." node_paths=PackedStringArray("host_Label", "join_TextEdit")]
+layout_mode = 3
+anchor_left = 0.3
+anchor_top = 0.1
+anchor_right = 0.7
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_53640")
+script = ExtResource("1_ljy5a")
+host_Label = NodePath("Panel/MarginContainer/VBoxContainer/HostIP")
+join_TextEdit = NodePath("Panel/MarginContainer/VBoxContainer/JoinIP")
+metadata/_custom_type_script = "uid://jptxvp867udf"
+
+[node name="Panel" type="Panel" parent="MultiplayerLobby"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MultiplayerLobby/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.05
+anchor_right = 0.9
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerLobby/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Host" type="Button" parent="MultiplayerLobby/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_53640")
+text = "Host"
+
+[node name="HostIP" type="Label" parent="MultiplayerLobby/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_53640")
+
+[node name="Join" type="Button" parent="MultiplayerLobby/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_53640")
+text = "Join
+"
+
+[node name="JoinIP" type="LineEdit" parent="MultiplayerLobby/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("1_53640")
+placeholder_text = "IP:PORT"
+emoji_menu_enabled = false
+
+[node name="Offline" type="Button" parent="MultiplayerLobby/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_53640")
+text = "play offline"
+
+[connection signal="pressed" from="MultiplayerLobby/Panel/MarginContainer/VBoxContainer/Host" to="MultiplayerLobby" method="on_host_pressed"]
+[connection signal="pressed" from="MultiplayerLobby/Panel/MarginContainer/VBoxContainer/Join" to="MultiplayerLobby" method="on_join_pressed"]
+[connection signal="pressed" from="MultiplayerLobby/Panel/MarginContainer/VBoxContainer/Offline" to="MultiplayerLobby" method="_on_offline_pressed"]

@@ -67,7 +67,9 @@ func damage(pos:Vector3):
 	print(collision.global_position)
 	print(area.get_overlapping_bodies())
 	for collide:PhysicsBody3D in area.get_overlapping_bodies():
+		pass
 		if collide is Player:
+			pass
 			#print(res.knockback_falloff.sample(pos.distance_to(collide.position))," , ",pos.distance_to(collide.position))
 			var player:Player = collide
 			player.knockback += pos.direction_to(player.camera.global_position) * res.knockback_falloff.sample(pos.distance_to(collide.position)) * res.knockback
