@@ -1,6 +1,8 @@
 extends InventoryItem
 #@export var RodResoruce: InventoryResource
 
+##This whole script sucks ass
+
 var bobber: StaticBody3D
 var cast_point
 var s = 0
