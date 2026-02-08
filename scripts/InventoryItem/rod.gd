@@ -40,7 +40,7 @@ func _process(_delta):
 						anim.play("swing")
 						
 						bStart = cast_point.global_position
-						bEnd = auto.ScreenPointToRay(camera)
+						bEnd = RaycastHelper.raycast_from_camera(camera)
 						bControl = lerp(bStart,Vector3(bEnd.x,bStart.y,bEnd.z),.5)
 						bControl. y += abs(bStart.y-bEnd.y)
 						bTravel = 0

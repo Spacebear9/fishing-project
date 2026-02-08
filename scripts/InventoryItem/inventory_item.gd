@@ -65,7 +65,8 @@ func _process(delta: float) -> void:
 					if ability is AbilityProjectile:
 						if shot_cooldown <= 0:
 							shot_cooldown = Inventoryresource.cooldown
-							_fire_projectile(fire_point.global_position,auto.ScreenPointToRay(camera,1,[player.get_rid()]),ability)
+							var raycast = RaycastHelper.raycast_from_camera(camera,1,[player.get_rid()])
+							_fire_projectile(fire_point.global_position,raycast,ability)
 					else:
 						unknown_ability(ability,phase)
 	write_cooldown()
