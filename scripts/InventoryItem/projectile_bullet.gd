@@ -39,8 +39,7 @@ func _physics_process(_delta: float) -> void:
 		force_raycast_update()
 		if get_collider():
 			moving = false
-			auto.line(global_position,global_position + target_position,Color.RED,0,false)
-			auto.line(global_position+target_position,get_collision_point() ,Color.GREEN,0,false)
+			add_child(LineHelper.create_line(global_position,global_position+target_position,null,Color.RED))
 			global_position = get_collision_point()
 			damage(get_collision_point())
 			return
