@@ -31,11 +31,10 @@ func _ready() -> void:
 	
 	
 var previewarray: Array
-func _process(delta):
+func _process(_delta):
 	lifespan = 1+lifespan
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if moving:
-		var collisions = []
 		target_position = travel * res.speed
 		force_raycast_update()
 		if get_collider():
@@ -45,8 +44,6 @@ func _physics_process(delta: float) -> void:
 			global_position = get_collision_point()
 			damage(get_collision_point())
 			return
-		#else:
-			#auto.line(global_position,global_position + target_position,Color.WHITE_SMOKE,0,false)
 		position += target_position
 
 func damage(pos:Vector3):

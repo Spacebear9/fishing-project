@@ -30,7 +30,7 @@ func _ready():
 	#add_child(t2)
 
 
-func _process(delta):
+func _process(_delta):
 	t1c = player.lateral_vel.angle()-player.wish_vec.angle()
 	if !player.is_on_floor():
 		gra.set_color(0,Color(notblue,notblue,255))

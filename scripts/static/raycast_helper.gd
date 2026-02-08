@@ -6,7 +6,7 @@ static func raycast_from_camera(camera:Camera3D,collision_mask = 0b0010,exclude:
 	var screen_resolution = DisplayServer.window_get_size(0)
 	
 	var ray_origin = camera.global_position
-	var ray_end = camera.project_ray_normal(screen_resolution/2)*10000
+	var ray_end = camera.project_ray_normal(screen_resolution/2.0)*10000
 	
 	var ray_query = PhysicsRayQueryParameters3D.create(ray_origin,ray_end)
 	ray_query.collision_mask = collision_mask

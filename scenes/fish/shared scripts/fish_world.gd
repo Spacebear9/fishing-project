@@ -29,7 +29,7 @@ func _ready() -> void:
 	parent = get_parent()
 	target = position
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	swim()
 
 
