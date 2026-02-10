@@ -28,7 +28,7 @@ func _ready() -> void:
 		moving = false
 		damage(target_position)
 		return
-	
+	get_tree().create_timer(10).timeout.connect(queue_free)
 	
 var previewarray: Array
 func _process(_delta):
@@ -67,9 +67,12 @@ func damage(pos:Vector3):
 	effect_explode(pos)
 
 func effect_explode(pos:Vector3):
+	var explosive_projectile_mesh = get_child(0)
+	explosive_projectile_mesh.visible = false 
+	
 	var explode:GPUParticles3D = load("res://scenes/explode_1.tscn").instantiate()
 	explode.emitting = true
 	auto.add_child(explode)
 	explode.global_position = pos
 	explode.process_material.emission_sphere_radius = res.aoe_radius
-	explode.finished.connect(explode.queue_free)
+	explode.finished.connect(queue_free)
