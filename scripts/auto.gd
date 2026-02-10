@@ -29,37 +29,15 @@ func unload_all():
 		if n != self:
 			n.queue_free()
 	players_active.clear()
-	
-	
-	
-func line(pos1: Vector3, pos2: Vector3, color = Color.BLACK,time = 1,on_top = true):
-	var mesh_instance := MeshInstance3D.new()
-	var immediate_mesh := ImmediateMesh.new()
-	var material := StandardMaterial3D.new()
 
-	mesh_instance.mesh = immediate_mesh
-	mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	
-	if on_top:
-		mesh_instance.layers = 0b00000000_00000000_00000000_00000010
-	
-	immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINES, material)
-	immediate_mesh.surface_add_vertex(pos1)
-	immediate_mesh.surface_add_vertex(pos2)
-	immediate_mesh.surface_end()
-
-	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	material.albedo_color = color
-	
-	get_tree().get_root().add_child(mesh_instance)
-	if time == 0:
-		return
-	elif time == 1:
-		await get_tree().physics_frame
-	mesh_instance.queue_free()
+###Should move curve to be LineHelper.create_curve()
 func curve(pos1: Vector3, pos2: Vector3,pos3: Vector3, detail: float, color = Color.BLACK):
 	for i in Vector3(0,1,(1/detail)):
-		line(lerp(lerp(pos1,pos3,i),lerp(pos3,pos2,i),i),lerp(lerp(pos1,pos3,i+(1/detail)),lerp(pos3,pos2,i+(1/detail)),i+(1/detail)),color)
+		var line_node = LineHelper.create_line(lerp(lerp(pos1,pos3,i),lerp(pos3,pos2,i),i),
+		lerp(lerp(pos1,pos3,i+(1/detail)),lerp(pos3,pos2,i+(1/detail)),i+(1/detail)),
+		get_tree().process_frame,color)
+		add_child(line_node)
+
 func curve_length(pos1: Vector3, pos2: Vector3,pos3: Vector3, detail: float):
 	var sum
 	for i in Vector3(0,1,(1/detail)):

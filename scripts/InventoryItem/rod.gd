@@ -35,7 +35,7 @@ func _process(_delta):
 		match bState:
 				states.resting:
 					bobber.global_position = cast_point.global_position - Vector3(0,4,0)
-					auto.line(bobber.global_position,cast_point.global_position)
+					#auto.line(bobber.global_position,cast_point.global_position)
 					if input && not anim.is_playing():
 						anim.play("swing")
 						
@@ -67,9 +67,9 @@ func _process(_delta):
 						input = false
 						bState = states.resting
 
-		auto.line(bStart,bControl,Color.DARK_GREEN)
-		auto.line(bEnd,bControl,Color.DARK_RED)
-		auto.line(bStart,bEnd,Color.YELLOW)
+		#auto.line(bStart,bControl,Color.DARK_GREEN)
+		#auto.line(bEnd,bControl,Color.DARK_RED)
+		#auto.line(bStart,bEnd,Color.YELLOW)
 		auto.curve(bStart,bEnd,bControl,10.0)
 
 var input = false
